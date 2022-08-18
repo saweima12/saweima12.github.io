@@ -1,0 +1,1 @@
+import{w as s}from"./index-e127beab.js";const u={navMenu:"navMenu",searchView:"searchView"},r=()=>{const{subscribe:a,set:c,update:n}=s([]);return{subscribe:a,push:t=>n(e=>e.includes(t)?e:e=[t,...e]),remove:t=>n(e=>e=e.filter(i=>i!=t)),reset:()=>c([])}},w=s({}),h=s("light"),l=s({content:""}),v=r();export{u as a,l,w as s,h as t,v};

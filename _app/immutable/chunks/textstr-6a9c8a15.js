@@ -1,0 +1,1 @@
+const o={common:{home:"Home",themeMode:"\u6DF1\u6DFA\u6A21\u5F0F"},home:{posts:"\u6587\u7AE0\u5217\u8868",tags:"\u6A19\u7C64\u6E05\u55AE",tagName:"\u6A19\u7C64\u540D\u7A31",lastUpdated:"\u6700\u5F8C\u66F4\u65B0\u65E5\u671F",tagCount:"\u6587\u7AE0\u6578"},journal:{title:"\u6A94\u6848\u5EAB"}};export{o as c};

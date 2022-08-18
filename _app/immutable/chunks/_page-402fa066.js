@@ -1,0 +1,1 @@
+import{d as s}from"./route-58ec6f73.js";const n=async({fetch:t})=>{const a=s.getTagList(),o=await t(a),{tagList:e}=await o.json();return{tagList:e}},c=Object.freeze(Object.defineProperty({__proto__:null,load:n},Symbol.toStringTag,{value:"Module"}));export{c as _,n as l};

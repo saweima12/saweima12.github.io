@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../logo.png" />
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+		<link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+		<link rel="alternate" type="application/feed+xml" href="/feed.xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二） - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地</title><meta name="twitter:card" content="summary" data-svelte="svelte-f1lzu5"><meta name="twitter:site" content="@saweima12" data-svelte="svelte-f1lzu5"><meta name="twitter:title" content="踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二） - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta name="twitter:description" data-svelte="svelte-f1lzu5"><meta name="twitter:url" content="https://saweicore.com/posts/2022/06/blockchain-dapp-start" data-svelte="svelte-f1lzu5"><meta property="og:url" content="https://saweicore.com/posts/2022/06/blockchain-dapp-start" data-svelte="svelte-f1lzu5"><meta property="og:locale" content="zh_TW" data-svelte="svelte-f1lzu5"><meta property="og:type" content="article" data-svelte="svelte-f1lzu5"><meta property="og:title" content="踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二）" data-svelte="svelte-f1lzu5"><meta property="og:site_name" content="Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta property="og:description" content="投入了加密貨幣後，想要進一步探索區塊鍊上的生態，卻又不知道該怎麼做嘛？這篇文章概略的介紹了一些區塊鏈的生態與操作步驟，或許能夠提供一些小幫助。" data-svelte="svelte-f1lzu5">
+		<meta name="description" content="投入了加密貨幣後，想要進一步探索區塊鍊上的生態，卻又不知道該怎麼做嘛？這篇文章概略的介紹了一些區塊鏈的生態與操作步驟，或許能夠提供一些小幫助。" data-svelte="svelte-f1lzu5">
+	<link href="../../../_app/immutable/assets/+layout-eed564a7.css" rel="stylesheet">
+	<link href="../../../_app/immutable/assets/+page-7ed394ec.css" rel="stylesheet">
+	<link rel="modulepreload" href="../../../_app/immutable/start-34fd70cd.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e6965666.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e127beab.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/preload-helper-aa6bc0ce.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons-dbe501d2.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/_layout.svelte-db83af4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/store-465521c3.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/helper-a645ffda.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/stores-4922191d.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/navigation-a14b4e4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_commonjsHelpers-094ef602.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/_layout.ts-4774ee04.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/route-58ec6f73.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout-5a184ceb.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/posts/_year_/_month_/_slug_/_page.svelte-d45c6961.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/formater-faf389fa.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/calender-ce03e571.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/colors-e3ddc188.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/posts/_year_/_month_/_slug_/_page.ts-8ee2144c.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_page-a23fdb74.js">
+	</head>
+	<body>
+		<div>
+
+
+<div class="wrapper-container"><div class="transition-all duration-200 min-h-screen main-wrapper"><div class="fixed top-0 w-screen wrapper">
+
+<nav class="py-2 px-2 top-navbar svelte-1jv9zmu"><div class="flex pl-1 items-center navbar-container svelte-1jv9zmu"><div class="lg:hidden w-30 px-2"><div class="menu-button-wrapper"><div class="menu-button-container"><div class="menu-button"></div></div></div></div>
+
+		<a sveltekit:prefetch class="flex raleway-font site-title" href="/"><div class="logo svelte-1jv9zmu"><img width="36" height="36" src="/logo.png" alt="Saweicore Lab"></div>
+			
+			<div class="hidden md:flex px-2 letter-title-font title svelte-1jv9zmu">Saweicore Lab</div></a>
+	
+		<div class="grow spacer"></div>
+
+		<div class="hidden lg:flex items-center"><ul class="h-full flex flex-row nav-list svelte-1jv9zmu"><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Journal</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">About</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Github</div>
+							<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+					</a>
+				</li></ul>
+			<button class="flex text-xl letter-content-font mr-1 theme-switch svelte-1jv9zmu"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+		<div class="lg:hidden search-icon"><div class="nav-search mr-2 svelte-18cfe79"><div class="flex self-center justify-center w-6 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+</div></div></div>
+
+
+</nav></div>
+
+		<div class="flex flex-col justify-between main-container svelte-agtcg5"><div class="w-full content-wrapper"><main class="mx-auto min-h-screen content-container"><div>
+
+<div class="my-10 post-page wrapper"><div class="post-container"><header class="mx-6 mb-4"><h1 class="font-bold letter-title-font post-title">踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二）</h1>
+
+			<div class="flex flex-row items-center mt-2 created-date"><div class="icon-base w-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line fill="currentColor" x1="16" y1="2" x2="16" y2="6"></line><line fill="currentColor" x1="8" y1="2" x2="8" y2="6"></line><line fill="currentColor" x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+				<time class="flex self-center ml-2">2022-06-08</time></div>
+
+			<div class="mt-4 flex flex-row post-tag-list"><div class="post-tag-item"><a sveltekit:prefetch href="/tags/幣圈">幣圈</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/區塊鏈">區塊鏈</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/加密貨幣">加密貨幣</a>
+					</div></div></header>
+
+		<article class="content"><!-- HTML_TAG_START --><p>午安，旅人。看到這段文字的你，或許打算更進一步的探索加密貨幣與區塊鏈的領域。如果是的話，這篇文章或許能帶給你一些幫助，在此會簡單的介紹如何把資金送到區塊鍊進行應用以及簡單說明什麼是區塊鏈。</p>
+<blockquote>
+<p>如果是誤入此地的旅人，對於踏入加密貨幣領域有點興趣卻又不知道從何開始的話可以參考這篇文章，做好初步的準備。<br/>
+連結：<a href="/posts/2022/05/crypto-getting-start" ><strong>如何取得加密貨幣 — 加密貨幣入門大小事</strong></a></p>
+</blockquote>
+<h2 id="這篇文章希望能帶你" class="heading-item">這篇文章希望能帶你</h2><ul>
+<li>建立自己的鏈上錢包</li>
+<li>嘗試使用去中心化應用 (DApp)</li>
+<li>初步理解區塊鏈為何存在</li>
+<li>簡單理解加密貨幣種類</li>
+</ul>
+<h2 id="建立鏈上錢包" class="heading-item">建立鏈上錢包</h2><p>目前常見的公鏈有：ETH、CARDANO(ADA) 、AVAX 及 SOLANA。不論最終選擇哪個，想要<strong>進入區塊鏈領域第一件事情便是建立一個鏈上錢包地址</strong>，並將資金轉到鏈上。</p>
+<p>在開始之前有以下幾點需要注意：</p>
+<ul>
+<li><strong>做好事前調查</strong>：請確保對自己所選擇的公鏈有一定程度的了解，並且確認其足以信任。</li>
+<li><strong>永遠為自己的行為負責</strong>：絕對不要過度投入，確保能夠承擔多少風險，沒人能夠替你負責。</li>
+<li><strong>要有防範意識</strong>：在加密貨幣市場中，大多人是不太理性的，即便是市值前五名的公鏈都有可能一夕蒸發，務必做好風險控管。</li>
+</ul>
+<blockquote>
+<p>由於現今區塊鏈數量眾多，每條鏈的特性及功能雖然略有不同，但終端使用者操作步驟都大同小異。因此這邊會以我自己最熟悉的 Cardano(ADA) 區塊鏈為例。</p>
+</blockquote>
+<h3 id="選擇使用的錢包" class="heading-item">選擇使用的錢包</h3><p>在 Cardano 中有多種錢包可以選擇，其中大多數都以瀏覽器插件的形式存在，這邊推薦使用 <a href="https://eternl.io/" target="_blank" rel="noreferrer noopenner">Eternl Wallet</a> 。</p>
+<ul>
+<li>目前使用最順手的錢包，雖然畫面有點小複雜但是功能齊全。</li>
+<li>由於目前只支援 Chromium 系列瀏覽器，因此推薦搭配 <a href="https://brave.com/zh/download/" target="_blank" rel="noreferrer noopenner">Brave瀏覽器</a> 使用。</li>
+<li>建議與平時使用的瀏覽器分開，避免遇上釣魚網站或是遇到瀏覽器漏洞被駭入的問題。</li>
+<li>有支援 Android 手機板。</li>
+<li>接下來也會以此錢包作為示範</li>
+</ul>
+<h3 id="透過錢包創建自己的錢包地址" class="heading-item">透過錢包創建自己的錢包地址</h3><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-01.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+1. 點擊 「Add Wallet」 進入選單
+</p>
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-02.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+2. 點擊 「Create Wallet」 創建自己的錢包地址 / 若已經有了其他的錢包，可以選擇 「Restore Wallet」 透過助記詞登入。
+</p>
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-03.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+3. 輸入自訂的錢包名稱及錢包密碼（此名稱與密碼僅適用於該裝置，用於避免有他人盜用裝置付款。）
+</p>
+
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-04.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+4. 最後會顯示由 24 個單字組成的助記詞，請務必保存好並且不要洩漏出去，若失去助記詞等同於失去錢包。會有資金損失的風險。
+</p>
+
+
+<h3 id="目前使用鏈上錢包的好處" class="heading-item">目前使用鏈上錢包的好處</h3><ul>
+<li>可以透過鍊上錢包使用 DApp、質押和參與鏈上事務。</li>
+<li>Not your key, not your money，將公鏈幣提領至對應公鏈幣的錢包，可以避免交易所倒掉時資產消失的窘境。(與區塊鍊共存亡)</li>
+</ul>
+<h3 id="其他的錢包" class="heading-item">其他的錢包</h3><p>另外也有以下幾種錢包可以選擇：</p>
+<ul>
+<li>Typhon Wallet - <a href="https://typhonwallet.io/" target="_blank" rel="noreferrer noopenner">https://typhonwallet.io/</a></li>
+<li>Gero Wallet - <a href="https://gerowallet.io/" target="_blank" rel="noreferrer noopenner">https://gerowallet.io/</a></li>
+<li>Nami Wallet - <a href="https://namiwallet.io/" target="_blank" rel="noreferrer noopenner">https://namiwallet.io/</a></li>
+<li>Flint Wallet - <a href="https://flint-wallet.com/" target="_blank" rel="noreferrer noopenner">https://flint-wallet.com/</a></li>
+</ul>
+<p>不需要擔心更換錢包會很麻煩。在 Cardano 中錢包就只是方便的操作介面而已，實際的金額都會儲存在區塊鏈的記錄中，只要記得自己建立錢包地址時取得的助記詞，在新的錢包恢復(Restroe) 即可。</p>
+<h2 id="區塊鏈與質押" class="heading-item">區塊鏈與質押</h2><p>在區塊鏈中 <strong>質押 (Stake)</strong> 是用來表示「將自己所持有的代幣進行鎖定，用來投票 / 提供流動性來協助維護區塊鏈網路」的簡稱。 </p>
+<p>在 PoS (權益證明) 基礎的區塊鏈中質押尤為重要，透過<strong>持有者們質押代幣進行投票來決定哪一些節點更有驗證交易的優先權</strong>。作為回報，會返還交易手續費或是獎勵池中的額度來鼓勵人們進行質押。</p>
+<p>透過 Eternl 錢包質押賺取額外的代幣非常簡單，操作如下：</p>
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-05.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+切換到 Staking 介面，挑選喜歡的質押池。 按下 Delegate 即可（推薦挑選 Fees 為 0% 、 ROS > 4% 並且 Situ的池子進行質押）
+</p>
+
+
+<p>在 Cardano 生態中，質押與其他區塊鏈有些許不同。</p>
+<ul>
+<li>質押不需要鎖定，改為每個 epoch 建立一次帳戶餘額快照（記錄帳戶內有多少 ADA）。</li>
+<li>建立的快照將會作為<strong>下下次</strong>的質押依據。</li>
+<li>在 Cardano 一個 epoch 為五天，每個區塊鏈可能設定不相同。</li>
+<li>因此初次質押後需要最多21天才能得到第一筆獎勵。</li>
+</ul>
+<h2 id="使用去中心化應用程式-dapp" class="heading-item">使用去中心化應用程式 (DApp)</h2><p>在區塊鏈的領域中人們嘗試著透過區塊鏈去中心化的特性及智能合約功能，建構出了不需要使用私人資料庫便能做資料交換的 DApp(去中心化應用程式)。 只需連接上錢包就能在各 DApp 之間自由切換，而不需要繁瑣的轉帳步驟。</p>
+<blockquote>
+<p>目前各大公鏈的 DApp 生態都還在發展中，以小圖片 NFT 及各式各樣的 De-Fi（去中心化金融）為主。 </p>
+</blockquote>
+<h3 id="連接錢包到-dapp" class="heading-item">連接錢包到 DApp</h3><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-06.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+先在錢包頁面中點擊插頭圖案，允許 DApp 連接。
+</p>
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/cnft-01.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+點擊右上角的 Link Wallet 選擇自己當前檢測到的錢包插件，點擊後會跳出視窗，讓錢包插件進行確認。
+</p>
+<img src="https://media.saweicore.com/blog/blockchain-dapp-start/cnft-02.jpg" style="max-height:720px" loading="lazy" class="lightbox"/>
+<p class="text-center">
+經過錢包插件確認後，即可看到連接完成。
+</p>
+
+<p>連接 DApp 的操作步驟都大同小異，部份 DApp 甚至不需要進行錢包連接。下面會介紹些目前較為有用的 DApp 。</p>
+<h3 id="去中心化交易所-dex" class="heading-item">去中心化交易所 (DEX)</h3><p>目前為止使用的國內交易所 Ace 、國際交易所 Binance 都屬於「中心化交易所 (CEX)」， 在區塊鏈中有著與之相對的透過區塊鏈的去中心化基礎與智能合約創造的「去中心化交易所（DEX）」。</p>
+<p>作為區塊鍊上代幣交易的集中地。目前 DEX 的方便性與交易量還無法媲美 CEX ，但相信未來非常具有成長潛力。</p>
+<ul>
+<li><p><a href="https://minswap.org/" target="_blank" rel="noreferrer noopenner">MinSwap</a> 是 Cardano 社群中較為活躍的 DEX 之一，採用 Auto Market Maker 模型（AMM)，讓流動性提供者可透過鎻倉代幣提供流動性賺取額外收入，交易者依據需要從流動池中兌換代幣，可在此將 ADA 更換為其他 Cardano 生態上的代幣。</p>
+</li>
+<li><p><a href="https://muesliswap.com/markets" target="_blank" rel="noreferrer noopenner">MuesliSwap</a> 是另外一個在 Cardano 社群中活躍的 DEX 之一，採用傳統的訂單簿模型 (OrderBook)撮合需求者與供給者雙方進行交易。</p>
+</li>
+</ul>
+<h3 id="消費性質產品與-nft" class="heading-item">消費性質產品與 NFT</h3><p>在 Cardano 中目前具有消費性質的產品還不夠多，大多是音樂、繪畫、動畫等相關作品。</p>
+<ul>
+<li><p><a href="https://www.jpg.store/" target="_blank" rel="noreferrer noopenner">Jpg.store</a> 是 Cardano 社群中 NFT 小圖片的交易集散地。在這邊可以進行大多數的 NFT 販售與購買，與拍賣網站類似。</p>
+</li>
+<li><p><a href="https://adahandle.com/" target="_blank" rel="noreferrer noopenner">ADAHandle</a> 在區塊鍊中的錢包地址總是很長，AdaHandle 可以透過 NFT 應用進行地址 Mapping 。縮短到像是: $handle.it</p>
+</li>
+</ul>
+<h2 id="區塊鏈到底是什麼？為什麼要去中心化？" class="heading-item">區塊鏈到底是什麼？為什麼要去中心化？</h2><p>假設以下情況：</p>
+<ul>
+<li>我承諾三天後要轉帳 10 萬美金給旅人作為貨款，並取走了貨物。</li>
+<li>過了四天，旅人發現那 10 萬美金一直都沒有到帳，跑來反應。</li>
+<li>但是我卻表明已經付款過了，因此之後將不會在作給付。</li>
+</ul>
+<p>這時便產生了問題：</p>
+<ol>
+<li><strong>要找誰來證明我是否真的有支付這筆款項？</strong></li>
+<li><strong>如果我其實沒支付，但是找來的第三方說我已經支付了怎麼辦？</strong></li>
+<li><strong>如果旅人找來的第三方調查的人證明我沒支付，但因為是旅人找來的，所以我表示你們聯合造假怎麼辦？</strong></li>
+</ol>
+<p>要解決上述的問題，需要存在一個<strong>雙方都能信任的公正第三方驗證者及記錄者</strong>。</p>
+<p>區塊鏈是一套為此創造的解決方案，有以下特性：</p>
+<ul>
+<li><strong>去中心化驗證</strong> - 若一個人驗證可能產生造假嫌疑，那就隨機多找幾個人驗證，透過多個節點的共識機制驗證交易，確保正確性。</li>
+<li><strong>去中心化存儲</strong> - 帳本存放於單一地點時有被竄改的可能性，因此驗證後的資料將隨機分散至多個節點進行存放，降低被竄改的可能性。</li>
+<li><strong>密碼學湊雜</strong> - 存放於區塊鍊上的交易資料根據內容計算出不重複的唯一 ID ，確保資料並無被竄改。</li>
+</ul>
+<p>透過以上三個特性，創造出記錄不易被竄改並且具備公正性的第三方驗證者。</p>
+<h2 id="加密貨幣又是什麼？" class="heading-item">加密貨幣又是什麼？</h2><p>加密貨幣(Cryptocurrency)又稱數位貨幣、虛擬貨幣。 是在區塊鍊上發行的數位代幣，依據用途不同而有不同的分類。</p>
+<p>依據用途與性質可分為：</p>
+<ul>
+<li><strong>穩定幣</strong> - 價格波動較為穩定的幣種， 價值通常與法幣掛勾。目前在跨境交易上，常被用作法幣的替代品如：USDC、USDT，被用作替代美元。</li>
+<li><strong>公鏈幣</strong> - 區塊鏈自己發行的幣種，作為協助維護自身區塊鏈的獎勵代幣。如： ETH、ADA、SOL。 </li>
+<li><strong>平台幣</strong> - 由特定組織、團隊替自己的產品/平台發行。如：FTT、MIN、RAY...等，作為平台的獎勵 token。</li>
+<li><strong>Meme幣</strong> - 基於戲謔或是各種理由發行的代幣，這類代幣通常會極大量發行讓價值變的極低，如： SHIB、DOGE、HOUSKY .. 等。</li>
+</ul>
+<p>以上分類不需要硬性區分，某些幣種可能會有複數性質。其中有些公鍊幣與平台幣又與股票類似，持有就相當於支持該區塊鍊/平台並參與網路運作。</p>
+<h2 id="tldr" class="heading-item">TL;DR</h2><ul>
+<li>不論選擇哪條區塊鏈，要踏入區塊鏈生態的第一步都是先建立該鏈的錢包地址。</li>
+<li>錢包地址可以透過公鍊提供的錢包軟體建立。</li>
+<li>錢包的助記詞必須保存好且避免洩漏，預防有資金損失的風險。</li>
+<li>在 PoS 基礎的區塊鍊中，透過在區塊鏈上質押代幣，可以協助區塊鍊網路運作並賺取質押獎勵。</li>
+<li>去中心化應用程式 (DApp) 是建立在區塊鍊之上不需私人資料庫的應用程式。</li>
+<li>目前 DApp 的生態還在發展中，能做的事情還不多。</li>
+<li>透過使用鏈上錢包連接 (Connect) 使用「去中心化應用程式(DApp)  」。</li>
+<li>區塊鏈被設計用來成為交易時的公正第三方及記錄者。</li>
+<li>加密貨幣是在區塊鏈之上發行的數位代幣，有各式各樣的用途。</li>
+</ul>
+<!-- HTML_TAG_END --></article></div></div>
+
+</div></main>
+				<footer class="w-full pt-20 pb-5 site-footer svelte-1esoz7b"><div class="flex justify-center items-center px-10 h-full footer-container"><div class="copyright">Copyright © 2020 - 2022 Saweicore Lab All Rights Reserved.</div></div>
+</footer></div>
+
+			<div class="hidden lg:block drawer-wrapper mr-0.5"><div class="w-full min-h-screen h-full drawer-container"><div class="flex flex-col h-full widget-list"><div class="widget-list-item my-3 svelte-zx3hu4"><div class="w-full cursor-pointer search-widget svelte-q0vdx1"><div class="flex flex-row h-full justify-center items-center label svelte-q0vdx1"><div class="flex self-center mr-2 w-4 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+        <div class="label-text mr-2">Search</div>
+        <div class="flex label-container items-center label-keys"><div class="label-key svelte-q0vdx1">Ctrl</div>
+            <div class="label-key svelte-q0vdx1">/</div></div></div>
+</div></div>
+
+    <div class="widget-list-item svelte-zx3hu4"><div class="author-widget"><div class="w-32 h-32"><img class="avatar svelte-9pb7ln" src="https://avatars.githubusercontent.com/u/62002212" alt="Saweima" loading="lazy" width="128" height="128"></div>  
+    <div class="mt-3 name svelte-9pb7ln"><h2>Saweima</h2></div> 
+    <div class="mr-3 letter-content-font description svelte-9pb7ln"><p>雜項工程師 | 幣圈小白 | 想到再寫</p></div>
+</div></div>
+    
+    <div class="widget-list-item sticky top-14 svelte-zx3hu4">
+
+<div class="outline-widget svelte-1tqky31"><ul class="overflow-y-auto outline-list svelte-1tqky31"><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#這篇文章希望能帶你" class="svelte-1tqky31">這篇文章希望能帶你</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#建立鏈上錢包" class="svelte-1tqky31">建立鏈上錢包</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#選擇使用的錢包" class="svelte-1tqky31">選擇使用的錢包</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#透過錢包創建自己的錢包地址" class="svelte-1tqky31">透過錢包創建自己的錢包地址</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#目前使用鏈上錢包的好處" class="svelte-1tqky31">目前使用鏈上錢包的好處</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#其他的錢包" class="svelte-1tqky31">其他的錢包</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#區塊鏈與質押" class="svelte-1tqky31">區塊鏈與質押</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#使用去中心化應用程式-dapp" class="svelte-1tqky31">使用去中心化應用程式 (DApp)</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#連接錢包到-dapp" class="svelte-1tqky31">連接錢包到 DApp</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#去中心化交易所-dex" class="svelte-1tqky31">去中心化交易所 (DEX)</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#消費性質產品與-nft" class="svelte-1tqky31">消費性質產品與 NFT</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#區塊鏈到底是什麼？為什麼要去中心化？" class="svelte-1tqky31">區塊鏈到底是什麼？為什麼要去中心化？</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#加密貨幣又是什麼？" class="svelte-1tqky31">加密貨幣又是什麼？</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#tldr" class="svelte-1tqky31">TL;DR</a>
+            </div></ul>
+</div></div>
+
+
+</div></div></div></div></div></div>
+
+<div class="fixed top-0 z-10 w-screen h-screen screenmask hidden"></div>
+
+
+<div class="fixed z-30 top-0 left-0 bottom-0 w-60 md:w-80 h-screen transition-all duration-200 navmenu svelte-7saduy -translate-x-full"><div class="flex flex-col h-full navmenu-container"><div class="py-4 mb-2 header"><div class="flex items-center mb-4 pl-8"><div class="title text-lg svelte-7saduy">Saweicore Lab</div>
+					<button class="flex text-xl letter-content-font theme-switch svelte-7saduy"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+			<div class="flex flex-row mx-6 author-block svelte-7saduy"><img src="https://avatars.githubusercontent.com/u/62002212" alt="saweima" loading="lazy" width="80" height="80" class="svelte-7saduy">
+				<div class="flex flex-col word-font items-center justify-center ml-4 avatar-info"><div class="font-bold text-lg">Saweima</div>
+					<div>邊緣工作者</div></div></div></div>
+		<ul class="nav-list">
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" d="M19,2 C20.6568542,2 22,3.34314575 22,5 L22,19 C22,20.6568542 20.6568542,22 19,22 L5,22 C3.34314575,22 2,20.6568542 2,19 L2,5 C2,3.34314575 3.34314575,2 5,2 L19,2 Z M20,8 L4,8 L4,19 C4,19.5522847 4.44771525,20 5,20 L19,20 C19.5522847,20 20,19.5522847 20,19 L20,8 Z M12.1167504,17.9932723 L12.0000776,18 L11.916,17.996 L11.7993725,17.9797599 L11.7993725,17.9797599 L11.6879528,17.9502619 L11.6879528,17.9502619 L11.5768709,17.9063266 L11.5768709,17.9063266 L11.4793812,17.8540045 L11.4793812,17.8540045 L11.4049183,17.8036865 L11.4049183,17.8036865 L11.2929784,17.7071068 L8.29290079,14.7071068 C7.9023664,14.3165825 7.9023664,13.6834175 8.29290079,13.2928932 C8.65339407,12.9324093 9.22063979,12.9046797 9.61294114,13.2097046 L9.70715092,13.2928932 L11,14.585 L11.0000776,11 C11.0000776,10.4871642 11.3861178,10.0644928 11.8834564,10.0067277 L12.0001293,10 C12.552414,10 13.0001293,10.4477153 13.0001293,11 L13,14.585 L14.2930559,13.2928932 C14.6535492,12.9324093 15.2207949,12.9046797 15.6130963,13.2097046 L15.707306,13.2928932 C16.0677993,13.6533772 16.0955296,14.2206082 15.7904968,14.6128994 L15.707306,14.7071068 L12.7072361,17.7071068 L12.6217218,17.7833908 L12.6217218,17.7833908 L12.5518984,17.8341416 L12.5518984,17.8341416 L12.4539624,17.8913373 L12.4539624,17.8913373 L12.3401306,17.9407132 L12.3401306,17.9407132 L12.2661033,17.9641549 L12.1167504,17.9932723 L12.1167504,17.9932723 Z M19,4 L5,4 C4.44771525,4 4,4.44771525 4,5 L4,6 L20,6 L20,5 C20,4.44771525 19.5522847,4 19,4 Z"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Journal</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"><g><g><path fill="currentColor" d="m480.6,11c-40.6,0-80.2,12.7-118.6,25-36.9,11.9-71.8,23.1-106,23.1-34.2,0-69.1-11.2-106-23.1-38.3-12.3-78-25-118.6-25-11.3,0-20.4,9.1-20.4,20.4v401c0,11.3 9.1,20.4 20.4,20.4 34.2,0 69.1,11.2 106,23.1 38.3,12.3 77.9,25 118.5,25 40.6,0 80.2-12.7 118.5-25 36.9-11.9 71.8-23.1 106-23.1 11.3,0 20.4-9.1 20.4-20.4v-401c0.2-11.3-8.9-20.4-20.2-20.4zm-428.8,402.1v-360c27.7,3.2 56,12.3 85.6,21.9 31.9,10.2 64.6,20.8 98.1,24v360c-27.7-3.2-56-12.3-85.6-21.8-31.8-10.4-64.6-20.9-98.1-24.1zm408.4,0c-33.5,3.3-66.3,13.8-98.1,24-29.6,9.5-57.9,18.6-85.6,21.8v-360c33.5-3.3 66.3-13.8 98.1-24 29.6-9.5 57.9-18.6 85.6-21.9v360.1z"></path><path fill="currentColor" d="m183.6,144l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,246.6l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,349.3l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.8-2.8-22.2-13.6-25.4z"></path><path fill="currentColor" d="m314.7,169.4c2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.3-10.8-14.6-16.9-25.4-13.7l-68,20.4c-10.8,3.3-16.9,14.7-13.7,25.4z"></path><path fill="currentColor" d="m396.5,226.2l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.8-25.3-13.7z"></path><path fill="currentColor" d="m396.5,328.9l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.9-25.3-13.7z"></path></g></g></svg></div>
+					<div class="pl-4 text-xl letter-content-font">About</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon"><path fill="currentColor" d="m256 0c-140.609375 0-256 115.390625-256 256 0 119.988281 84.195312 228.984375 196 256v-84.695312c-11.078125 2.425781-21.273438 2.496093-32.550781-.828126-15.128907-4.464843-27.421875-14.542968-36.546875-29.910156-5.816406-9.8125-16.125-20.453125-26.878906-19.671875l-2.636719-29.882812c23.253906-1.992188 43.371093 14.167969 55.3125 34.230469 5.304687 8.921874 11.410156 14.152343 19.246093 16.464843 7.574219 2.230469 15.707032 1.160157 25.183594-2.1875 2.378906-18.972656 11.070313-26.074219 17.636719-36.074219v-.015624c-66.679687-9.945313-93.253906-45.320313-103.800781-73.242188-13.976563-37.074219-6.476563-83.390625 18.238281-112.660156.480469-.570313 1.347656-2.0625 1.011719-3.105469-11.332032-34.230469 2.476562-62.546875 2.984375-65.550781 13.078125 3.867187 15.203125-3.890625 56.808593 21.386718l7.191407 4.320313c3.007812 1.792969 2.0625.769531 5.070312.542969 17.371094-4.71875 35.683594-7.324219 53.726563-7.558594 18.179687.234375 36.375 2.839844 54.464844 7.75l2.328124.234375c-.203124-.03125.632813-.148437 2.035157-.984375 51.972656-31.480469 50.105469-21.191406 64.042969-25.722656.503906 3.007812 14.128906 31.785156 2.917968 65.582031-1.511718 4.65625 45.058594 47.300781 19.246094 115.753906-10.546875 27.933594-37.117188 63.308594-103.796875 73.253907v.015624c8.546875 13.027344 18.816406 19.957032 18.761719 46.832032v105.722656c111.808594-27.015625 196-136.011719 196-256 .003906-140.609375-115.386719-256-255.996094-256zm0 0"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Github</div>
+					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+				</a>
+			</li></ul>
+		<div class="grow spacer"></div></div>
+</div>
+
+
+<div class="search-box svelte-fha6x8 hidden"><div class="search-bar svelte-fha6x8"><form class="flex items-center p-5 h-full" autocomplete="off" role="search"><div class="icon-base w-8 mr-4"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+            <input id="search-input" type="text" autocomplete="off" class="h-full w-full svelte-fha6x8"></form></div>
+    <div class="typehead-wrapper"><div class="typehead-container">
+</div></div>
+</div>
+<div class="lightbox-wrapper svelte-1b9dfdw translate-x-full opacity-0"><div class="flex items-center h-full lightbox-container svelte-1b9dfdw"></div>
+</div>
+
+
+
+
+		<script type="module" data-sveltekit-hydrate="o85agj">
+		import { set_public_env, start } from "../../../_app/immutable/start-34fd70cd.js";
+
+		set_public_env({});
+
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="o85agj"]').parentNode,
+			paths: {"base":"","assets":""},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				node_ids: [0, 7],
+				params: {year:"2022",month:"06",slug:"blockchain-dapp-start"},
+				routeId: "posts/[year]/[month]/[slug]"
+			}
+		});
+	</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/config.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"title\":\"Saweicore Lab\",\"summary\":\"程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地\",\"description\":\"SaweiCore Lab 是用於記錄與歸檔個人的研究心得的集散地，內容多以網站架設、程式開發、幣圈探索為主並以需求導向探討問題並記錄對應的解決方案，以便後續查閱。\",\"url\":\"https://saweicore.com\",\"ga\":\"G-KY269QECHX\",\"author\":{\"name\":\"Saweima\",\"email\":\"saweima12@gmail.com\",\"summary\":\"邊緣工作者\",\"description\":\"雜項工程師 | 幣圈小白 | 想到再寫\",\"avatar\":\"https://avatars.githubusercontent.com/u/62002212\"},\"pagination\":{\"maxPerPage\":8},\"classifier\":[{\"id\":\"post\",\"params\":{\"path\":\"/_posts/\"},\"type\":\"directory\"},{\"id\":\"tag\",\"params\":{\"keys\":[\"tag\",\"tags\"]},\"type\":\"frontmatter\"}],\"marked\":{\"options\":{},\"extensions\":[{\"renderer\":{}},{\"renderer\":{}}]},\"search\":{\"appKey\":\"BHODY4NQKK\",\"apiKey\":\"5f4c05344cf6d1cbe581c20e049a7c14\",\"index\":\"SaweicoreLab\"},\"nav\":[{\"id\":\"journal\",\"name\":\"Journal\",\"link\":\"/journal\"},{\"id\":\"about\",\"name\":\"About\",\"link\":\"/about\"},{\"id\":\"github\",\"name\":\"Github\",\"link\":\"http://github.com/saweima12\"}]}"}</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/posts/2022/06/blockchain-dapp-start.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"metadata\":{\"title\":\"踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二）\",\"tags\":[\"幣圈\",\"區塊鏈\",\"加密貨幣\"],\"excerpt\":\"投入了加密貨幣後，想要進一步探索區塊鍊上的生態，卻又不知道該怎麼做嘛？這篇文章概略的介紹了一些區塊鏈的生態與操作步驟，或許能夠提供一些小幫助。\",\"created\":\"2022-06-08T00:00:00.000Z\"},\"content\":\"\u003Cp>午安，旅人。看到這段文字的你，或許打算更進一步的探索加密貨幣與區塊鏈的領域。如果是的話，這篇文章或許能帶給你一些幫助，在此會簡單的介紹如何把資金送到區塊鍊進行應用以及簡單說明什麼是區塊鏈。\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>如果是誤入此地的旅人，對於踏入加密貨幣領域有點興趣卻又不知道從何開始的話可以參考這篇文章，做好初步的準備。\u003Cbr/>\\n連結：\u003Ca href=\\\"/posts/2022/05/crypto-getting-start\\\" >\u003Cstrong>如何取得加密貨幣 — 加密貨幣入門大小事\u003C/strong>\u003C/a>\u003C/p>\\n\u003C/blockquote>\\n\u003Ch2 id=\\\"這篇文章希望能帶你\\\" class=\\\"heading-item\\\">這篇文章希望能帶你\u003C/h2>\u003Cul>\\n\u003Cli>建立自己的鏈上錢包\u003C/li>\\n\u003Cli>嘗試使用去中心化應用 (DApp)\u003C/li>\\n\u003Cli>初步理解區塊鏈為何存在\u003C/li>\\n\u003Cli>簡單理解加密貨幣種類\u003C/li>\\n\u003C/ul>\\n\u003Ch2 id=\\\"建立鏈上錢包\\\" class=\\\"heading-item\\\">建立鏈上錢包\u003C/h2>\u003Cp>目前常見的公鏈有：ETH、CARDANO(ADA) 、AVAX 及 SOLANA。不論最終選擇哪個，想要\u003Cstrong>進入區塊鏈領域第一件事情便是建立一個鏈上錢包地址\u003C/strong>，並將資金轉到鏈上。\u003C/p>\\n\u003Cp>在開始之前有以下幾點需要注意：\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>做好事前調查\u003C/strong>：請確保對自己所選擇的公鏈有一定程度的了解，並且確認其足以信任。\u003C/li>\\n\u003Cli>\u003Cstrong>永遠為自己的行為負責\u003C/strong>：絕對不要過度投入，確保能夠承擔多少風險，沒人能夠替你負責。\u003C/li>\\n\u003Cli>\u003Cstrong>要有防範意識\u003C/strong>：在加密貨幣市場中，大多人是不太理性的，即便是市值前五名的公鏈都有可能一夕蒸發，務必做好風險控管。\u003C/li>\\n\u003C/ul>\\n\u003Cblockquote>\\n\u003Cp>由於現今區塊鏈數量眾多，每條鏈的特性及功能雖然略有不同，但終端使用者操作步驟都大同小異。因此這邊會以我自己最熟悉的 Cardano(ADA) 區塊鏈為例。\u003C/p>\\n\u003C/blockquote>\\n\u003Ch3 id=\\\"選擇使用的錢包\\\" class=\\\"heading-item\\\">選擇使用的錢包\u003C/h3>\u003Cp>在 Cardano 中有多種錢包可以選擇，其中大多數都以瀏覽器插件的形式存在，這邊推薦使用 \u003Ca href=\\\"https://eternl.io/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">Eternl Wallet\u003C/a> 。\u003C/p>\\n\u003Cul>\\n\u003Cli>目前使用最順手的錢包，雖然畫面有點小複雜但是功能齊全。\u003C/li>\\n\u003Cli>由於目前只支援 Chromium 系列瀏覽器，因此推薦搭配 \u003Ca href=\\\"https://brave.com/zh/download/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">Brave瀏覽器\u003C/a> 使用。\u003C/li>\\n\u003Cli>建議與平時使用的瀏覽器分開，避免遇上釣魚網站或是遇到瀏覽器漏洞被駭入的問題。\u003C/li>\\n\u003Cli>有支援 Android 手機板。\u003C/li>\\n\u003Cli>接下來也會以此錢包作為示範\u003C/li>\\n\u003C/ul>\\n\u003Ch3 id=\\\"透過錢包創建自己的錢包地址\\\" class=\\\"heading-item\\\">透過錢包創建自己的錢包地址\u003C/h3>\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-01.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n1. 點擊 「Add Wallet」 進入選單\\n\u003C/p>\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-02.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n2. 點擊 「Create Wallet」 創建自己的錢包地址 / 若已經有了其他的錢包，可以選擇 「Restore Wallet」 透過助記詞登入。\\n\u003C/p>\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-03.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n3. 輸入自訂的錢包名稱及錢包密碼（此名稱與密碼僅適用於該裝置，用於避免有他人盜用裝置付款。）\\n\u003C/p>\\n\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-04.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n4. 最後會顯示由 24 個單字組成的助記詞，請務必保存好並且不要洩漏出去，若失去助記詞等同於失去錢包。會有資金損失的風險。\\n\u003C/p>\\n\\n\\n\u003Ch3 id=\\\"目前使用鏈上錢包的好處\\\" class=\\\"heading-item\\\">目前使用鏈上錢包的好處\u003C/h3>\u003Cul>\\n\u003Cli>可以透過鍊上錢包使用 DApp、質押和參與鏈上事務。\u003C/li>\\n\u003Cli>Not your key, not your money，將公鏈幣提領至對應公鏈幣的錢包，可以避免交易所倒掉時資產消失的窘境。(與區塊鍊共存亡)\u003C/li>\\n\u003C/ul>\\n\u003Ch3 id=\\\"其他的錢包\\\" class=\\\"heading-item\\\">其他的錢包\u003C/h3>\u003Cp>另外也有以下幾種錢包可以選擇：\u003C/p>\\n\u003Cul>\\n\u003Cli>Typhon Wallet - \u003Ca href=\\\"https://typhonwallet.io/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://typhonwallet.io/\u003C/a>\u003C/li>\\n\u003Cli>Gero Wallet - \u003Ca href=\\\"https://gerowallet.io/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://gerowallet.io/\u003C/a>\u003C/li>\\n\u003Cli>Nami Wallet - \u003Ca href=\\\"https://namiwallet.io/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://namiwallet.io/\u003C/a>\u003C/li>\\n\u003Cli>Flint Wallet - \u003Ca href=\\\"https://flint-wallet.com/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://flint-wallet.com/\u003C/a>\u003C/li>\\n\u003C/ul>\\n\u003Cp>不需要擔心更換錢包會很麻煩。在 Cardano 中錢包就只是方便的操作介面而已，實際的金額都會儲存在區塊鏈的記錄中，只要記得自己建立錢包地址時取得的助記詞，在新的錢包恢復(Restroe) 即可。\u003C/p>\\n\u003Ch2 id=\\\"區塊鏈與質押\\\" class=\\\"heading-item\\\">區塊鏈與質押\u003C/h2>\u003Cp>在區塊鏈中 \u003Cstrong>質押 (Stake)\u003C/strong> 是用來表示「將自己所持有的代幣進行鎖定，用來投票 / 提供流動性來協助維護區塊鏈網路」的簡稱。 \u003C/p>\\n\u003Cp>在 PoS (權益證明) 基礎的區塊鏈中質押尤為重要，透過\u003Cstrong>持有者們質押代幣進行投票來決定哪一些節點更有驗證交易的優先權\u003C/strong>。作為回報，會返還交易手續費或是獎勵池中的額度來鼓勵人們進行質押。\u003C/p>\\n\u003Cp>透過 Eternl 錢包質押賺取額外的代幣非常簡單，操作如下：\u003C/p>\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-05.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n切換到 Staking 介面，挑選喜歡的質押池。 按下 Delegate 即可（推薦挑選 Fees 為 0% 、 ROS > 4% 並且 Situ的池子進行質押）\\n\u003C/p>\\n\\n\\n\u003Cp>在 Cardano 生態中，質押與其他區塊鏈有些許不同。\u003C/p>\\n\u003Cul>\\n\u003Cli>質押不需要鎖定，改為每個 epoch 建立一次帳戶餘額快照（記錄帳戶內有多少 ADA）。\u003C/li>\\n\u003Cli>建立的快照將會作為\u003Cstrong>下下次\u003C/strong>的質押依據。\u003C/li>\\n\u003Cli>在 Cardano 一個 epoch 為五天，每個區塊鏈可能設定不相同。\u003C/li>\\n\u003Cli>因此初次質押後需要最多21天才能得到第一筆獎勵。\u003C/li>\\n\u003C/ul>\\n\u003Ch2 id=\\\"使用去中心化應用程式-dapp\\\" class=\\\"heading-item\\\">使用去中心化應用程式 (DApp)\u003C/h2>\u003Cp>在區塊鏈的領域中人們嘗試著透過區塊鏈去中心化的特性及智能合約功能，建構出了不需要使用私人資料庫便能做資料交換的 DApp(去中心化應用程式)。 只需連接上錢包就能在各 DApp 之間自由切換，而不需要繁瑣的轉帳步驟。\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>目前各大公鏈的 DApp 生態都還在發展中，以小圖片 NFT 及各式各樣的 De-Fi（去中心化金融）為主。 \u003C/p>\\n\u003C/blockquote>\\n\u003Ch3 id=\\\"連接錢包到-dapp\\\" class=\\\"heading-item\\\">連接錢包到 DApp\u003C/h3>\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/eternl-06.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n先在錢包頁面中點擊插頭圖案，允許 DApp 連接。\\n\u003C/p>\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/cnft-01.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n點擊右上角的 Link Wallet 選擇自己當前檢測到的錢包插件，點擊後會跳出視窗，讓錢包插件進行確認。\\n\u003C/p>\\n\u003Cimg src=\\\"https://media.saweicore.com/blog/blockchain-dapp-start/cnft-02.jpg\\\" style=\\\"max-height:720px\\\" loading=\\\"lazy\\\" class=\\\"lightbox\\\"/>\\n\u003Cp class=\\\"text-center\\\">\\n經過錢包插件確認後，即可看到連接完成。\\n\u003C/p>\\n\\n\u003Cp>連接 DApp 的操作步驟都大同小異，部份 DApp 甚至不需要進行錢包連接。下面會介紹些目前較為有用的 DApp 。\u003C/p>\\n\u003Ch3 id=\\\"去中心化交易所-dex\\\" class=\\\"heading-item\\\">去中心化交易所 (DEX)\u003C/h3>\u003Cp>目前為止使用的國內交易所 Ace 、國際交易所 Binance 都屬於「中心化交易所 (CEX)」， 在區塊鏈中有著與之相對的透過區塊鏈的去中心化基礎與智能合約創造的「去中心化交易所（DEX）」。\u003C/p>\\n\u003Cp>作為區塊鍊上代幣交易的集中地。目前 DEX 的方便性與交易量還無法媲美 CEX ，但相信未來非常具有成長潛力。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cp>\u003Ca href=\\\"https://minswap.org/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">MinSwap\u003C/a> 是 Cardano 社群中較為活躍的 DEX 之一，採用 Auto Market Maker 模型（AMM)，讓流動性提供者可透過鎻倉代幣提供流動性賺取額外收入，交易者依據需要從流動池中兌換代幣，可在此將 ADA 更換為其他 Cardano 生態上的代幣。\u003C/p>\\n\u003C/li>\\n\u003Cli>\u003Cp>\u003Ca href=\\\"https://muesliswap.com/markets\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">MuesliSwap\u003C/a> 是另外一個在 Cardano 社群中活躍的 DEX 之一，採用傳統的訂單簿模型 (OrderBook)撮合需求者與供給者雙方進行交易。\u003C/p>\\n\u003C/li>\\n\u003C/ul>\\n\u003Ch3 id=\\\"消費性質產品與-nft\\\" class=\\\"heading-item\\\">消費性質產品與 NFT\u003C/h3>\u003Cp>在 Cardano 中目前具有消費性質的產品還不夠多，大多是音樂、繪畫、動畫等相關作品。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cp>\u003Ca href=\\\"https://www.jpg.store/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">Jpg.store\u003C/a> 是 Cardano 社群中 NFT 小圖片的交易集散地。在這邊可以進行大多數的 NFT 販售與購買，與拍賣網站類似。\u003C/p>\\n\u003C/li>\\n\u003Cli>\u003Cp>\u003Ca href=\\\"https://adahandle.com/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">ADAHandle\u003C/a> 在區塊鍊中的錢包地址總是很長，AdaHandle 可以透過 NFT 應用進行地址 Mapping 。縮短到像是: $handle.it\u003C/p>\\n\u003C/li>\\n\u003C/ul>\\n\u003Ch2 id=\\\"區塊鏈到底是什麼？為什麼要去中心化？\\\" class=\\\"heading-item\\\">區塊鏈到底是什麼？為什麼要去中心化？\u003C/h2>\u003Cp>假設以下情況：\u003C/p>\\n\u003Cul>\\n\u003Cli>我承諾三天後要轉帳 10 萬美金給旅人作為貨款，並取走了貨物。\u003C/li>\\n\u003Cli>過了四天，旅人發現那 10 萬美金一直都沒有到帳，跑來反應。\u003C/li>\\n\u003Cli>但是我卻表明已經付款過了，因此之後將不會在作給付。\u003C/li>\\n\u003C/ul>\\n\u003Cp>這時便產生了問題：\u003C/p>\\n\u003Col>\\n\u003Cli>\u003Cstrong>要找誰來證明我是否真的有支付這筆款項？\u003C/strong>\u003C/li>\\n\u003Cli>\u003Cstrong>如果我其實沒支付，但是找來的第三方說我已經支付了怎麼辦？\u003C/strong>\u003C/li>\\n\u003Cli>\u003Cstrong>如果旅人找來的第三方調查的人證明我沒支付，但因為是旅人找來的，所以我表示你們聯合造假怎麼辦？\u003C/strong>\u003C/li>\\n\u003C/ol>\\n\u003Cp>要解決上述的問題，需要存在一個\u003Cstrong>雙方都能信任的公正第三方驗證者及記錄者\u003C/strong>。\u003C/p>\\n\u003Cp>區塊鏈是一套為此創造的解決方案，有以下特性：\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>去中心化驗證\u003C/strong> - 若一個人驗證可能產生造假嫌疑，那就隨機多找幾個人驗證，透過多個節點的共識機制驗證交易，確保正確性。\u003C/li>\\n\u003Cli>\u003Cstrong>去中心化存儲\u003C/strong> - 帳本存放於單一地點時有被竄改的可能性，因此驗證後的資料將隨機分散至多個節點進行存放，降低被竄改的可能性。\u003C/li>\\n\u003Cli>\u003Cstrong>密碼學湊雜\u003C/strong> - 存放於區塊鍊上的交易資料根據內容計算出不重複的唯一 ID ，確保資料並無被竄改。\u003C/li>\\n\u003C/ul>\\n\u003Cp>透過以上三個特性，創造出記錄不易被竄改並且具備公正性的第三方驗證者。\u003C/p>\\n\u003Ch2 id=\\\"加密貨幣又是什麼？\\\" class=\\\"heading-item\\\">加密貨幣又是什麼？\u003C/h2>\u003Cp>加密貨幣(Cryptocurrency)又稱數位貨幣、虛擬貨幣。 是在區塊鍊上發行的數位代幣，依據用途不同而有不同的分類。\u003C/p>\\n\u003Cp>依據用途與性質可分為：\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>穩定幣\u003C/strong> - 價格波動較為穩定的幣種， 價值通常與法幣掛勾。目前在跨境交易上，常被用作法幣的替代品如：USDC、USDT，被用作替代美元。\u003C/li>\\n\u003Cli>\u003Cstrong>公鏈幣\u003C/strong> - 區塊鏈自己發行的幣種，作為協助維護自身區塊鏈的獎勵代幣。如： ETH、ADA、SOL。 \u003C/li>\\n\u003Cli>\u003Cstrong>平台幣\u003C/strong> - 由特定組織、團隊替自己的產品/平台發行。如：FTT、MIN、RAY...等，作為平台的獎勵 token。\u003C/li>\\n\u003Cli>\u003Cstrong>Meme幣\u003C/strong> - 基於戲謔或是各種理由發行的代幣，這類代幣通常會極大量發行讓價值變的極低，如： SHIB、DOGE、HOUSKY .. 等。\u003C/li>\\n\u003C/ul>\\n\u003Cp>以上分類不需要硬性區分，某些幣種可能會有複數性質。其中有些公鍊幣與平台幣又與股票類似，持有就相當於支持該區塊鍊/平台並參與網路運作。\u003C/p>\\n\u003Ch2 id=\\\"tldr\\\" class=\\\"heading-item\\\">TL;DR\u003C/h2>\u003Cul>\\n\u003Cli>不論選擇哪條區塊鏈，要踏入區塊鏈生態的第一步都是先建立該鏈的錢包地址。\u003C/li>\\n\u003Cli>錢包地址可以透過公鍊提供的錢包軟體建立。\u003C/li>\\n\u003Cli>錢包的助記詞必須保存好且避免洩漏，預防有資金損失的風險。\u003C/li>\\n\u003Cli>在 PoS 基礎的區塊鍊中，透過在區塊鏈上質押代幣，可以協助區塊鍊網路運作並賺取質押獎勵。\u003C/li>\\n\u003Cli>去中心化應用程式 (DApp) 是建立在區塊鍊之上不需私人資料庫的應用程式。\u003C/li>\\n\u003Cli>目前 DApp 的生態還在發展中，能做的事情還不多。\u003C/li>\\n\u003Cli>透過使用鏈上錢包連接 (Connect) 使用「去中心化應用程式(DApp)  」。\u003C/li>\\n\u003Cli>區塊鏈被設計用來成為交易時的公正第三方及記錄者。\u003C/li>\\n\u003Cli>加密貨幣是在區塊鏈之上發行的數位代幣，有各式各樣的用途。\u003C/li>\\n\u003C/ul>\\n\",\"headings\":[{\"depth\":2,\"text\":\"這篇文章希望能帶你\",\"id\":\"這篇文章希望能帶你\"},{\"depth\":2,\"text\":\"建立鏈上錢包\",\"id\":\"建立鏈上錢包\"},{\"depth\":3,\"text\":\"選擇使用的錢包\",\"id\":\"選擇使用的錢包\"},{\"depth\":3,\"text\":\"透過錢包創建自己的錢包地址\",\"id\":\"透過錢包創建自己的錢包地址\"},{\"depth\":3,\"text\":\"目前使用鏈上錢包的好處\",\"id\":\"目前使用鏈上錢包的好處\"},{\"depth\":3,\"text\":\"其他的錢包\",\"id\":\"其他的錢包\"},{\"depth\":2,\"text\":\"區塊鏈與質押\",\"id\":\"區塊鏈與質押\"},{\"depth\":2,\"text\":\"使用去中心化應用程式 (DApp)\",\"id\":\"使用去中心化應用程式-dapp\"},{\"depth\":3,\"text\":\"連接錢包到 DApp\",\"id\":\"連接錢包到-dapp\"},{\"depth\":3,\"text\":\"去中心化交易所 (DEX)\",\"id\":\"去中心化交易所-dex\"},{\"depth\":3,\"text\":\"消費性質產品與 NFT\",\"id\":\"消費性質產品與-nft\"},{\"depth\":2,\"text\":\"區塊鏈到底是什麼？為什麼要去中心化？\",\"id\":\"區塊鏈到底是什麼？為什麼要去中心化？\"},{\"depth\":2,\"text\":\"加密貨幣又是什麼？\",\"id\":\"加密貨幣又是什麼？\"},{\"depth\":2,\"text\":\"TL;DR\",\"id\":\"tldr\"}]}"}</script></div>
+	</body>
+</html>

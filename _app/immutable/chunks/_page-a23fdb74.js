@@ -1,0 +1,1 @@
+import{d as p}from"./route-58ec6f73.js";const d=async({params:e,fetch:o})=>{const{year:n,month:s,slug:t}=e,r=p.getPostData(n,s,t),c=await o(r),{metadata:a,content:l,headings:g}=await c.json();return{metadata:a,content:l,pageMeta:{metadata:a,slugKey:t},headings:g}},_=Object.freeze(Object.defineProperty({__proto__:null,load:d},Symbol.toStringTag,{value:"Module"}));export{_,d as l};

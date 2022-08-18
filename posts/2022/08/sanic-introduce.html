@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../logo.png" />
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+		<link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+		<link rel="alternate" type="application/feed+xml" href="/feed.xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>Sanic - 輕量快速的 Python Web Framework - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地</title><meta name="twitter:card" content="summary" data-svelte="svelte-f1lzu5"><meta name="twitter:site" content="@saweima12" data-svelte="svelte-f1lzu5"><meta name="twitter:title" content="Sanic - 輕量快速的 Python Web Framework - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta name="twitter:description" data-svelte="svelte-f1lzu5"><meta name="twitter:url" content="https://saweicore.com/posts/2022/08/sanic-introduce" data-svelte="svelte-f1lzu5"><meta property="og:url" content="https://saweicore.com/posts/2022/08/sanic-introduce" data-svelte="svelte-f1lzu5"><meta property="og:locale" content="zh_TW" data-svelte="svelte-f1lzu5"><meta property="og:type" content="article" data-svelte="svelte-f1lzu5"><meta property="og:title" content="Sanic - 輕量快速的 Python Web Framework" data-svelte="svelte-f1lzu5"><meta property="og:site_name" content="Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta property="og:description" content="一款支援非同步調用不阻塞執行緒、編寫風格簡潔不拖泥帶水、內置高效率伺服器方便部署的 Python 框架，適合用於快速開發中小型專案。" data-svelte="svelte-f1lzu5">
+		<meta name="description" content="一款支援非同步調用不阻塞執行緒、編寫風格簡潔不拖泥帶水、內置高效率伺服器方便部署的 Python 框架，適合用於快速開發中小型專案。" data-svelte="svelte-f1lzu5">
+	<link href="../../../_app/immutable/assets/+layout-eed564a7.css" rel="stylesheet">
+	<link href="../../../_app/immutable/assets/+page-7ed394ec.css" rel="stylesheet">
+	<link rel="modulepreload" href="../../../_app/immutable/start-34fd70cd.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e6965666.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e127beab.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/preload-helper-aa6bc0ce.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons-dbe501d2.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/_layout.svelte-db83af4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/store-465521c3.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/helper-a645ffda.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/stores-4922191d.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/navigation-a14b4e4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_commonjsHelpers-094ef602.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/_layout.ts-4774ee04.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/route-58ec6f73.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout-5a184ceb.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/posts/_year_/_month_/_slug_/_page.svelte-d45c6961.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/formater-faf389fa.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/calender-ce03e571.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/colors-e3ddc188.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/posts/_year_/_month_/_slug_/_page.ts-8ee2144c.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_page-a23fdb74.js">
+	</head>
+	<body>
+		<div>
+
+
+<div class="wrapper-container"><div class="transition-all duration-200 min-h-screen main-wrapper"><div class="fixed top-0 w-screen wrapper">
+
+<nav class="py-2 px-2 top-navbar svelte-1jv9zmu"><div class="flex pl-1 items-center navbar-container svelte-1jv9zmu"><div class="lg:hidden w-30 px-2"><div class="menu-button-wrapper"><div class="menu-button-container"><div class="menu-button"></div></div></div></div>
+
+		<a sveltekit:prefetch class="flex raleway-font site-title" href="/"><div class="logo svelte-1jv9zmu"><img width="36" height="36" src="/logo.png" alt="Saweicore Lab"></div>
+			
+			<div class="hidden md:flex px-2 letter-title-font title svelte-1jv9zmu">Saweicore Lab</div></a>
+	
+		<div class="grow spacer"></div>
+
+		<div class="hidden lg:flex items-center"><ul class="h-full flex flex-row nav-list svelte-1jv9zmu"><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Journal</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">About</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Github</div>
+							<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+					</a>
+				</li></ul>
+			<button class="flex text-xl letter-content-font mr-1 theme-switch svelte-1jv9zmu"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+		<div class="lg:hidden search-icon"><div class="nav-search mr-2 svelte-18cfe79"><div class="flex self-center justify-center w-6 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+</div></div></div>
+
+
+</nav></div>
+
+		<div class="flex flex-col justify-between main-container svelte-agtcg5"><div class="w-full content-wrapper"><main class="mx-auto min-h-screen content-container"><div>
+
+<div class="my-10 post-page wrapper"><div class="post-container"><header class="mx-6 mb-4"><h1 class="font-bold letter-title-font post-title">Sanic - 輕量快速的 Python Web Framework</h1>
+
+			<div class="flex flex-row items-center mt-2 created-date"><div class="icon-base w-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line fill="currentColor" x1="16" y1="2" x2="16" y2="6"></line><line fill="currentColor" x1="8" y1="2" x2="8" y2="6"></line><line fill="currentColor" x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+				<time class="flex self-center ml-2">2022-08-08</time></div>
+
+			<div class="mt-4 flex flex-row post-tag-list"><div class="post-tag-item"><a sveltekit:prefetch href="/tags/web">web</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/python">python</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/programing">programing</a>
+					</div></div></header>
+
+		<article class="content"><!-- HTML_TAG_START --><p>Sanic 是一款 Python 的 Web 框架，編寫風格繼承了老牌框架 Flask 的簡潔並在其之上添加 async / await 的非同步調用支援，外加內建快速高效的 HTTP Server，提供了開箱即用、快速開發、生產部署的解決方案。</p>
+<blockquote>
+<p><strong>Sanic</strong><br/>
+官方網站： <a href="https://sanic.dev/" target="_blank" rel="noreferrer noopenner">點我進入</a><br/></p>
+</blockquote>
+<p><strong>安裝方式：</strong></p>
+<pre><code class="language-sh">pip install sanic
+</code></pre>
+<h2 id="框架特性" class="heading-item">框架特性</h2><ul>
+<li>使用 Python 3.8 以上的版本（推薦直接使用 Python 3.10）</li>
+<li>支援 async / await 非同步特性（執行 IO 操作時不會阻塞）</li>
+<li>內建快速的 HTTP Server </li>
+<li>類 Flask 的簡潔架構，易於擴充與編寫。</li>
+</ul>
+<blockquote>
+<p>編寫這邊文章時使用的版本為 <strong>22.6.1</strong>，通常使用最新的版本即可。</p>
+</blockquote>
+<h2 id="建立基本結構" class="heading-item">建立基本結構</h2><p>啟動 Sanic  的方式有以下兩種：</p>
+<ul>
+<li>透過腳本運行 -&gt; 在編寫腳本中使用 <code>Sanic.run()</code> 運行。</li>
+<li>使用 CLI -&gt; 使用 <code>Sanic CLI</code> 將 application 作為 module 導入(<strong>推薦</strong>)</li>
+</ul>
+<h3 id="透過-apprun-運行" class="heading-item">透過 app.run() 運行</h3><p>在根目錄中建立 app.py ，並建立 Sanic instance，透過 app.run 運行伺服器。</p>
+<pre><code class="language-python">from sanic import Sanic
+
+# create sanic app
+app = Sanic(__name__)
+
+if __name__ == &#39;__main__&#39;:
+        # 透過 app.run 運行
+    app.run(host=&quot;0.0.0.0&quot;, debug=True)
+</code></pre>
+<h3 id="透過-cli-運行推薦" class="heading-item">透過 CLI 運行(推薦)</h3><p> 建立以下資料夾結構，當資料夾內有 <code>__init__.py</code> 檔案時，該資料夾就會被 python 視為 pacakge。</p>
+<pre><code class="language-text">/
+├─ sanicapp
+│   └─  __init__.py
+└─ run.sh
+</code></pre>
+<ul>
+<li><code>__init__.py</code>  中建立 Sanic Instance 。</li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic
+
+# create sanic app
+app = Sanic(__name__)
+
+# __name__ 可改為自定義 App 名稱
+</code></pre>
+<ul>
+<li>最後使用以下 shell 指令執行 sanic 伺服器。</li>
+</ul>
+<pre><code class="language-shell">sanic sanicapp:app -H 0.0.0.0 -p 8080 -d
+</code></pre>
+<ul>
+<li><code>sanicapp</code>為 package 的名稱，<code>app</code> 為 instance 變量。</li>
+<li><code>-H</code> 用於指定 Host Address (預設為 127.0.0.1)</li>
+<li><code>-p</code> 用於指定 Port (預設為 8000)</li>
+<li><code>-d</code> 用於開啟 Debug 模式（會自動重載及看到更詳細的 log）</li>
+<li><code>-w</code> 用於指定要啟動幾個 worker </li>
+<li>可透過 <code>-h</code> 參數觀看詳細的說明</li>
+</ul>
+<p>使用 CLI 運行 Sanic 伺服器可以在運行環境配置上獲得更多的彈性。當需要改變 host 或是 debug mode 時，可以直接變更參數，不需要修改腳本的 app.run 的參數。</p>
+<h2 id="handler" class="heading-item">Handler</h2><p>Handler 是處理 Request 的基本單元，<strong>至少會收到一個 Reqeust 物件並 return 一個 HTTPResponse</strong> 。</p>
+<ul>
+<li>Request.headers -&gt;  取得夾帶在 request header 的資料。</li>
+<li>Request.args  or Request.query_args -&gt; 取得 URLQueryParams</li>
+<li>Request.body -&gt; 取得發出 POST Request 時夾帶在 body 欄位的內容。<ul>
+<li>取得的資料為純 bytes 需要轉譯。</li>
+</ul>
+</li>
+<li>Request.json -&gt; 當 content_type 為 &quot;application/json&quot; 時，會自動將 body 中的內容轉為 Python Dictionary</li>
+</ul>
+<pre><code class="language-python">import asyncio
+import asyncio
+import time
+from sanic import Sanic, HTTPResponse, Request, response
+
+app = Sanic(__name__)
+
+@app.get(&quot;/typed&quot;)
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    time.sleep(1)
+    return response.text(&quot;Done&quot;)
+
+
+@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    await asyncio.sleep(1)
+    return response.text(&quot;Done&quot;)
+</code></pre>
+<p>對應官方文檔： <a href="https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async" target="_blank" rel="noreferrer noopenner">https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async</a></p>
+<blockquote>
+<p>實務上應該盡量使用 async / await 以避免執行緒阻塞，執行上會更有效率。</p>
+</blockquote>
+<h2 id="routing" class="heading-item">Routing</h2><p>Routing 用於將 Handler 註冊至對應的 URL，當伺服器接收到對應路由時，會將收到的資料轉換成 Request 並執行對應的 Handler。</p>
+<p>註冊 Routing 的方式有三種：</p>
+<ul>
+<li>透過 app.add_route() </li>
+<li>透過 @app.route / @app.get 等裝飾器</li>
+<li>Blueporint</li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+
+app = Sanic(__name__)
+
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by decorator
+@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by add_route()
+app.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])
+</code></pre>
+<p><code>@app.get()</code> 等裝飾器只是 <code>app.add_route()</code> 的封裝，用於增加可讀性。</p>
+<h3 id="blueprint" class="heading-item">Blueprint</h3><p>儘管能夠透過 <code>app.add_route()</code> 註冊路由，但這會導致所有 handler 必須依賴於 Sanic instance，當需要設置的路由數量增加時會很不方便，此時可採用 blueprint 方案。</p>
+<ul>
+<li><strong>view.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Blueprint, HTTPResponse, Request, response
+
+bp = Blueprint(&quot;peon&quot;)
+
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by decorator
+@bp.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# Blueprint 的 route 註冊方式與使用 app.add_route 相同。
+bp.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])
+</code></pre>
+<ul>
+<li><strong>app.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+from .view import bp
+
+app = Sanic(__name__)
+
+# 使用 app.blueprint 將 blueprint instance 註冊進 app 路由。
+app.blueprint(bp)
+</code></pre>
+<p>使用 Blueprint 可以將 Route 與 Handle 與 Sanic instance 分離開來，達到關注點分離的效果。</p>
+<h2 id="app-registry" class="heading-item">App Registry</h2><p>當建立 Sanic instance 時，會將該 instance 寫入 Sanic 內部的註冊表中，可以透過 <code>Sanic.get_app()</code> 取得 app 的 instance。</p>
+<ul>
+<li><strong>app.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic
+
+app = Sanic(&quot;my_server&quot;)
+</code></pre>
+<ul>
+<li><strong>db.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic
+
+app = Sanic.get_app(&quot;my_server&quot;)
+</code></pre>
+<p>若建立的 instance 只有一個時，也可以不用填入 instance name，直接使用 <code>Sanic.get_app()</code> 就能取得 instance 。</p>
+<h2 id="app-context" class="heading-item">App Context</h2><p>App Context （中文翻譯稱作上下文）用於附加希望<strong>能夠重複使用的 instance</strong> ，像是與資料庫的連接 、定期運作的排程器等。</p>
+<ul>
+<li><strong>app.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+from .view import bp
+from . import scheduler
+
+app = Sanic(__name__)
+
+# lifecycle hook - 在 server 運行之前將 instance 註冊進 context.
+@app.before_server_start
+async def startup(app: Sanic):
+    scheduler.setup(app)
+
+app.blueprint(bp)
+</code></pre>
+<ul>
+<li><strong>scheduler.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Sanic
+
+from .struct import AppScheduler
+
+SERVICE_CODE = &quot;app_scheduler&quot;
+
+def get() -&gt; AppScheduler:
+    app = Sanic.get_app()
+    # 使用 getattr 取得 app.ctx 中的 instance
+    return getattr(app.ctx, SERVICE_CODE)
+
+def setup(app: Sanic) -&gt; AppScheduler:
+    app = Sanic.get_app()
+    scheduler = AppScheduler(app)
+    # 使用 setattr 將 instance 寫入 app.ctx
+    setattr(app.ctx, SERVICE_CODE, scheduler)
+    return scheduler
+</code></pre>
+<ul>
+<li><strong>view.py</strong></li>
+</ul>
+<pre><code class="language-python">from sanic import Blueprint, HTTPResponse, Request, response
+from . import scheduler
+
+bp = Blueprint(&quot;peon&quot;)
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    _scheudler = scheduler.get()
+    return response.text(&quot;Done&quot;)
+</code></pre>
+<p>範例中使用 <code>@app.before_server_start</code> 在運行之前將 AppScheduler 嵌入 app.ctx 內。 並在 handler 中過 <code>scheduler.get()</code> 將其從 app.ctx 中取出，藉此重複利用 instance。</p>
+<h2 id="listener-lifecycle" class="heading-item">Listener (LifeCycle)</h2><p>Sanic 包含 8 個 Hook：</p>
+<p><strong>只在 sanic app 建立/停止時執行一次:</strong></p>
+<ul>
+<li>main_process_start</li>
+<li>main_process_stop</li>
+</ul>
+<p><strong>每個 worker 都會執行一次</strong></p>
+<ul>
+<li>before_server_start</li>
+<li>after_server_start</li>
+<li>before_server_stop</li>
+<li>after_server_stop</li>
+</ul>
+<p><strong>當 auto_reload 被開啟時，每次 reload 就會執行一次</strong></p>
+<ul>
+<li>reload_process_start</li>
+<li>reload_process_stop</li>
+</ul>
+<pre><code class="language-python">@app.reload_process_start
+async def reload_start(*_):
+    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; reload_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)
+
+
+@app.main_process_start
+async def main_start(*_):
+    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; main_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)
+</code></pre>
+<ul>
+<li><code>main_process_start</code> 經常用於初始化僅能初始化一次的時候（設置遠端的 webhook)</li>
+<li><code>before_server_start</code> 及 <code>after_server_start</code> 常用於建立可重複使用的 instance 並且附加至 app.ctx 作為常駐 service 使用。</li>
+<li><code>before_server_stop</code> 用於關閉各 service 的連接並清除資料。</li>
+</ul>
+<h2 id="應用範例" class="heading-item">應用範例</h2><blockquote>
+<p><strong>Sanic Example</strong><br/>
+Github: <a href="https://github.com/saweima12/sanic-example" target="_blank" rel="noreferrer noopenner">點我進入</a></p>
+</blockquote>
+<h2 id="tldr" class="heading-item">TL;DR</h2><ul>
+<li>Sanic 是 Python 3.8 版本以上的輕量 Web 框架，支援 async / await 的非同步特性。</li>
+<li>推薦使用 Sanic CLI 運行 Server ，在環境配置上有更多的彈性。</li>
+<li>Handler 是處理 Request 的基本單元，會<strong>至少接收一個 Request 物件並返回 HttpResponse 物件</strong>。</li>
+<li>應該<strong>盡量使用 async / await</strong> 處理 handler 邏輯，避免執行緒阻塞、增加運作效率。</li>
+<li>Routing 用於<strong>將路由與 Handler 進行綁定</strong>，當 Server 接收到指定的路徑時，會將資料打包成 Request 送至對應的 Handler。</li>
+<li>App Context 用於<strong>存放希望重複使用的 instance</strong>，像是資料庫連接、排程器等。</li>
+</ul>
+<!-- HTML_TAG_END --></article></div></div>
+
+</div></main>
+				<footer class="w-full pt-20 pb-5 site-footer svelte-1esoz7b"><div class="flex justify-center items-center px-10 h-full footer-container"><div class="copyright">Copyright © 2020 - 2022 Saweicore Lab All Rights Reserved.</div></div>
+</footer></div>
+
+			<div class="hidden lg:block drawer-wrapper mr-0.5"><div class="w-full min-h-screen h-full drawer-container"><div class="flex flex-col h-full widget-list"><div class="widget-list-item my-3 svelte-zx3hu4"><div class="w-full cursor-pointer search-widget svelte-q0vdx1"><div class="flex flex-row h-full justify-center items-center label svelte-q0vdx1"><div class="flex self-center mr-2 w-4 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+        <div class="label-text mr-2">Search</div>
+        <div class="flex label-container items-center label-keys"><div class="label-key svelte-q0vdx1">Ctrl</div>
+            <div class="label-key svelte-q0vdx1">/</div></div></div>
+</div></div>
+
+    <div class="widget-list-item svelte-zx3hu4"><div class="author-widget"><div class="w-32 h-32"><img class="avatar svelte-9pb7ln" src="https://avatars.githubusercontent.com/u/62002212" alt="Saweima" loading="lazy" width="128" height="128"></div>  
+    <div class="mt-3 name svelte-9pb7ln"><h2>Saweima</h2></div> 
+    <div class="mr-3 letter-content-font description svelte-9pb7ln"><p>雜項工程師 | 幣圈小白 | 想到再寫</p></div>
+</div></div>
+    
+    <div class="widget-list-item sticky top-14 svelte-zx3hu4">
+
+<div class="outline-widget svelte-1tqky31"><ul class="overflow-y-auto outline-list svelte-1tqky31"><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#框架特性" class="svelte-1tqky31">框架特性</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#建立基本結構" class="svelte-1tqky31">建立基本結構</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#透過-apprun-運行" class="svelte-1tqky31">透過 app.run() 運行</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#透過-cli-運行推薦" class="svelte-1tqky31">透過 CLI 運行(推薦)</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#handler" class="svelte-1tqky31">Handler</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#routing" class="svelte-1tqky31">Routing</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#blueprint" class="svelte-1tqky31">Blueprint</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#app-registry" class="svelte-1tqky31">App Registry</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#app-context" class="svelte-1tqky31">App Context</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#listener-lifecycle" class="svelte-1tqky31">Listener (LifeCycle)</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#應用範例" class="svelte-1tqky31">應用範例</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#tldr" class="svelte-1tqky31">TL;DR</a>
+            </div></ul>
+</div></div>
+
+
+</div></div></div></div></div></div>
+
+<div class="fixed top-0 z-10 w-screen h-screen screenmask hidden"></div>
+
+
+<div class="fixed z-30 top-0 left-0 bottom-0 w-60 md:w-80 h-screen transition-all duration-200 navmenu svelte-7saduy -translate-x-full"><div class="flex flex-col h-full navmenu-container"><div class="py-4 mb-2 header"><div class="flex items-center mb-4 pl-8"><div class="title text-lg svelte-7saduy">Saweicore Lab</div>
+					<button class="flex text-xl letter-content-font theme-switch svelte-7saduy"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+			<div class="flex flex-row mx-6 author-block svelte-7saduy"><img src="https://avatars.githubusercontent.com/u/62002212" alt="saweima" loading="lazy" width="80" height="80" class="svelte-7saduy">
+				<div class="flex flex-col word-font items-center justify-center ml-4 avatar-info"><div class="font-bold text-lg">Saweima</div>
+					<div>邊緣工作者</div></div></div></div>
+		<ul class="nav-list">
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" d="M19,2 C20.6568542,2 22,3.34314575 22,5 L22,19 C22,20.6568542 20.6568542,22 19,22 L5,22 C3.34314575,22 2,20.6568542 2,19 L2,5 C2,3.34314575 3.34314575,2 5,2 L19,2 Z M20,8 L4,8 L4,19 C4,19.5522847 4.44771525,20 5,20 L19,20 C19.5522847,20 20,19.5522847 20,19 L20,8 Z M12.1167504,17.9932723 L12.0000776,18 L11.916,17.996 L11.7993725,17.9797599 L11.7993725,17.9797599 L11.6879528,17.9502619 L11.6879528,17.9502619 L11.5768709,17.9063266 L11.5768709,17.9063266 L11.4793812,17.8540045 L11.4793812,17.8540045 L11.4049183,17.8036865 L11.4049183,17.8036865 L11.2929784,17.7071068 L8.29290079,14.7071068 C7.9023664,14.3165825 7.9023664,13.6834175 8.29290079,13.2928932 C8.65339407,12.9324093 9.22063979,12.9046797 9.61294114,13.2097046 L9.70715092,13.2928932 L11,14.585 L11.0000776,11 C11.0000776,10.4871642 11.3861178,10.0644928 11.8834564,10.0067277 L12.0001293,10 C12.552414,10 13.0001293,10.4477153 13.0001293,11 L13,14.585 L14.2930559,13.2928932 C14.6535492,12.9324093 15.2207949,12.9046797 15.6130963,13.2097046 L15.707306,13.2928932 C16.0677993,13.6533772 16.0955296,14.2206082 15.7904968,14.6128994 L15.707306,14.7071068 L12.7072361,17.7071068 L12.6217218,17.7833908 L12.6217218,17.7833908 L12.5518984,17.8341416 L12.5518984,17.8341416 L12.4539624,17.8913373 L12.4539624,17.8913373 L12.3401306,17.9407132 L12.3401306,17.9407132 L12.2661033,17.9641549 L12.1167504,17.9932723 L12.1167504,17.9932723 Z M19,4 L5,4 C4.44771525,4 4,4.44771525 4,5 L4,6 L20,6 L20,5 C20,4.44771525 19.5522847,4 19,4 Z"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Journal</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"><g><g><path fill="currentColor" d="m480.6,11c-40.6,0-80.2,12.7-118.6,25-36.9,11.9-71.8,23.1-106,23.1-34.2,0-69.1-11.2-106-23.1-38.3-12.3-78-25-118.6-25-11.3,0-20.4,9.1-20.4,20.4v401c0,11.3 9.1,20.4 20.4,20.4 34.2,0 69.1,11.2 106,23.1 38.3,12.3 77.9,25 118.5,25 40.6,0 80.2-12.7 118.5-25 36.9-11.9 71.8-23.1 106-23.1 11.3,0 20.4-9.1 20.4-20.4v-401c0.2-11.3-8.9-20.4-20.2-20.4zm-428.8,402.1v-360c27.7,3.2 56,12.3 85.6,21.9 31.9,10.2 64.6,20.8 98.1,24v360c-27.7-3.2-56-12.3-85.6-21.8-31.8-10.4-64.6-20.9-98.1-24.1zm408.4,0c-33.5,3.3-66.3,13.8-98.1,24-29.6,9.5-57.9,18.6-85.6,21.8v-360c33.5-3.3 66.3-13.8 98.1-24 29.6-9.5 57.9-18.6 85.6-21.9v360.1z"></path><path fill="currentColor" d="m183.6,144l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,246.6l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,349.3l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.8-2.8-22.2-13.6-25.4z"></path><path fill="currentColor" d="m314.7,169.4c2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.3-10.8-14.6-16.9-25.4-13.7l-68,20.4c-10.8,3.3-16.9,14.7-13.7,25.4z"></path><path fill="currentColor" d="m396.5,226.2l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.8-25.3-13.7z"></path><path fill="currentColor" d="m396.5,328.9l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.9-25.3-13.7z"></path></g></g></svg></div>
+					<div class="pl-4 text-xl letter-content-font">About</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon"><path fill="currentColor" d="m256 0c-140.609375 0-256 115.390625-256 256 0 119.988281 84.195312 228.984375 196 256v-84.695312c-11.078125 2.425781-21.273438 2.496093-32.550781-.828126-15.128907-4.464843-27.421875-14.542968-36.546875-29.910156-5.816406-9.8125-16.125-20.453125-26.878906-19.671875l-2.636719-29.882812c23.253906-1.992188 43.371093 14.167969 55.3125 34.230469 5.304687 8.921874 11.410156 14.152343 19.246093 16.464843 7.574219 2.230469 15.707032 1.160157 25.183594-2.1875 2.378906-18.972656 11.070313-26.074219 17.636719-36.074219v-.015624c-66.679687-9.945313-93.253906-45.320313-103.800781-73.242188-13.976563-37.074219-6.476563-83.390625 18.238281-112.660156.480469-.570313 1.347656-2.0625 1.011719-3.105469-11.332032-34.230469 2.476562-62.546875 2.984375-65.550781 13.078125 3.867187 15.203125-3.890625 56.808593 21.386718l7.191407 4.320313c3.007812 1.792969 2.0625.769531 5.070312.542969 17.371094-4.71875 35.683594-7.324219 53.726563-7.558594 18.179687.234375 36.375 2.839844 54.464844 7.75l2.328124.234375c-.203124-.03125.632813-.148437 2.035157-.984375 51.972656-31.480469 50.105469-21.191406 64.042969-25.722656.503906 3.007812 14.128906 31.785156 2.917968 65.582031-1.511718 4.65625 45.058594 47.300781 19.246094 115.753906-10.546875 27.933594-37.117188 63.308594-103.796875 73.253907v.015624c8.546875 13.027344 18.816406 19.957032 18.761719 46.832032v105.722656c111.808594-27.015625 196-136.011719 196-256 .003906-140.609375-115.386719-256-255.996094-256zm0 0"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Github</div>
+					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+				</a>
+			</li></ul>
+		<div class="grow spacer"></div></div>
+</div>
+
+
+<div class="search-box svelte-fha6x8 hidden"><div class="search-bar svelte-fha6x8"><form class="flex items-center p-5 h-full" autocomplete="off" role="search"><div class="icon-base w-8 mr-4"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+            <input id="search-input" type="text" autocomplete="off" class="h-full w-full svelte-fha6x8"></form></div>
+    <div class="typehead-wrapper"><div class="typehead-container">
+</div></div>
+</div>
+<div class="lightbox-wrapper svelte-1b9dfdw translate-x-full opacity-0"><div class="flex items-center h-full lightbox-container svelte-1b9dfdw"></div>
+</div>
+
+
+
+
+		<script type="module" data-sveltekit-hydrate="fr5yus">
+		import { set_public_env, start } from "../../../_app/immutable/start-34fd70cd.js";
+
+		set_public_env({});
+
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="fr5yus"]').parentNode,
+			paths: {"base":"","assets":""},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				node_ids: [0, 7],
+				params: {year:"2022",month:"08",slug:"sanic-introduce"},
+				routeId: "posts/[year]/[month]/[slug]"
+			}
+		});
+	</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/config.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"title\":\"Saweicore Lab\",\"summary\":\"程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地\",\"description\":\"SaweiCore Lab 是用於記錄與歸檔個人的研究心得的集散地，內容多以網站架設、程式開發、幣圈探索為主並以需求導向探討問題並記錄對應的解決方案，以便後續查閱。\",\"url\":\"https://saweicore.com\",\"ga\":\"G-KY269QECHX\",\"author\":{\"name\":\"Saweima\",\"email\":\"saweima12@gmail.com\",\"summary\":\"邊緣工作者\",\"description\":\"雜項工程師 | 幣圈小白 | 想到再寫\",\"avatar\":\"https://avatars.githubusercontent.com/u/62002212\"},\"pagination\":{\"maxPerPage\":8},\"classifier\":[{\"id\":\"post\",\"params\":{\"path\":\"/_posts/\"},\"type\":\"directory\"},{\"id\":\"tag\",\"params\":{\"keys\":[\"tag\",\"tags\"]},\"type\":\"frontmatter\"}],\"marked\":{\"options\":{},\"extensions\":[{\"renderer\":{}},{\"renderer\":{}}]},\"search\":{\"appKey\":\"BHODY4NQKK\",\"apiKey\":\"5f4c05344cf6d1cbe581c20e049a7c14\",\"index\":\"SaweicoreLab\"},\"nav\":[{\"id\":\"journal\",\"name\":\"Journal\",\"link\":\"/journal\"},{\"id\":\"about\",\"name\":\"About\",\"link\":\"/about\"},{\"id\":\"github\",\"name\":\"Github\",\"link\":\"http://github.com/saweima12\"}]}"}</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/posts/2022/08/sanic-introduce.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"metadata\":{\"title\":\"Sanic - 輕量快速的 Python Web Framework\",\"tags\":[\"web\",\"python\",\"programing\"],\"excerpt\":\"一款支援非同步調用不阻塞執行緒、編寫風格簡潔不拖泥帶水、內置高效率伺服器方便部署的 Python 框架，適合用於快速開發中小型專案。\",\"created\":\"2022-08-08T00:00:00.000Z\"},\"content\":\"\u003Cp>Sanic 是一款 Python 的 Web 框架，編寫風格繼承了老牌框架 Flask 的簡潔並在其之上添加 async / await 的非同步調用支援，外加內建快速高效的 HTTP Server，提供了開箱即用、快速開發、生產部署的解決方案。\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>\u003Cstrong>Sanic\u003C/strong>\u003Cbr/>\\n官方網站： \u003Ca href=\\\"https://sanic.dev/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">點我進入\u003C/a>\u003Cbr/>\u003C/p>\\n\u003C/blockquote>\\n\u003Cp>\u003Cstrong>安裝方式：\u003C/strong>\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-sh\\\">pip install sanic\\n\u003C/code>\u003C/pre>\\n\u003Ch2 id=\\\"框架特性\\\" class=\\\"heading-item\\\">框架特性\u003C/h2>\u003Cul>\\n\u003Cli>使用 Python 3.8 以上的版本（推薦直接使用 Python 3.10）\u003C/li>\\n\u003Cli>支援 async / await 非同步特性（執行 IO 操作時不會阻塞）\u003C/li>\\n\u003Cli>內建快速的 HTTP Server \u003C/li>\\n\u003Cli>類 Flask 的簡潔架構，易於擴充與編寫。\u003C/li>\\n\u003C/ul>\\n\u003Cblockquote>\\n\u003Cp>編寫這邊文章時使用的版本為 \u003Cstrong>22.6.1\u003C/strong>，通常使用最新的版本即可。\u003C/p>\\n\u003C/blockquote>\\n\u003Ch2 id=\\\"建立基本結構\\\" class=\\\"heading-item\\\">建立基本結構\u003C/h2>\u003Cp>啟動 Sanic  的方式有以下兩種：\u003C/p>\\n\u003Cul>\\n\u003Cli>透過腳本運行 -&gt; 在編寫腳本中使用 \u003Ccode>Sanic.run()\u003C/code> 運行。\u003C/li>\\n\u003Cli>使用 CLI -&gt; 使用 \u003Ccode>Sanic CLI\u003C/code> 將 application 作為 module 導入(\u003Cstrong>推薦\u003C/strong>)\u003C/li>\\n\u003C/ul>\\n\u003Ch3 id=\\\"透過-apprun-運行\\\" class=\\\"heading-item\\\">透過 app.run() 運行\u003C/h3>\u003Cp>在根目錄中建立 app.py ，並建立 Sanic instance，透過 app.run 運行伺服器。\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic\\n\\n# create sanic app\\napp = Sanic(__name__)\\n\\nif __name__ == &#39;__main__&#39;:\\n        # 透過 app.run 運行\\n    app.run(host=&quot;0.0.0.0&quot;, debug=True)\\n\u003C/code>\u003C/pre>\\n\u003Ch3 id=\\\"透過-cli-運行推薦\\\" class=\\\"heading-item\\\">透過 CLI 運行(推薦)\u003C/h3>\u003Cp> 建立以下資料夾結構，當資料夾內有 \u003Ccode>__init__.py\u003C/code> 檔案時，該資料夾就會被 python 視為 pacakge。\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-text\\\">/\\n├─ sanicapp\\n│   └─  __init__.py\\n└─ run.sh\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Ccode>__init__.py\u003C/code>  中建立 Sanic Instance 。\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic\\n\\n# create sanic app\\napp = Sanic(__name__)\\n\\n# __name__ 可改為自定義 App 名稱\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>最後使用以下 shell 指令執行 sanic 伺服器。\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-shell\\\">sanic sanicapp:app -H 0.0.0.0 -p 8080 -d\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Ccode>sanicapp\u003C/code>為 package 的名稱，\u003Ccode>app\u003C/code> 為 instance 變量。\u003C/li>\\n\u003Cli>\u003Ccode>-H\u003C/code> 用於指定 Host Address (預設為 127.0.0.1)\u003C/li>\\n\u003Cli>\u003Ccode>-p\u003C/code> 用於指定 Port (預設為 8000)\u003C/li>\\n\u003Cli>\u003Ccode>-d\u003C/code> 用於開啟 Debug 模式（會自動重載及看到更詳細的 log）\u003C/li>\\n\u003Cli>\u003Ccode>-w\u003C/code> 用於指定要啟動幾個 worker \u003C/li>\\n\u003Cli>可透過 \u003Ccode>-h\u003C/code> 參數觀看詳細的說明\u003C/li>\\n\u003C/ul>\\n\u003Cp>使用 CLI 運行 Sanic 伺服器可以在運行環境配置上獲得更多的彈性。當需要改變 host 或是 debug mode 時，可以直接變更參數，不需要修改腳本的 app.run 的參數。\u003C/p>\\n\u003Ch2 id=\\\"handler\\\" class=\\\"heading-item\\\">Handler\u003C/h2>\u003Cp>Handler 是處理 Request 的基本單元，\u003Cstrong>至少會收到一個 Reqeust 物件並 return 一個 HTTPResponse\u003C/strong> 。\u003C/p>\\n\u003Cul>\\n\u003Cli>Request.headers -&gt;  取得夾帶在 request header 的資料。\u003C/li>\\n\u003Cli>Request.args  or Request.query_args -&gt; 取得 URLQueryParams\u003C/li>\\n\u003Cli>Request.body -&gt; 取得發出 POST Request 時夾帶在 body 欄位的內容。\u003Cul>\\n\u003Cli>取得的資料為純 bytes 需要轉譯。\u003C/li>\\n\u003C/ul>\\n\u003C/li>\\n\u003Cli>Request.json -&gt; 當 content_type 為 &quot;application/json&quot; 時，會自動將 body 中的內容轉為 Python Dictionary\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">import asyncio\\nimport asyncio\\nimport time\\nfrom sanic import Sanic, HTTPResponse, Request, response\\n\\napp = Sanic(__name__)\\n\\n@app.get(&quot;/typed&quot;)\\ndef typed(request: Request) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(sync)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    time.sleep(1)\\n    return response.text(&quot;Done&quot;)\\n\\n\\n@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)\\nasync def async_typed(request: Request, tag: str) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(async)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    await asyncio.sleep(1)\\n    return response.text(&quot;Done&quot;)\\n\u003C/code>\u003C/pre>\\n\u003Cp>對應官方文檔： \u003Ca href=\\\"https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async\u003C/a>\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>實務上應該盡量使用 async / await 以避免執行緒阻塞，執行上會更有效率。\u003C/p>\\n\u003C/blockquote>\\n\u003Ch2 id=\\\"routing\\\" class=\\\"heading-item\\\">Routing\u003C/h2>\u003Cp>Routing 用於將 Handler 註冊至對應的 URL，當伺服器接收到對應路由時，會將收到的資料轉換成 Request 並執行對應的 Handler。\u003C/p>\\n\u003Cp>註冊 Routing 的方式有三種：\u003C/p>\\n\u003Cul>\\n\u003Cli>透過 app.add_route() \u003C/li>\\n\u003Cli>透過 @app.route / @app.get 等裝飾器\u003C/li>\\n\u003Cli>Blueporint\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic, HTTPResponse, Request, response\\n\\napp = Sanic(__name__)\\n\\ndef typed(request: Request) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(sync)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    return response.text(&quot;Done&quot;)\\n\\n# register route by decorator\\n@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)\\nasync def async_typed(request: Request, tag: str) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(async)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    return response.text(&quot;Done&quot;)\\n\\n# register route by add_route()\\napp.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])\\n\u003C/code>\u003C/pre>\\n\u003Cp>\u003Ccode>@app.get()\u003C/code> 等裝飾器只是 \u003Ccode>app.add_route()\u003C/code> 的封裝，用於增加可讀性。\u003C/p>\\n\u003Ch3 id=\\\"blueprint\\\" class=\\\"heading-item\\\">Blueprint\u003C/h3>\u003Cp>儘管能夠透過 \u003Ccode>app.add_route()\u003C/code> 註冊路由，但這會導致所有 handler 必須依賴於 Sanic instance，當需要設置的路由數量增加時會很不方便，此時可採用 blueprint 方案。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>view.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Blueprint, HTTPResponse, Request, response\\n\\nbp = Blueprint(&quot;peon&quot;)\\n\\ndef typed(request: Request) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(sync)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    return response.text(&quot;Done&quot;)\\n\\n# register route by decorator\\n@bp.get(&quot;/async_typed/&lt;tag&gt;&quot;)\\nasync def async_typed(request: Request, tag: str) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(async)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    return response.text(&quot;Done&quot;)\\n\\n# Blueprint 的 route 註冊方式與使用 app.add_route 相同。\\nbp.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>app.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic, HTTPResponse, Request, response\\nfrom .view import bp\\n\\napp = Sanic(__name__)\\n\\n# 使用 app.blueprint 將 blueprint instance 註冊進 app 路由。\\napp.blueprint(bp)\\n\u003C/code>\u003C/pre>\\n\u003Cp>使用 Blueprint 可以將 Route 與 Handle 與 Sanic instance 分離開來，達到關注點分離的效果。\u003C/p>\\n\u003Ch2 id=\\\"app-registry\\\" class=\\\"heading-item\\\">App Registry\u003C/h2>\u003Cp>當建立 Sanic instance 時，會將該 instance 寫入 Sanic 內部的註冊表中，可以透過 \u003Ccode>Sanic.get_app()\u003C/code> 取得 app 的 instance。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>app.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic\\n\\napp = Sanic(&quot;my_server&quot;)\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>db.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic\\n\\napp = Sanic.get_app(&quot;my_server&quot;)\\n\u003C/code>\u003C/pre>\\n\u003Cp>若建立的 instance 只有一個時，也可以不用填入 instance name，直接使用 \u003Ccode>Sanic.get_app()\u003C/code> 就能取得 instance 。\u003C/p>\\n\u003Ch2 id=\\\"app-context\\\" class=\\\"heading-item\\\">App Context\u003C/h2>\u003Cp>App Context （中文翻譯稱作上下文）用於附加希望\u003Cstrong>能夠重複使用的 instance\u003C/strong> ，像是與資料庫的連接 、定期運作的排程器等。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>app.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic, HTTPResponse, Request, response\\nfrom .view import bp\\nfrom . import scheduler\\n\\napp = Sanic(__name__)\\n\\n# lifecycle hook - 在 server 運行之前將 instance 註冊進 context.\\n@app.before_server_start\\nasync def startup(app: Sanic):\\n    scheduler.setup(app)\\n\\napp.blueprint(bp)\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>scheduler.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Sanic\\n\\nfrom .struct import AppScheduler\\n\\nSERVICE_CODE = &quot;app_scheduler&quot;\\n\\ndef get() -&gt; AppScheduler:\\n    app = Sanic.get_app()\\n    # 使用 getattr 取得 app.ctx 中的 instance\\n    return getattr(app.ctx, SERVICE_CODE)\\n\\ndef setup(app: Sanic) -&gt; AppScheduler:\\n    app = Sanic.get_app()\\n    scheduler = AppScheduler(app)\\n    # 使用 setattr 將 instance 寫入 app.ctx\\n    setattr(app.ctx, SERVICE_CODE, scheduler)\\n    return scheduler\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Cstrong>view.py\u003C/strong>\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">from sanic import Blueprint, HTTPResponse, Request, response\\nfrom . import scheduler\\n\\nbp = Blueprint(&quot;peon&quot;)\\ndef typed(request: Request) -&gt; HTTPResponse:\\n    &quot;&quot;&quot;\\n    get Done(sync)\\n    \\n    :param reuqest [sanic.Request]\\n    &quot;&quot;&quot;\\n    _scheudler = scheduler.get()\\n    return response.text(&quot;Done&quot;)\\n\u003C/code>\u003C/pre>\\n\u003Cp>範例中使用 \u003Ccode>@app.before_server_start\u003C/code> 在運行之前將 AppScheduler 嵌入 app.ctx 內。 並在 handler 中過 \u003Ccode>scheduler.get()\u003C/code> 將其從 app.ctx 中取出，藉此重複利用 instance。\u003C/p>\\n\u003Ch2 id=\\\"listener-lifecycle\\\" class=\\\"heading-item\\\">Listener (LifeCycle)\u003C/h2>\u003Cp>Sanic 包含 8 個 Hook：\u003C/p>\\n\u003Cp>\u003Cstrong>只在 sanic app 建立/停止時執行一次:\u003C/strong>\u003C/p>\\n\u003Cul>\\n\u003Cli>main_process_start\u003C/li>\\n\u003Cli>main_process_stop\u003C/li>\\n\u003C/ul>\\n\u003Cp>\u003Cstrong>每個 worker 都會執行一次\u003C/strong>\u003C/p>\\n\u003Cul>\\n\u003Cli>before_server_start\u003C/li>\\n\u003Cli>after_server_start\u003C/li>\\n\u003Cli>before_server_stop\u003C/li>\\n\u003Cli>after_server_stop\u003C/li>\\n\u003C/ul>\\n\u003Cp>\u003Cstrong>當 auto_reload 被開啟時，每次 reload 就會執行一次\u003C/strong>\u003C/p>\\n\u003Cul>\\n\u003Cli>reload_process_start\u003C/li>\\n\u003Cli>reload_process_stop\u003C/li>\\n\u003C/ul>\\n\u003Cpre>\u003Ccode class=\\\"language-python\\\">@app.reload_process_start\\nasync def reload_start(*_):\\n    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; reload_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)\\n\\n\\n@app.main_process_start\\nasync def main_start(*_):\\n    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; main_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Ccode>main_process_start\u003C/code> 經常用於初始化僅能初始化一次的時候（設置遠端的 webhook)\u003C/li>\\n\u003Cli>\u003Ccode>before_server_start\u003C/code> 及 \u003Ccode>after_server_start\u003C/code> 常用於建立可重複使用的 instance 並且附加至 app.ctx 作為常駐 service 使用。\u003C/li>\\n\u003Cli>\u003Ccode>before_server_stop\u003C/code> 用於關閉各 service 的連接並清除資料。\u003C/li>\\n\u003C/ul>\\n\u003Ch2 id=\\\"應用範例\\\" class=\\\"heading-item\\\">應用範例\u003C/h2>\u003Cblockquote>\\n\u003Cp>\u003Cstrong>Sanic Example\u003C/strong>\u003Cbr/>\\nGithub: \u003Ca href=\\\"https://github.com/saweima12/sanic-example\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">點我進入\u003C/a>\u003C/p>\\n\u003C/blockquote>\\n\u003Ch2 id=\\\"tldr\\\" class=\\\"heading-item\\\">TL;DR\u003C/h2>\u003Cul>\\n\u003Cli>Sanic 是 Python 3.8 版本以上的輕量 Web 框架，支援 async / await 的非同步特性。\u003C/li>\\n\u003Cli>推薦使用 Sanic CLI 運行 Server ，在環境配置上有更多的彈性。\u003C/li>\\n\u003Cli>Handler 是處理 Request 的基本單元，會\u003Cstrong>至少接收一個 Request 物件並返回 HttpResponse 物件\u003C/strong>。\u003C/li>\\n\u003Cli>應該\u003Cstrong>盡量使用 async / await\u003C/strong> 處理 handler 邏輯，避免執行緒阻塞、增加運作效率。\u003C/li>\\n\u003Cli>Routing 用於\u003Cstrong>將路由與 Handler 進行綁定\u003C/strong>，當 Server 接收到指定的路徑時，會將資料打包成 Request 送至對應的 Handler。\u003C/li>\\n\u003Cli>App Context 用於\u003Cstrong>存放希望重複使用的 instance\u003C/strong>，像是資料庫連接、排程器等。\u003C/li>\\n\u003C/ul>\\n\",\"headings\":[{\"depth\":2,\"text\":\"框架特性\",\"id\":\"框架特性\"},{\"depth\":2,\"text\":\"建立基本結構\",\"id\":\"建立基本結構\"},{\"depth\":3,\"text\":\"透過 app.run() 運行\",\"id\":\"透過-apprun-運行\"},{\"depth\":3,\"text\":\"透過 CLI 運行(推薦)\",\"id\":\"透過-cli-運行推薦\"},{\"depth\":2,\"text\":\"Handler\",\"id\":\"handler\"},{\"depth\":2,\"text\":\"Routing\",\"id\":\"routing\"},{\"depth\":3,\"text\":\"Blueprint\",\"id\":\"blueprint\"},{\"depth\":2,\"text\":\"App Registry\",\"id\":\"app-registry\"},{\"depth\":2,\"text\":\"App Context\",\"id\":\"app-context\"},{\"depth\":2,\"text\":\"Listener (LifeCycle)\",\"id\":\"listener-lifecycle\"},{\"depth\":2,\"text\":\"應用範例\",\"id\":\"應用範例\"},{\"depth\":2,\"text\":\"TL;DR\",\"id\":\"tldr\"}]}"}</script></div>
+	</body>
+</html>

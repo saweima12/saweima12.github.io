@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Saweicore Lab</title>
+    <link>https://saweicore.com</link>
+    <description>SaweiCore Lab 是用於記錄與歸檔個人的研究心得的集散地，內容多以網站架設、程式開發、幣圈探索為主並以需求導向探討問題並記錄對應的解決方案，以便後續查閱。</description>
+    <lastBuildDate>Thu, 18 Aug 2022 16:20:14 GMT</lastBuildDate>
+    <atom:link rel="self" href="https://saweicore.com/feed.xml" type="application/rss+xml"/>
+    <item>
+      <title>Sanic - 輕量快速的 Python Web Framework</title>
+      <link>https://saweicore.com/posts/2022/08/sanic-introduce</link>
+      <pubDate>Mon, 08 Aug 2022 00:00:00 GMT</pubDate>
+      <description>一款支援非同步調用不阻塞執行緒、編寫風格簡潔不拖泥帶水、內置高效率伺服器方便部署的 Python 框架，適合用於快速開發中小型專案。</description>
+      <guid>https://saweicore.com/posts/2022/08/sanic-introduce</guid>
+      <author>saweima12@gmail.com( Saweima )</author>
+      <category domain="https://saweicore.com/tags/web">web</category>
+      <category domain="https://saweicore.com/tags/python">python</category>
+      <category domain="https://saweicore.com/tags/programing">programing</category>
+    </item>
+    <item>
+      <title>用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一）</title>
+      <link>https://saweicore.com/posts/2022/07/create-aiogram-project</link>
+      <pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate>
+      <description>廣告機器人一大堆、鬧群份子一個接一個？又或是想要做些聊天機器人小工具？透過 AIOGram 快速開發 Python Telegram Bot，用流程自動化解決所有麻煩事情。</description>
+      <guid>https://saweicore.com/posts/2022/07/create-aiogram-project</guid>
+      <author>saweima12@gmail.com( Saweima )</author>
+      <category domain="https://saweicore.com/tags/bot">bot</category>
+      <category domain="https://saweicore.com/tags/python">python</category>
+      <category domain="https://saweicore.com/tags/programing">programing</category>
+    </item>
+    <item>
+      <title>MarkedPage — SvelteKit 靜態網站的內容管理方案</title>
+      <link>https://saweicore.com/posts/2022/07/markedpage-introduce</link>
+      <pubDate>Fri, 22 Jul 2022 00:00:00 GMT</pubDate>
+      <description>想試著做個靜態網站卻又對現成的生成器感到不滿意？不妨試試看 SvelteKit 與這個專門為靜態網站而生的 Markdown 內容索引工具吧，相信能夠帶來些不一樣的使用體驗。</description>
+      <guid>https://saweicore.com/posts/2022/07/markedpage-introduce</guid>
+      <author>saweima12@gmail.com( Saweima )</author>
+      <category domain="https://saweicore.com/tags/svelte">svelte</category>
+      <category domain="https://saweicore.com/tags/markdown">markdown</category>
+      <category domain="https://saweicore.com/tags/programing">programing</category>
+    </item>
+    <item>
+      <title>踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二）</title>
+      <link>https://saweicore.com/posts/2022/06/blockchain-dapp-start</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 GMT</pubDate>
+      <description>投入了加密貨幣後，想要進一步探索區塊鍊上的生態，卻又不知道該怎麼做嘛？這篇文章概略的介紹了一些區塊鏈的生態與操作步驟，或許能夠提供一些小幫助。</description>
+      <guid>https://saweicore.com/posts/2022/06/blockchain-dapp-start</guid>
+      <author>saweima12@gmail.com( Saweima )</author>
+      <category domain="https://saweicore.com/tags/幣圈">幣圈</category>
+      <category domain="https://saweicore.com/tags/區塊鏈">區塊鏈</category>
+      <category domain="https://saweicore.com/tags/加密貨幣">加密貨幣</category>
+    </item>
+    <item>
+      <title>如何取得加密貨幣 — 加密貨幣入門大小事（一）</title>
+      <link>https://saweicore.com/posts/2022/05/crypto-getting-start</link>
+      <pubDate>Sun, 22 May 2022 00:00:00 GMT</pubDate>
+      <description>想要踏入加密貨幣的世界卻又不知道如何開始嗎？這邊簡單的整理了相關資訊，包含事前準備內容、操作的概念說明及相關注意事項，希望能夠提供一些方向。</description>
+      <guid>https://saweicore.com/posts/2022/05/crypto-getting-start</guid>
+      <author>saweima12@gmail.com( Saweima )</author>
+      <category domain="https://saweicore.com/tags/幣圈">幣圈</category>
+      <category domain="https://saweicore.com/tags/加密貨幣">加密貨幣</category>
+    </item>
+  </channel>
+</rss>

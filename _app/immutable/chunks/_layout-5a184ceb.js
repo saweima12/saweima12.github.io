@@ -1,0 +1,1 @@
+import{s as a}from"./store-465521c3.js";import{d as s}from"./route-58ec6f73.js";const r=async({fetch:o})=>{let t=s.getConfig();const e=await(await o(t)).json();return a.set(e),{}},p=Object.freeze(Object.defineProperty({__proto__:null,load:r},Symbol.toStringTag,{value:"Module"}));export{p as _,r as l};

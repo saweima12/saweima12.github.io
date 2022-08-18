@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../../../logo.png" />
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+		<link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+		<link rel="alternate" type="application/feed+xml" href="/feed.xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一） - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地</title><meta name="twitter:card" content="summary" data-svelte="svelte-f1lzu5"><meta name="twitter:site" content="@saweima12" data-svelte="svelte-f1lzu5"><meta name="twitter:title" content="用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一） - Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta name="twitter:description" data-svelte="svelte-f1lzu5"><meta name="twitter:url" content="https://saweicore.com/posts/2022/07/create-aiogram-project" data-svelte="svelte-f1lzu5"><meta property="og:url" content="https://saweicore.com/posts/2022/07/create-aiogram-project" data-svelte="svelte-f1lzu5"><meta property="og:locale" content="zh_TW" data-svelte="svelte-f1lzu5"><meta property="og:type" content="article" data-svelte="svelte-f1lzu5"><meta property="og:title" content="用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一）" data-svelte="svelte-f1lzu5"><meta property="og:site_name" content="Saweicore Lab - 程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地" data-svelte="svelte-f1lzu5"><meta property="og:description" content="廣告機器人一大堆、鬧群份子一個接一個？又或是想要做些聊天機器人小工具？透過 AIOGram 快速開發 Python Telegram Bot，用流程自動化解決所有麻煩事情。" data-svelte="svelte-f1lzu5">
+		<meta name="description" content="廣告機器人一大堆、鬧群份子一個接一個？又或是想要做些聊天機器人小工具？透過 AIOGram 快速開發 Python Telegram Bot，用流程自動化解決所有麻煩事情。" data-svelte="svelte-f1lzu5">
+	<link href="../../../_app/immutable/assets/+layout-eed564a7.css" rel="stylesheet">
+	<link href="../../../_app/immutable/assets/+page-7ed394ec.css" rel="stylesheet">
+	<link rel="modulepreload" href="../../../_app/immutable/start-34fd70cd.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e6965666.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/index-e127beab.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/preload-helper-aa6bc0ce.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons-dbe501d2.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/_layout.svelte-db83af4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/store-465521c3.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/helper-a645ffda.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/stores-4922191d.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/navigation-a14b4e4e.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_commonjsHelpers-094ef602.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/_layout.ts-4774ee04.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/route-58ec6f73.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout-5a184ceb.js">
+	<link rel="modulepreload" href="../../../_app/immutable/components/pages/posts/_year_/_month_/_slug_/_page.svelte-d45c6961.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/formater-faf389fa.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/calender-ce03e571.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/colors-e3ddc188.js">
+	<link rel="modulepreload" href="../../../_app/immutable/modules/pages/posts/_year_/_month_/_slug_/_page.ts-8ee2144c.js">
+	<link rel="modulepreload" href="../../../_app/immutable/chunks/_page-a23fdb74.js">
+	</head>
+	<body>
+		<div>
+
+
+<div class="wrapper-container"><div class="transition-all duration-200 min-h-screen main-wrapper"><div class="fixed top-0 w-screen wrapper">
+
+<nav class="py-2 px-2 top-navbar svelte-1jv9zmu"><div class="flex pl-1 items-center navbar-container svelte-1jv9zmu"><div class="lg:hidden w-30 px-2"><div class="menu-button-wrapper"><div class="menu-button-container"><div class="menu-button"></div></div></div></div>
+
+		<a sveltekit:prefetch class="flex raleway-font site-title" href="/"><div class="logo svelte-1jv9zmu"><img width="36" height="36" src="/logo.png" alt="Saweicore Lab"></div>
+			
+			<div class="hidden md:flex px-2 letter-title-font title svelte-1jv9zmu">Saweicore Lab</div></a>
+	
+		<div class="grow spacer"></div>
+
+		<div class="hidden lg:flex items-center"><ul class="h-full flex flex-row nav-list svelte-1jv9zmu"><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Journal</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">About</div>
+							</div>
+					</a>
+				</li><li class="nav-item mr-5 px-2 svelte-1jv9zmu"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center nav-item-block svelte-1jv9zmu"><div class="item-name">Github</div>
+							<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+					</a>
+				</li></ul>
+			<button class="flex text-xl letter-content-font mr-1 theme-switch svelte-1jv9zmu"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+		<div class="lg:hidden search-icon"><div class="nav-search mr-2 svelte-18cfe79"><div class="flex self-center justify-center w-6 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+</div></div></div>
+
+
+</nav></div>
+
+		<div class="flex flex-col justify-between main-container svelte-agtcg5"><div class="w-full content-wrapper"><main class="mx-auto min-h-screen content-container"><div>
+
+<div class="my-10 post-page wrapper"><div class="post-container"><header class="mx-6 mb-4"><h1 class="font-bold letter-title-font post-title">用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一）</h1>
+
+			<div class="flex flex-row items-center mt-2 created-date"><div class="icon-base w-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line fill="currentColor" x1="16" y1="2" x2="16" y2="6"></line><line fill="currentColor" x1="8" y1="2" x2="8" y2="6"></line><line fill="currentColor" x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+				<time class="flex self-center ml-2">2022-07-23</time></div>
+
+			<div class="mt-4 flex flex-row post-tag-list"><div class="post-tag-item"><a sveltekit:prefetch href="/tags/bot">bot</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/python">python</a>
+					</div><div class="post-tag-item"><a sveltekit:prefetch href="/tags/programing">programing</a>
+					</div></div></header>
+
+		<article class="content"><!-- HTML_TAG_START --><p>午安旅人，這裡是一個月沒有更新文章的 Saweima。不知道旅人有沒有在 Telegram 公開群組遇到過惡意騷擾人士呢？時不時的開新帳號跑進群組貼一些會讓人感到噁心的圖片，踢完過一陣子又再次故技重施，猶如蟑螂一般，殺也殺不完。</p>
+<p>考量到管理員不可能時時刻刻都在、刪除圖片時管理員自身也不可避免的會受到精神攻擊，人工處理顯然不是一種好辦法。由於需求的急迫性，花了幾週時間研究及編寫機器人，在這邊記錄下自己用到的東西們。</p>
+<h2 id="aiogram" class="heading-item">AIOGram</h2><p>AIOGram 是 Telegram Bot API 的 Python 包裝器，用於將繁瑣的 HTTP API 呼叫流程包裝為程式物件並解析 API 的回傳資料，讓操作流程與程式語句一樣直觀。</p>
+<blockquote>
+<p><strong>AIOGram</strong> <br/>
+Github: <a href="https://github.com/aiogram/aiogram" target="_blank" rel="noreferrer noopenner">點我進入</a> <br/>
+官方文擋: <a href="https://docs.aiogram.dev/en/latest/" target="_blank" rel="noreferrer noopenner">點我進入</a> <br/></p>
+</blockquote>
+<p>特性：</p>
+<ul>
+<li>使用 Python 3.7 以上版本。</li>
+<li>透過 asyncio 及 aiphttp 實作，支援 Asynchronous （異步/非同步）調用。</li>
+<li>內置 API 封包解析及定義型別，省去研究封包結構的時間。</li>
+</ul>
+<p>其他的 API 包裝器可參考 <a href="https://core.telegram.org/bots/samples" target="_blank" rel="noreferrer noopenner"><strong>Telegram 的官方列表</strong></a></p>
+<h2 id="註冊-telegram-bot" class="heading-item">註冊 Telegram Bot</h2><p>在使用之前，必須先透過 Telegram Bot Father 註冊新的 bot 帳戶。</p>
+<img class="lightbox" src="https://media.saweicore.com/blog/create-aiogram-project/register-tg-bot.jpg" height="500" />
+
+
+<ul>
+<li>加入有藍色勾勾（證明為官方帳號）的 BotFather</li>
+<li>輸入指令 <code>/newbot</code> 註冊新的 Bot</li>
+<li>第一次輸入 Bot 的名稱</li>
+<li>第二次輸入 Bot 的帳號</li>
+</ul>
+<p>以上流程都成功後就後會取得使用 API 的 TOKEN 如：<code>5292723007:AAE-APVbUkZgOZ6CVb4GM_KfV7CtE5dgLmw</code>，這段需要保存好，未來所有操作都會需要用到。</p>
+<h2 id="建立基本結構" class="heading-item">建立基本結構</h2><p>AIOGram 各 Module 負責的功能：</p>
+<ul>
+<li><code>Bot</code> class 將所有 Telegram Bot API 的指令包裝成 function 形式，主要負責傳送 request 給 Telegram 伺服器。</li>
+<li><code>Dispatcher</code> class 負責接收所有透過 Webhook 收到的訊息，並轉換為對應的 Object。</li>
+<li><code>types</code> module 底下包含所有型別及其相關的輔助 Function，如 Update、Message。</li>
+</ul>
+<p>運行的主要流程：
+-&gt; 接收 Telegram 的 Update 訊息
+-&gt; 傳入 Dispatcher 進行分類
+-&gt; Dispatcher 將分類後的訊息發送給註冊的 Handler 
+-&gt; Handler 進行處理後回傳 HTTP Response 給 Telegram 伺服器（如果收到非 200 的 status code 會等待一定時間後重新傳送）</p>
+<p><strong>Update 資訊的取得方式有以下兩種：</strong></p>
+<h3 id="使用-polling" class="heading-item">使用 Polling</h3><pre><code class="language-py"># 導入 Aiogram 包
+from aiogram import Bot
+from aiogram.types import Message, ContentTypes
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils.executor import start_polling
+
+# 記錄 BOT_TOKEN 並且建立 Bot 物件
+BOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;
+bot = Bot(BOT_TOKEN)
+# 建立 Bot 的分發器（收到的 Data 會被傳入這裡
+dp = Dispatcher(bot)
+
+# Process start command
+@dp.message_handler(commands=[&#39;start&#39;])
+async def on_start_command(message: Message):  
+    print(&quot;on start command&quot;)
+
+# Process all messages except start command
+@dp.message_handler(content_types=ContentTypes.ANY)
+async def on_message(message: Message):
+    await message.reply(message.from_user.id)
+
+async def on_startup(dispatcher: Dispatcher):
+    print(&quot;startup&quot;)
+
+async def on_shutdown(dispatcher: Dispatcher):
+    print(&quot;shutdown&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+</code></pre>
+<p>Polling 方式是透過一個迴圈，定期的呼叫 Telegram Bot API 的 getUpdate 方法取得新的訊息，並將其傳入 dispatcher 進行分發，直到被中斷為止。</p>
+<ul>
+<li><code>Bot</code> 類負責與 Bot API 溝通，包含 <strong>send_message</strong> 或 <strong>deleted_message</strong> 等主動操作的 method 。</li>
+<li><code>Dispatcher</code> 類負責<strong>接收 API 的 Update 訊息</strong>（不論是透過 Polling 還是 Webhook 接收的）依據特徵分發給各 message_handler 。</li>
+<li><code>Message</code> 類是<strong>透過 Dispatcher 分類過後的訊息物件</strong>，包含 message_id , chat_id, user_id 等關鍵的判斷訊息， AIOGram 也有在此基礎上實作許多輔助方法。</li>
+<li><code>dp.message_handler()</code> 可以<strong>將底下的 function 註冊為處理器</strong>，並且透過參數如: <strong>content_types</strong> 、<strong>commands</strong> 設定只接包含哪些特徵的訊息。</li>
+<li><code>start_polling</code> 用於執行<strong>輪詢抓取 Telegram 的訊息</strong>更新。</li>
+</ul>
+<h3 id="使用-webhook" class="heading-item">使用 Webhook</h3><pre><code class="language-py">from aiogram import Bot
+from aiogram.types import Message, ContentTypes
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils.executor import start_webhook
+
+BOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;
+
+# WEBHOOK SETTING
+WEBHOOK_DOMAIN = &quot;https://68dc-211-23-21-139.jp.ngrok.io&quot;
+WEBHOOK_PATH=&quot;/api&quot;
+WEBHOOK_URI=f&quot;{WEBHOOK_DOMAIN}{WEBHOOK_PATH}&quot;
+
+# WEBHOST SETTING
+WEB_HOST = &quot;0.0.0.0&quot; # or ip
+WEB_HOST_PORT = 8000
+
+bot = Bot(BOT_TOKEN)
+dp = Dispatcher(bot)
+
+# Process start command
+@dp.message_handler(commands=[&#39;start&#39;])
+async def on_start_command():  
+    print(&quot;on start command&quot;)
+
+# Process all messages except start command
+@dp.message_handler(content_types=ContentTypes.ANY)
+async def on_message(message: Message):
+    await message.reply(message.from_user.id)
+
+
+async def on_startup(dispatcher: Dispatcher):
+    print(&quot;startup&quot;)
+    await bot.set_webhook(WEBHOOK_URI)
+
+
+async def on_shutdown(dispatcher: Dispatcher):
+    print(&quot;shutdown&quot;)
+    await bot.delete_webhook()
+
+
+if __name__ == &quot;__main__&quot;:
+    start_webhook(dispatcher=dp, 
+                webhook_path=WEBHOOK_PATH,
+                on_startup=on_startup,
+                on_shutdown=on_shutdown,
+                skip_updates=True,
+                host=WEB_HOST, 
+                port=WEB_HOST_PORT)
+</code></pre>
+<p>Webhook 方式是在啟動時通知 Telegram 伺服器將新訊息傳輸至對應的 URL，透過 HTTP 接口來接收資訊。</p>
+<p>大多數結構與使用 Polling 時相同，因此這邊僅列舉差異的地方。</p>
+<ul>
+<li><code>bot.set_webook</code> 用於通知 Telegram 伺服器，將訊息傳輸到註冊的 URL。</li>
+<li><code>bot.delete_webhook</code> 用於關閉時通知 Telegram 伺服器停止輸送訊息至註冊的 URL</li>
+<li><code>start_webhook</code> 用於啟動 AIOGram 內建的小型 HTTP Server 監聽 webhook_path 參數指定的路徑。host、port 用於配置啟動的 host 與 port。</li>
+</ul>
+<blockquote>
+<ul>
+<li>較為推薦使用 Webhook 方式接收 Update 訊息，可以節省頻繁發送封包的流量及不斷輪詢計算損耗的電腦資源。</li>
+<li>不過要以此作為接收訊息方式，需要一個支援 HTTPS 的網域。因此還是依據手邊的資源決定。</li>
+</ul>
+</blockquote>
+<h2 id="如何在本地端進行測試？" class="heading-item">如何在本地端進行測試？</h2><p>如果使用 Polling 接收資訊的話倒還好，但使用 Webhook 的話，最先遇上的問題就是怎麼進行測試，總不能每次都先發布到遠端伺服器，又或是先改成 Polling 要發布時才改回來，很沒有效率，這時候就可以考慮使用反向代理工具。</p>
+<h3 id="ngrok" class="heading-item">Ngrok</h3><blockquote>
+<p><strong>Ngrok</strong> <br/>
+<a href="https://ngrok.com/" target="_blank" rel="noreferrer noopenner">https://ngrok.com/</a></p>
+</blockquote>
+<p>Ngrok 是一款有提供免費方案的反向代理工具，並且支援 HTTPS 轉發，可以用於本地端的 Webhook 測試，完全滿足這次的需求，使用前需要先在官網註冊帳號取得 AUTH_TOKEN 並下載對應作業系統的檔案。輸入以下指令設定 AUTH_TOKEN</p>
+<pre><code class="language-sh">ngrok config add-authtoken {AUTH_TOKEN}
+</code></pre>
+<p>設定完成後，再來只需要輸入以下指令即可將自己的 PORT 8000 綁定到 ngrok 提供的 domain 上。</p>
+<pre><code class="language-sh">ngrok http 8000
+</code></pre>
+<p>成功後如下：</p>
+<img class="lightbox" src="https://media.saweicore.com/blog/create-aiogram-project/ngrok-test.jpg" height="195"/>
+
+<p>圖中的 <code>https://928c-211-23-21-139.ngrok.io</code> 就是透過 ngrok 取得的 URL DOMAIN，它就相當於連接到本機的 port 8000 。</p>
+<p>當一切就緒，就可以試著與機器人對話，如果按照上面的範例，旅人應該會收到一串神奇的數字，那便是自己的 user_id 。</p>
+<h2 id="如果不使用包裝器的話？" class="heading-item">如果不使用包裝器的話？</h2><p>若不使用包裝器，在 Telegram Bot API 中所有的操作，不論是 <strong>[接收資訊]</strong> 還是 <strong>[發送訊息]</strong> 都是透過 HTTP API 來進行。結構如下：</p>
+<pre><code class="language-text">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}
+</code></pre>
+<ul>
+<li><code>BOT_TOKEN</code> -&gt; 從 BotFather 取得的 Token String </li>
+<li><code>METHOD_NAME</code> -&gt; 對應的方法名稱，如：getMe、getUpdates</li>
+</ul>
+<p>支援 GET 與 POST 的操作，意味著對於簡單的訊息可以直接使用瀏覽器輸入 Url QueryParams。</p>
+<pre><code class="language-text">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}?url={API_URL}
+</code></pre>
+<p>針對複雜的操作可以透過 POST 並夾帶於 Body 中。支援的 Content-Type：</p>
+<ul>
+<li><code>application/x-www-form-urlencoded</code></li>
+<li><code>application/json (except for uploading files)</code></li>
+<li><code>multipart/form-data (use to upload files)</code></li>
+</ul>
+<p>以 GetUpdates 為例，透過呼叫 API：
+<code>https://api.telegram.org/bot{BOT_TOKEN}/getUpdates</code></p>
+<p>最後獲得的 response：</p>
+<pre><code class="language-js">{
+  &quot;ok&quot;:true,
+  &quot;result&quot;:[
+    {
+      &quot;update_id&quot;:136940592,
+      &quot;message&quot;:{
+        &quot;message_id&quot;:964,
+        &quot;from&quot;:{
+          &quot;id&quot;:549919258,
+          &quot;is_bot&quot;:false,
+          &quot;first_name&quot;:&quot;Ch.&quot;,
+          &quot;last_name&quot;:&quot;S&quot;,
+          &quot;username&quot;:&quot;Saweima&quot;
+        },
+        &quot;chat&quot;:{
+          &quot;id&quot;:-1001756617092,
+          &quot;title&quot;:&quot;T1 Group&quot;,
+          &quot;type&quot;:&quot;supergroup&quot;
+        },
+        &quot;date&quot;:1657095304,
+        &quot;text&quot;:&quot;test&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p>在不使用包裝器的情況下，需要自己組合出對應的 API URL 呼叫，並且自己處理回傳的 message。 這些是包裝器主要節省的部份。</p>
+<h2 id="注意事項" class="heading-item">注意事項</h2><ul>
+<li>部份機器人的操作（如：刪除其他人訊息、設定權限...等）需要有對應的群組權限。</li>
+<li>非群組管理員的機器人，只在遇到自己登記過的指令才會收到相關訊息。</li>
+<li>若為群組管理員的機器人，會接收到該群組內的所有訊息。</li>
+<li>若一則訊息在 Telegram 伺服器發送給機器人之前被刪除，則機器人會收不到該則訊息。</li>
+<li>Telegram 超過 500 人的群組有可能收不到 Join Message。</li>
+<li>機器人之間會互相干擾，必須確保機器人產生的對話內容、接收的指令不會觸發其他機器人。</li>
+</ul>
+<h2 id="tldr" class="heading-item">TL;DR</h2><ul>
+<li>AIOGram 是 Telegram Bot API 的包裝器，用以簡化機器人開發流程。</li>
+<li>AIOGram 支援<strong>輪詢抓取更新 - Polling</strong> 及<strong>被動接收更新 - Webhook</strong>。</li>
+<li>推薦使用 Webhook 作為接收更新的方式，用以節省流量與運算資源。</li>
+<li>使用 Webhook 接收更新需要有支援 https 的 domain。</li>
+<li>可以透過 Ngrok 的反向代理，測試本機端的 Webhook 與 API 。</li>
+<li>若不使用包裝器，則需要自己組合出 HTTP URL 及自行處理訊息的解析。</li>
+</ul>
+<!-- HTML_TAG_END --></article></div></div>
+
+</div></main>
+				<footer class="w-full pt-20 pb-5 site-footer svelte-1esoz7b"><div class="flex justify-center items-center px-10 h-full footer-container"><div class="copyright">Copyright © 2020 - 2022 Saweicore Lab All Rights Reserved.</div></div>
+</footer></div>
+
+			<div class="hidden lg:block drawer-wrapper mr-0.5"><div class="w-full min-h-screen h-full drawer-container"><div class="flex flex-col h-full widget-list"><div class="widget-list-item my-3 svelte-zx3hu4"><div class="w-full cursor-pointer search-widget svelte-q0vdx1"><div class="flex flex-row h-full justify-center items-center label svelte-q0vdx1"><div class="flex self-center mr-2 w-4 label-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+        <div class="label-text mr-2">Search</div>
+        <div class="flex label-container items-center label-keys"><div class="label-key svelte-q0vdx1">Ctrl</div>
+            <div class="label-key svelte-q0vdx1">/</div></div></div>
+</div></div>
+
+    <div class="widget-list-item svelte-zx3hu4"><div class="author-widget"><div class="w-32 h-32"><img class="avatar svelte-9pb7ln" src="https://avatars.githubusercontent.com/u/62002212" alt="Saweima" loading="lazy" width="128" height="128"></div>  
+    <div class="mt-3 name svelte-9pb7ln"><h2>Saweima</h2></div> 
+    <div class="mr-3 letter-content-font description svelte-9pb7ln"><p>雜項工程師 | 幣圈小白 | 想到再寫</p></div>
+</div></div>
+    
+    <div class="widget-list-item sticky top-14 svelte-zx3hu4">
+
+<div class="outline-widget svelte-1tqky31"><ul class="overflow-y-auto outline-list svelte-1tqky31"><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#aiogram" class="svelte-1tqky31">AIOGram</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#註冊-telegram-bot" class="svelte-1tqky31">註冊 Telegram Bot</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#建立基本結構" class="svelte-1tqky31">建立基本結構</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#使用-polling" class="svelte-1tqky31">使用 Polling</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#使用-webhook" class="svelte-1tqky31">使用 Webhook</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#如何在本地端進行測試？" class="svelte-1tqky31">如何在本地端進行測試？</a>
+            </div><div class="level-3 py-0.5 outline-item svelte-1tqky31"><a href="#ngrok" class="svelte-1tqky31">Ngrok</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#如果不使用包裝器的話？" class="svelte-1tqky31">如果不使用包裝器的話？</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#注意事項" class="svelte-1tqky31">注意事項</a>
+            </div><div class="level-2 py-0.5 outline-item svelte-1tqky31"><a href="#tldr" class="svelte-1tqky31">TL;DR</a>
+            </div></ul>
+</div></div>
+
+
+</div></div></div></div></div></div>
+
+<div class="fixed top-0 z-10 w-screen h-screen screenmask hidden"></div>
+
+
+<div class="fixed z-30 top-0 left-0 bottom-0 w-60 md:w-80 h-screen transition-all duration-200 navmenu svelte-7saduy -translate-x-full"><div class="flex flex-col h-full navmenu-container"><div class="py-4 mb-2 header"><div class="flex items-center mb-4 pl-8"><div class="title text-lg svelte-7saduy">Saweicore Lab</div>
+					<button class="flex text-xl letter-content-font theme-switch svelte-7saduy"><div class="icon-base w-6"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>ic_fluent_dark_theme_24_filled</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill="#212121" fill-rule="nonzero"><path fill="currentColor" d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20 L12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z" id="🎨-Color"></path></g></g></svg></div></button></div>
+
+			<div class="flex flex-row mx-6 author-block svelte-7saduy"><img src="https://avatars.githubusercontent.com/u/62002212" alt="saweima" loading="lazy" width="80" height="80" class="svelte-7saduy">
+				<div class="flex flex-col word-font items-center justify-center ml-4 avatar-info"><div class="font-bold text-lg">Saweima</div>
+					<div>邊緣工作者</div></div></div></div>
+		<ul class="nav-list">
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/journal" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" d="M19,2 C20.6568542,2 22,3.34314575 22,5 L22,19 C22,20.6568542 20.6568542,22 19,22 L5,22 C3.34314575,22 2,20.6568542 2,19 L2,5 C2,3.34314575 3.34314575,2 5,2 L19,2 Z M20,8 L4,8 L4,19 C4,19.5522847 4.44771525,20 5,20 L19,20 C19.5522847,20 20,19.5522847 20,19 L20,8 Z M12.1167504,17.9932723 L12.0000776,18 L11.916,17.996 L11.7993725,17.9797599 L11.7993725,17.9797599 L11.6879528,17.9502619 L11.6879528,17.9502619 L11.5768709,17.9063266 L11.5768709,17.9063266 L11.4793812,17.8540045 L11.4793812,17.8540045 L11.4049183,17.8036865 L11.4049183,17.8036865 L11.2929784,17.7071068 L8.29290079,14.7071068 C7.9023664,14.3165825 7.9023664,13.6834175 8.29290079,13.2928932 C8.65339407,12.9324093 9.22063979,12.9046797 9.61294114,13.2097046 L9.70715092,13.2928932 L11,14.585 L11.0000776,11 C11.0000776,10.4871642 11.3861178,10.0644928 11.8834564,10.0067277 L12.0001293,10 C12.552414,10 13.0001293,10.4477153 13.0001293,11 L13,14.585 L14.2930559,13.2928932 C14.6535492,12.9324093 15.2207949,12.9046797 15.6130963,13.2097046 L15.707306,13.2928932 C16.0677993,13.6533772 16.0955296,14.2206082 15.7904968,14.6128994 L15.707306,14.7071068 L12.7072361,17.7071068 L12.6217218,17.7833908 L12.6217218,17.7833908 L12.5518984,17.8341416 L12.5518984,17.8341416 L12.4539624,17.8913373 L12.4539624,17.8913373 L12.3401306,17.9407132 L12.3401306,17.9407132 L12.2661033,17.9641549 L12.1167504,17.9932723 L12.1167504,17.9932723 Z M19,4 L5,4 C4.44771525,4 4,4.44771525 4,5 L4,6 L20,6 L20,5 C20,4.44771525 19.5522847,4 19,4 Z"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Journal</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a sveltekit:prefetch href="/about" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512"><g><g><path fill="currentColor" d="m480.6,11c-40.6,0-80.2,12.7-118.6,25-36.9,11.9-71.8,23.1-106,23.1-34.2,0-69.1-11.2-106-23.1-38.3-12.3-78-25-118.6-25-11.3,0-20.4,9.1-20.4,20.4v401c0,11.3 9.1,20.4 20.4,20.4 34.2,0 69.1,11.2 106,23.1 38.3,12.3 77.9,25 118.5,25 40.6,0 80.2-12.7 118.5-25 36.9-11.9 71.8-23.1 106-23.1 11.3,0 20.4-9.1 20.4-20.4v-401c0.2-11.3-8.9-20.4-20.2-20.4zm-428.8,402.1v-360c27.7,3.2 56,12.3 85.6,21.9 31.9,10.2 64.6,20.8 98.1,24v360c-27.7-3.2-56-12.3-85.6-21.8-31.8-10.4-64.6-20.9-98.1-24.1zm408.4,0c-33.5,3.3-66.3,13.8-98.1,24-29.6,9.5-57.9,18.6-85.6,21.8v-360c33.5-3.3 66.3-13.8 98.1-24 29.6-9.5 57.9-18.6 85.6-21.9v360.1z"></path><path fill="currentColor" d="m183.6,144l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,246.6l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.7-2.8-22.1-13.6-25.4z"></path><path fill="currentColor" d="m183.6,349.3l-68.1-20.4c-10.8-3.2-22.2,2.9-25.4,13.7-3.2,10.8 2.9,22.2 13.7,25.4 0,0 72,21.3 73.9,21.3 8.8,0 16.9-5.7 19.5-14.6 3.3-10.8-2.8-22.2-13.6-25.4z"></path><path fill="currentColor" d="m314.7,169.4c2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.3-10.8-14.6-16.9-25.4-13.7l-68,20.4c-10.8,3.3-16.9,14.7-13.7,25.4z"></path><path fill="currentColor" d="m396.5,226.2l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.8-25.3-13.7z"></path><path fill="currentColor" d="m396.5,328.9l-68.1,20.4c-10.8,3.2-16.9,14.6-13.7,25.4 2.7,8.9 10.8,14.6 19.5,14.6 1.9,0 73.9-21.3 73.9-21.3 10.8-3.2 16.9-14.6 13.7-25.4-3.2-10.8-14.5-16.9-25.3-13.7z"></path></g></g></svg></div>
+					<div class="pl-4 text-xl letter-content-font">About</div>
+					</div>
+				</a>
+			</li>
+			<li class="flex nav-item svelte-7saduy"><a href="http://github.com/saweima12" alt="" class="w-full h-full"><div class="flex items-center pl-8 mt-1 mb-4 nav-item-content"><div class="icon-base w-6"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon"><path fill="currentColor" d="m256 0c-140.609375 0-256 115.390625-256 256 0 119.988281 84.195312 228.984375 196 256v-84.695312c-11.078125 2.425781-21.273438 2.496093-32.550781-.828126-15.128907-4.464843-27.421875-14.542968-36.546875-29.910156-5.816406-9.8125-16.125-20.453125-26.878906-19.671875l-2.636719-29.882812c23.253906-1.992188 43.371093 14.167969 55.3125 34.230469 5.304687 8.921874 11.410156 14.152343 19.246093 16.464843 7.574219 2.230469 15.707032 1.160157 25.183594-2.1875 2.378906-18.972656 11.070313-26.074219 17.636719-36.074219v-.015624c-66.679687-9.945313-93.253906-45.320313-103.800781-73.242188-13.976563-37.074219-6.476563-83.390625 18.238281-112.660156.480469-.570313 1.347656-2.0625 1.011719-3.105469-11.332032-34.230469 2.476562-62.546875 2.984375-65.550781 13.078125 3.867187 15.203125-3.890625 56.808593 21.386718l7.191407 4.320313c3.007812 1.792969 2.0625.769531 5.070312.542969 17.371094-4.71875 35.683594-7.324219 53.726563-7.558594 18.179687.234375 36.375 2.839844 54.464844 7.75l2.328124.234375c-.203124-.03125.632813-.148437 2.035157-.984375 51.972656-31.480469 50.105469-21.191406 64.042969-25.722656.503906 3.007812 14.128906 31.785156 2.917968 65.582031-1.511718 4.65625 45.058594 47.300781 19.246094 115.753906-10.546875 27.933594-37.117188 63.308594-103.796875 73.253907v.015624c8.546875 13.027344 18.816406 19.957032 18.761719 46.832032v105.722656c111.808594-27.015625 196-136.011719 196-256 .003906-140.609375-115.386719-256-255.996094-256zm0 0"></path></svg></div>
+					<div class="pl-4 text-xl letter-content-font">Github</div>
+					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div>
+				</a>
+			</li></ul>
+		<div class="grow spacer"></div></div>
+</div>
+
+
+<div class="search-box svelte-fha6x8 hidden"><div class="search-bar svelte-fha6x8"><form class="flex items-center p-5 h-full" autocomplete="off" role="search"><div class="icon-base w-8 mr-4"><svg viewBox="0 0 24 24" aria-hidden="true" class="svelte-1h287kj"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg></div>
+            <input id="search-input" type="text" autocomplete="off" class="h-full w-full svelte-fha6x8"></form></div>
+    <div class="typehead-wrapper"><div class="typehead-container">
+</div></div>
+</div>
+<div class="lightbox-wrapper svelte-1b9dfdw translate-x-full opacity-0"><div class="flex items-center h-full lightbox-container svelte-1b9dfdw"></div>
+</div>
+
+
+
+
+		<script type="module" data-sveltekit-hydrate="c7hdr2">
+		import { set_public_env, start } from "../../../_app/immutable/start-34fd70cd.js";
+
+		set_public_env({});
+
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="c7hdr2"]').parentNode,
+			paths: {"base":"","assets":""},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				node_ids: [0, 7],
+				params: {year:"2022",month:"07",slug:"create-aiogram-project"},
+				routeId: "posts/[year]/[month]/[slug]"
+			}
+		});
+	</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/config.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"title\":\"Saweicore Lab\",\"summary\":\"程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地\",\"description\":\"SaweiCore Lab 是用於記錄與歸檔個人的研究心得的集散地，內容多以網站架設、程式開發、幣圈探索為主並以需求導向探討問題並記錄對應的解決方案，以便後續查閱。\",\"url\":\"https://saweicore.com\",\"ga\":\"G-KY269QECHX\",\"author\":{\"name\":\"Saweima\",\"email\":\"saweima12@gmail.com\",\"summary\":\"邊緣工作者\",\"description\":\"雜項工程師 | 幣圈小白 | 想到再寫\",\"avatar\":\"https://avatars.githubusercontent.com/u/62002212\"},\"pagination\":{\"maxPerPage\":8},\"classifier\":[{\"id\":\"post\",\"params\":{\"path\":\"/_posts/\"},\"type\":\"directory\"},{\"id\":\"tag\",\"params\":{\"keys\":[\"tag\",\"tags\"]},\"type\":\"frontmatter\"}],\"marked\":{\"options\":{},\"extensions\":[{\"renderer\":{}},{\"renderer\":{}}]},\"search\":{\"appKey\":\"BHODY4NQKK\",\"apiKey\":\"5f4c05344cf6d1cbe581c20e049a7c14\",\"index\":\"SaweicoreLab\"},\"nav\":[{\"id\":\"journal\",\"name\":\"Journal\",\"link\":\"/journal\"},{\"id\":\"about\",\"name\":\"About\",\"link\":\"/about\"},{\"id\":\"github\",\"name\":\"Github\",\"link\":\"http://github.com/saweima12\"}]}"}</script>
+	<script type="application/json" sveltekit:data-type="data" sveltekit:data-url="/api/posts/2022/07/create-aiogram-project.json">{"status":200,"statusText":"","headers":{"content-type":"application/json"},"body":"{\"metadata\":{\"title\":\"用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一）\",\"tags\":[\"bot\",\"python\",\"programing\"],\"excerpt\":\"廣告機器人一大堆、鬧群份子一個接一個？又或是想要做些聊天機器人小工具？透過 AIOGram 快速開發 Python Telegram Bot，用流程自動化解決所有麻煩事情。\",\"created\":\"2022-07-23T00:00:00.000Z\"},\"content\":\"\u003Cp>午安旅人，這裡是一個月沒有更新文章的 Saweima。不知道旅人有沒有在 Telegram 公開群組遇到過惡意騷擾人士呢？時不時的開新帳號跑進群組貼一些會讓人感到噁心的圖片，踢完過一陣子又再次故技重施，猶如蟑螂一般，殺也殺不完。\u003C/p>\\n\u003Cp>考量到管理員不可能時時刻刻都在、刪除圖片時管理員自身也不可避免的會受到精神攻擊，人工處理顯然不是一種好辦法。由於需求的急迫性，花了幾週時間研究及編寫機器人，在這邊記錄下自己用到的東西們。\u003C/p>\\n\u003Ch2 id=\\\"aiogram\\\" class=\\\"heading-item\\\">AIOGram\u003C/h2>\u003Cp>AIOGram 是 Telegram Bot API 的 Python 包裝器，用於將繁瑣的 HTTP API 呼叫流程包裝為程式物件並解析 API 的回傳資料，讓操作流程與程式語句一樣直觀。\u003C/p>\\n\u003Cblockquote>\\n\u003Cp>\u003Cstrong>AIOGram\u003C/strong> \u003Cbr/>\\nGithub: \u003Ca href=\\\"https://github.com/aiogram/aiogram\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">點我進入\u003C/a> \u003Cbr/>\\n官方文擋: \u003Ca href=\\\"https://docs.aiogram.dev/en/latest/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">點我進入\u003C/a> \u003Cbr/>\u003C/p>\\n\u003C/blockquote>\\n\u003Cp>特性：\u003C/p>\\n\u003Cul>\\n\u003Cli>使用 Python 3.7 以上版本。\u003C/li>\\n\u003Cli>透過 asyncio 及 aiphttp 實作，支援 Asynchronous （異步/非同步）調用。\u003C/li>\\n\u003Cli>內置 API 封包解析及定義型別，省去研究封包結構的時間。\u003C/li>\\n\u003C/ul>\\n\u003Cp>其他的 API 包裝器可參考 \u003Ca href=\\\"https://core.telegram.org/bots/samples\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">\u003Cstrong>Telegram 的官方列表\u003C/strong>\u003C/a>\u003C/p>\\n\u003Ch2 id=\\\"註冊-telegram-bot\\\" class=\\\"heading-item\\\">註冊 Telegram Bot\u003C/h2>\u003Cp>在使用之前，必須先透過 Telegram Bot Father 註冊新的 bot 帳戶。\u003C/p>\\n\u003Cimg class=\\\"lightbox\\\" src=\\\"https://media.saweicore.com/blog/create-aiogram-project/register-tg-bot.jpg\\\" height=\\\"500\\\" />\\n\\n\\n\u003Cul>\\n\u003Cli>加入有藍色勾勾（證明為官方帳號）的 BotFather\u003C/li>\\n\u003Cli>輸入指令 \u003Ccode>/newbot\u003C/code> 註冊新的 Bot\u003C/li>\\n\u003Cli>第一次輸入 Bot 的名稱\u003C/li>\\n\u003Cli>第二次輸入 Bot 的帳號\u003C/li>\\n\u003C/ul>\\n\u003Cp>以上流程都成功後就後會取得使用 API 的 TOKEN 如：\u003Ccode>5292723007:AAE-APVbUkZgOZ6CVb4GM_KfV7CtE5dgLmw\u003C/code>，這段需要保存好，未來所有操作都會需要用到。\u003C/p>\\n\u003Ch2 id=\\\"建立基本結構\\\" class=\\\"heading-item\\\">建立基本結構\u003C/h2>\u003Cp>AIOGram 各 Module 負責的功能：\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Ccode>Bot\u003C/code> class 將所有 Telegram Bot API 的指令包裝成 function 形式，主要負責傳送 request 給 Telegram 伺服器。\u003C/li>\\n\u003Cli>\u003Ccode>Dispatcher\u003C/code> class 負責接收所有透過 Webhook 收到的訊息，並轉換為對應的 Object。\u003C/li>\\n\u003Cli>\u003Ccode>types\u003C/code> module 底下包含所有型別及其相關的輔助 Function，如 Update、Message。\u003C/li>\\n\u003C/ul>\\n\u003Cp>運行的主要流程：\\n-&gt; 接收 Telegram 的 Update 訊息\\n-&gt; 傳入 Dispatcher 進行分類\\n-&gt; Dispatcher 將分類後的訊息發送給註冊的 Handler \\n-&gt; Handler 進行處理後回傳 HTTP Response 給 Telegram 伺服器（如果收到非 200 的 status code 會等待一定時間後重新傳送）\u003C/p>\\n\u003Cp>\u003Cstrong>Update 資訊的取得方式有以下兩種：\u003C/strong>\u003C/p>\\n\u003Ch3 id=\\\"使用-polling\\\" class=\\\"heading-item\\\">使用 Polling\u003C/h3>\u003Cpre>\u003Ccode class=\\\"language-py\\\"># 導入 Aiogram 包\\nfrom aiogram import Bot\\nfrom aiogram.types import Message, ContentTypes\\nfrom aiogram.dispatcher import Dispatcher\\nfrom aiogram.utils.executor import start_polling\\n\\n# 記錄 BOT_TOKEN 並且建立 Bot 物件\\nBOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;\\nbot = Bot(BOT_TOKEN)\\n# 建立 Bot 的分發器（收到的 Data 會被傳入這裡\\ndp = Dispatcher(bot)\\n\\n# Process start command\\n@dp.message_handler(commands=[&#39;start&#39;])\\nasync def on_start_command(message: Message):  \\n    print(&quot;on start command&quot;)\\n\\n# Process all messages except start command\\n@dp.message_handler(content_types=ContentTypes.ANY)\\nasync def on_message(message: Message):\\n    await message.reply(message.from_user.id)\\n\\nasync def on_startup(dispatcher: Dispatcher):\\n    print(&quot;startup&quot;)\\n\\nasync def on_shutdown(dispatcher: Dispatcher):\\n    print(&quot;shutdown&quot;)\\n\\n\\nif __name__ == &quot;__main__&quot;:\\n    start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)\\n\u003C/code>\u003C/pre>\\n\u003Cp>Polling 方式是透過一個迴圈，定期的呼叫 Telegram Bot API 的 getUpdate 方法取得新的訊息，並將其傳入 dispatcher 進行分發，直到被中斷為止。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Ccode>Bot\u003C/code> 類負責與 Bot API 溝通，包含 \u003Cstrong>send_message\u003C/strong> 或 \u003Cstrong>deleted_message\u003C/strong> 等主動操作的 method 。\u003C/li>\\n\u003Cli>\u003Ccode>Dispatcher\u003C/code> 類負責\u003Cstrong>接收 API 的 Update 訊息\u003C/strong>（不論是透過 Polling 還是 Webhook 接收的）依據特徵分發給各 message_handler 。\u003C/li>\\n\u003Cli>\u003Ccode>Message\u003C/code> 類是\u003Cstrong>透過 Dispatcher 分類過後的訊息物件\u003C/strong>，包含 message_id , chat_id, user_id 等關鍵的判斷訊息， AIOGram 也有在此基礎上實作許多輔助方法。\u003C/li>\\n\u003Cli>\u003Ccode>dp.message_handler()\u003C/code> 可以\u003Cstrong>將底下的 function 註冊為處理器\u003C/strong>，並且透過參數如: \u003Cstrong>content_types\u003C/strong> 、\u003Cstrong>commands\u003C/strong> 設定只接包含哪些特徵的訊息。\u003C/li>\\n\u003Cli>\u003Ccode>start_polling\u003C/code> 用於執行\u003Cstrong>輪詢抓取 Telegram 的訊息\u003C/strong>更新。\u003C/li>\\n\u003C/ul>\\n\u003Ch3 id=\\\"使用-webhook\\\" class=\\\"heading-item\\\">使用 Webhook\u003C/h3>\u003Cpre>\u003Ccode class=\\\"language-py\\\">from aiogram import Bot\\nfrom aiogram.types import Message, ContentTypes\\nfrom aiogram.dispatcher import Dispatcher\\nfrom aiogram.utils.executor import start_webhook\\n\\nBOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;\\n\\n# WEBHOOK SETTING\\nWEBHOOK_DOMAIN = &quot;https://68dc-211-23-21-139.jp.ngrok.io&quot;\\nWEBHOOK_PATH=&quot;/api&quot;\\nWEBHOOK_URI=f&quot;{WEBHOOK_DOMAIN}{WEBHOOK_PATH}&quot;\\n\\n# WEBHOST SETTING\\nWEB_HOST = &quot;0.0.0.0&quot; # or ip\\nWEB_HOST_PORT = 8000\\n\\nbot = Bot(BOT_TOKEN)\\ndp = Dispatcher(bot)\\n\\n# Process start command\\n@dp.message_handler(commands=[&#39;start&#39;])\\nasync def on_start_command():  \\n    print(&quot;on start command&quot;)\\n\\n# Process all messages except start command\\n@dp.message_handler(content_types=ContentTypes.ANY)\\nasync def on_message(message: Message):\\n    await message.reply(message.from_user.id)\\n\\n\\nasync def on_startup(dispatcher: Dispatcher):\\n    print(&quot;startup&quot;)\\n    await bot.set_webhook(WEBHOOK_URI)\\n\\n\\nasync def on_shutdown(dispatcher: Dispatcher):\\n    print(&quot;shutdown&quot;)\\n    await bot.delete_webhook()\\n\\n\\nif __name__ == &quot;__main__&quot;:\\n    start_webhook(dispatcher=dp, \\n                webhook_path=WEBHOOK_PATH,\\n                on_startup=on_startup,\\n                on_shutdown=on_shutdown,\\n                skip_updates=True,\\n                host=WEB_HOST, \\n                port=WEB_HOST_PORT)\\n\u003C/code>\u003C/pre>\\n\u003Cp>Webhook 方式是在啟動時通知 Telegram 伺服器將新訊息傳輸至對應的 URL，透過 HTTP 接口來接收資訊。\u003C/p>\\n\u003Cp>大多數結構與使用 Polling 時相同，因此這邊僅列舉差異的地方。\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Ccode>bot.set_webook\u003C/code> 用於通知 Telegram 伺服器，將訊息傳輸到註冊的 URL。\u003C/li>\\n\u003Cli>\u003Ccode>bot.delete_webhook\u003C/code> 用於關閉時通知 Telegram 伺服器停止輸送訊息至註冊的 URL\u003C/li>\\n\u003Cli>\u003Ccode>start_webhook\u003C/code> 用於啟動 AIOGram 內建的小型 HTTP Server 監聽 webhook_path 參數指定的路徑。host、port 用於配置啟動的 host 與 port。\u003C/li>\\n\u003C/ul>\\n\u003Cblockquote>\\n\u003Cul>\\n\u003Cli>較為推薦使用 Webhook 方式接收 Update 訊息，可以節省頻繁發送封包的流量及不斷輪詢計算損耗的電腦資源。\u003C/li>\\n\u003Cli>不過要以此作為接收訊息方式，需要一個支援 HTTPS 的網域。因此還是依據手邊的資源決定。\u003C/li>\\n\u003C/ul>\\n\u003C/blockquote>\\n\u003Ch2 id=\\\"如何在本地端進行測試？\\\" class=\\\"heading-item\\\">如何在本地端進行測試？\u003C/h2>\u003Cp>如果使用 Polling 接收資訊的話倒還好，但使用 Webhook 的話，最先遇上的問題就是怎麼進行測試，總不能每次都先發布到遠端伺服器，又或是先改成 Polling 要發布時才改回來，很沒有效率，這時候就可以考慮使用反向代理工具。\u003C/p>\\n\u003Ch3 id=\\\"ngrok\\\" class=\\\"heading-item\\\">Ngrok\u003C/h3>\u003Cblockquote>\\n\u003Cp>\u003Cstrong>Ngrok\u003C/strong> \u003Cbr/>\\n\u003Ca href=\\\"https://ngrok.com/\\\" target=\\\"_blank\\\" rel=\\\"noreferrer noopenner\\\">https://ngrok.com/\u003C/a>\u003C/p>\\n\u003C/blockquote>\\n\u003Cp>Ngrok 是一款有提供免費方案的反向代理工具，並且支援 HTTPS 轉發，可以用於本地端的 Webhook 測試，完全滿足這次的需求，使用前需要先在官網註冊帳號取得 AUTH_TOKEN 並下載對應作業系統的檔案。輸入以下指令設定 AUTH_TOKEN\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-sh\\\">ngrok config add-authtoken {AUTH_TOKEN}\\n\u003C/code>\u003C/pre>\\n\u003Cp>設定完成後，再來只需要輸入以下指令即可將自己的 PORT 8000 綁定到 ngrok 提供的 domain 上。\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-sh\\\">ngrok http 8000\\n\u003C/code>\u003C/pre>\\n\u003Cp>成功後如下：\u003C/p>\\n\u003Cimg class=\\\"lightbox\\\" src=\\\"https://media.saweicore.com/blog/create-aiogram-project/ngrok-test.jpg\\\" height=\\\"195\\\"/>\\n\\n\u003Cp>圖中的 \u003Ccode>https://928c-211-23-21-139.ngrok.io\u003C/code> 就是透過 ngrok 取得的 URL DOMAIN，它就相當於連接到本機的 port 8000 。\u003C/p>\\n\u003Cp>當一切就緒，就可以試著與機器人對話，如果按照上面的範例，旅人應該會收到一串神奇的數字，那便是自己的 user_id 。\u003C/p>\\n\u003Ch2 id=\\\"如果不使用包裝器的話？\\\" class=\\\"heading-item\\\">如果不使用包裝器的話？\u003C/h2>\u003Cp>若不使用包裝器，在 Telegram Bot API 中所有的操作，不論是 \u003Cstrong>[接收資訊]\u003C/strong> 還是 \u003Cstrong>[發送訊息]\u003C/strong> 都是透過 HTTP API 來進行。結構如下：\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-text\\\">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}\\n\u003C/code>\u003C/pre>\\n\u003Cul>\\n\u003Cli>\u003Ccode>BOT_TOKEN\u003C/code> -&gt; 從 BotFather 取得的 Token String \u003C/li>\\n\u003Cli>\u003Ccode>METHOD_NAME\u003C/code> -&gt; 對應的方法名稱，如：getMe、getUpdates\u003C/li>\\n\u003C/ul>\\n\u003Cp>支援 GET 與 POST 的操作，意味著對於簡單的訊息可以直接使用瀏覽器輸入 Url QueryParams。\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-text\\\">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}?url={API_URL}\\n\u003C/code>\u003C/pre>\\n\u003Cp>針對複雜的操作可以透過 POST 並夾帶於 Body 中。支援的 Content-Type：\u003C/p>\\n\u003Cul>\\n\u003Cli>\u003Ccode>application/x-www-form-urlencoded\u003C/code>\u003C/li>\\n\u003Cli>\u003Ccode>application/json (except for uploading files)\u003C/code>\u003C/li>\\n\u003Cli>\u003Ccode>multipart/form-data (use to upload files)\u003C/code>\u003C/li>\\n\u003C/ul>\\n\u003Cp>以 GetUpdates 為例，透過呼叫 API：\\n\u003Ccode>https://api.telegram.org/bot{BOT_TOKEN}/getUpdates\u003C/code>\u003C/p>\\n\u003Cp>最後獲得的 response：\u003C/p>\\n\u003Cpre>\u003Ccode class=\\\"language-js\\\">{\\n  &quot;ok&quot;:true,\\n  &quot;result&quot;:[\\n    {\\n      &quot;update_id&quot;:136940592,\\n      &quot;message&quot;:{\\n        &quot;message_id&quot;:964,\\n        &quot;from&quot;:{\\n          &quot;id&quot;:549919258,\\n          &quot;is_bot&quot;:false,\\n          &quot;first_name&quot;:&quot;Ch.&quot;,\\n          &quot;last_name&quot;:&quot;S&quot;,\\n          &quot;username&quot;:&quot;Saweima&quot;\\n        },\\n        &quot;chat&quot;:{\\n          &quot;id&quot;:-1001756617092,\\n          &quot;title&quot;:&quot;T1 Group&quot;,\\n          &quot;type&quot;:&quot;supergroup&quot;\\n        },\\n        &quot;date&quot;:1657095304,\\n        &quot;text&quot;:&quot;test&quot;\\n      }\\n    }\\n  ]\\n}\\n\u003C/code>\u003C/pre>\\n\u003Cp>在不使用包裝器的情況下，需要自己組合出對應的 API URL 呼叫，並且自己處理回傳的 message。 這些是包裝器主要節省的部份。\u003C/p>\\n\u003Ch2 id=\\\"注意事項\\\" class=\\\"heading-item\\\">注意事項\u003C/h2>\u003Cul>\\n\u003Cli>部份機器人的操作（如：刪除其他人訊息、設定權限...等）需要有對應的群組權限。\u003C/li>\\n\u003Cli>非群組管理員的機器人，只在遇到自己登記過的指令才會收到相關訊息。\u003C/li>\\n\u003Cli>若為群組管理員的機器人，會接收到該群組內的所有訊息。\u003C/li>\\n\u003Cli>若一則訊息在 Telegram 伺服器發送給機器人之前被刪除，則機器人會收不到該則訊息。\u003C/li>\\n\u003Cli>Telegram 超過 500 人的群組有可能收不到 Join Message。\u003C/li>\\n\u003Cli>機器人之間會互相干擾，必須確保機器人產生的對話內容、接收的指令不會觸發其他機器人。\u003C/li>\\n\u003C/ul>\\n\u003Ch2 id=\\\"tldr\\\" class=\\\"heading-item\\\">TL;DR\u003C/h2>\u003Cul>\\n\u003Cli>AIOGram 是 Telegram Bot API 的包裝器，用以簡化機器人開發流程。\u003C/li>\\n\u003Cli>AIOGram 支援\u003Cstrong>輪詢抓取更新 - Polling\u003C/strong> 及\u003Cstrong>被動接收更新 - Webhook\u003C/strong>。\u003C/li>\\n\u003Cli>推薦使用 Webhook 作為接收更新的方式，用以節省流量與運算資源。\u003C/li>\\n\u003Cli>使用 Webhook 接收更新需要有支援 https 的 domain。\u003C/li>\\n\u003Cli>可以透過 Ngrok 的反向代理，測試本機端的 Webhook 與 API 。\u003C/li>\\n\u003Cli>若不使用包裝器，則需要自己組合出 HTTP URL 及自行處理訊息的解析。\u003C/li>\\n\u003C/ul>\\n\",\"headings\":[{\"depth\":2,\"text\":\"AIOGram\",\"id\":\"aiogram\"},{\"depth\":2,\"text\":\"註冊 Telegram Bot\",\"id\":\"註冊-telegram-bot\"},{\"depth\":2,\"text\":\"建立基本結構\",\"id\":\"建立基本結構\"},{\"depth\":3,\"text\":\"使用 Polling\",\"id\":\"使用-polling\"},{\"depth\":3,\"text\":\"使用 Webhook\",\"id\":\"使用-webhook\"},{\"depth\":2,\"text\":\"如何在本地端進行測試？\",\"id\":\"如何在本地端進行測試？\"},{\"depth\":3,\"text\":\"Ngrok\",\"id\":\"ngrok\"},{\"depth\":2,\"text\":\"如果不使用包裝器的話？\",\"id\":\"如果不使用包裝器的話？\"},{\"depth\":2,\"text\":\"注意事項\",\"id\":\"注意事項\"},{\"depth\":2,\"text\":\"TL;DR\",\"id\":\"tldr\"}]}"}</script></div>
+	</body>
+</html>

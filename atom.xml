@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
+  <title><![CDATA[Saweicore Lab]]></title>
+  <subtitle><![CDATA[程式開發 | 網站架設 | 幣圈雜談 | 各項雜燴集散地]]></subtitle>
+  <id>https://saweicore.com</id>
+  <link href="https://saweicore.com"/>
+  <link href="https://saweicore.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <author>
+    <name>Saweima</name>
+    <email>saweima12@gmail.com</email>
+    <url>https://saweicore.com</url>
+  </author>
+  <updated>2022-08-18T16:20:14.317Z</updated>
+  <category term="幣圈" scheme="https://saweicore.com/tags/幣圈"/>
+  <category term="加密貨幣" scheme="https://saweicore.com/tags/加密貨幣"/>
+  <category term="區塊鏈" scheme="https://saweicore.com/tags/區塊鏈"/>
+  <category term="svelte" scheme="https://saweicore.com/tags/svelte"/>
+  <category term="markdown" scheme="https://saweicore.com/tags/markdown"/>
+  <category term="programing" scheme="https://saweicore.com/tags/programing"/>
+  <category term="bot" scheme="https://saweicore.com/tags/bot"/>
+  <category term="python" scheme="https://saweicore.com/tags/python"/>
+  <category term="web" scheme="https://saweicore.com/tags/web"/>
+  <entry>
+    <title><![CDATA[Sanic - 輕量快速的 Python Web Framework]]></title>
+    <id>https://saweicore.com/posts/2022/08/sanic-introduce</id>
+    <link href="https://saweicore.com/posts/2022/08/sanic-introduce"/>
+    <published>2022-08-08T00:00:00.000Z</published>
+    <updated>2022-08-08T00:00:00.000Z</updated>
+    <summary type="text"><![CDATA[一款支援非同步調用不阻塞執行緒、編寫風格簡潔不拖泥帶水、內置高效率伺服器方便部署的 Python 框架，適合用於快速開發中小型專案。]]></summary>
+    <content type="html"><![CDATA[<p>Sanic 是一款 Python 的 Web 框架，編寫風格繼承了老牌框架 Flask 的簡潔並在其之上添加 async / await 的非同步調用支援，外加內建快速高效的 HTTP Server，提供了開箱即用、快速開發、生產部署的解決方案。</p><blockquote><p><strong>Sanic</strong><br>官方網站： <a href="https://sanic.dev/" target="_blank" rel="noreferrer noopenner">點我進入</a><br></p></blockquote><p><strong>安裝方式：</strong></p><pre><code class="language-sh">pip install sanic
+</code></pre><h2 id="框架特性" class="heading-item">框架特性</h2><ul><li>使用 Python 3.8 以上的版本（推薦直接使用 Python 3.10）</li><li>支援 async / await 非同步特性（執行 IO 操作時不會阻塞）</li><li>內建快速的 HTTP Server</li><li>類 Flask 的簡潔架構，易於擴充與編寫。</li></ul><blockquote><p>編寫這邊文章時使用的版本為 <strong>22.6.1</strong>，通常使用最新的版本即可。</p></blockquote><h2 id="建立基本結構" class="heading-item">建立基本結構</h2><p>啟動 Sanic 的方式有以下兩種：</p><ul><li>透過腳本運行 -&gt; 在編寫腳本中使用 <code>Sanic.run()</code> 運行。</li><li>使用 CLI -&gt; 使用 <code>Sanic CLI</code> 將 application 作為 module 導入(<strong>推薦</strong>)</li></ul><h3 id="透過-apprun-運行" class="heading-item">透過 app.run() 運行</h3><p>在根目錄中建立 app.py ，並建立 Sanic instance，透過 app.run 運行伺服器。</p><pre><code class="language-python">from sanic import Sanic
+
+# create sanic app
+app = Sanic(__name__)
+
+if __name__ == &#39;__main__&#39;:
+        # 透過 app.run 運行
+    app.run(host=&quot;0.0.0.0&quot;, debug=True)
+</code></pre><h3 id="透過-cli-運行推薦" class="heading-item">透過 CLI 運行(推薦)</h3><p>建立以下資料夾結構，當資料夾內有 <code>__init__.py</code> 檔案時，該資料夾就會被 python 視為 pacakge。</p><pre><code class="language-text">/
+├─ sanicapp
+│   └─  __init__.py
+└─ run.sh
+</code></pre><ul><li><code>__init__.py</code> 中建立 Sanic Instance 。</li></ul><pre><code class="language-python">from sanic import Sanic
+
+# create sanic app
+app = Sanic(__name__)
+
+# __name__ 可改為自定義 App 名稱
+</code></pre><ul><li>最後使用以下 shell 指令執行 sanic 伺服器。</li></ul><pre><code class="language-shell">sanic sanicapp:app -H 0.0.0.0 -p 8080 -d
+</code></pre><ul><li><code>sanicapp</code>為 package 的名稱，<code>app</code> 為 instance 變量。</li><li><code>-H</code> 用於指定 Host Address (預設為 127.0.0.1)</li><li><code>-p</code> 用於指定 Port (預設為 8000)</li><li><code>-d</code> 用於開啟 Debug 模式（會自動重載及看到更詳細的 log）</li><li><code>-w</code> 用於指定要啟動幾個 worker</li><li>可透過 <code>-h</code> 參數觀看詳細的說明</li></ul><p>使用 CLI 運行 Sanic 伺服器可以在運行環境配置上獲得更多的彈性。當需要改變 host 或是 debug mode 時，可以直接變更參數，不需要修改腳本的 app.run 的參數。</p><h2 id="handler" class="heading-item">Handler</h2><p>Handler 是處理 Request 的基本單元，<strong>至少會收到一個 Reqeust 物件並 return 一個 HTTPResponse</strong> 。</p><ul><li>Request.headers -&gt; 取得夾帶在 request header 的資料。</li><li>Request.args or Request.query_args -&gt; 取得 URLQueryParams</li><li>Request.body -&gt; 取得發出 POST Request 時夾帶在 body 欄位的內容。<ul><li>取得的資料為純 bytes 需要轉譯。</li></ul></li><li>Request.json -&gt; 當 content_type 為 &quot;application/json&quot; 時，會自動將 body 中的內容轉為 Python Dictionary</li></ul><pre><code class="language-python">import asyncio
+import asyncio
+import time
+from sanic import Sanic, HTTPResponse, Request, response
+
+app = Sanic(__name__)
+
+@app.get(&quot;/typed&quot;)
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    time.sleep(1)
+    return response.text(&quot;Done&quot;)
+
+
+@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    await asyncio.sleep(1)
+    return response.text(&quot;Done&quot;)
+</code></pre><p>對應官方文檔： <a href="https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async" target="_blank" rel="noreferrer noopenner">https://sanic.dev/en/guide/basics/handlers.html#a-word-about-async</a></p><blockquote><p>實務上應該盡量使用 async / await 以避免執行緒阻塞，執行上會更有效率。</p></blockquote><h2 id="routing" class="heading-item">Routing</h2><p>Routing 用於將 Handler 註冊至對應的 URL，當伺服器接收到對應路由時，會將收到的資料轉換成 Request 並執行對應的 Handler。</p><p>註冊 Routing 的方式有三種：</p><ul><li>透過 app.add_route()</li><li>透過 @app.route / @app.get 等裝飾器</li><li>Blueporint</li></ul><pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+
+app = Sanic(__name__)
+
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by decorator
+@app.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by add_route()
+app.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])
+</code></pre><p><code>@app.get()</code> 等裝飾器只是 <code>app.add_route()</code> 的封裝，用於增加可讀性。</p><h3 id="blueprint" class="heading-item">Blueprint</h3><p>儘管能夠透過 <code>app.add_route()</code> 註冊路由，但這會導致所有 handler 必須依賴於 Sanic instance，當需要設置的路由數量增加時會很不方便，此時可採用 blueprint 方案。</p><ul><li><strong>view.py</strong></li></ul><pre><code class="language-python">from sanic import Blueprint, HTTPResponse, Request, response
+
+bp = Blueprint(&quot;peon&quot;)
+
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# register route by decorator
+@bp.get(&quot;/async_typed/&lt;tag&gt;&quot;)
+async def async_typed(request: Request, tag: str) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(async)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    return response.text(&quot;Done&quot;)
+
+# Blueprint 的 route 註冊方式與使用 app.add_route 相同。
+bp.add_route(typed, &quot;/typed&quot;, methods=[&quot;GET&quot;])
+</code></pre><ul><li><strong>app.py</strong></li></ul><pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+from .view import bp
+
+app = Sanic(__name__)
+
+# 使用 app.blueprint 將 blueprint instance 註冊進 app 路由。
+app.blueprint(bp)
+</code></pre><p>使用 Blueprint 可以將 Route 與 Handle 與 Sanic instance 分離開來，達到關注點分離的效果。</p><h2 id="app-registry" class="heading-item">App Registry</h2><p>當建立 Sanic instance 時，會將該 instance 寫入 Sanic 內部的註冊表中，可以透過 <code>Sanic.get_app()</code> 取得 app 的 instance。</p><ul><li><strong>app.py</strong></li></ul><pre><code class="language-python">from sanic import Sanic
+
+app = Sanic(&quot;my_server&quot;)
+</code></pre><ul><li><strong>db.py</strong></li></ul><pre><code class="language-python">from sanic import Sanic
+
+app = Sanic.get_app(&quot;my_server&quot;)
+</code></pre><p>若建立的 instance 只有一個時，也可以不用填入 instance name，直接使用 <code>Sanic.get_app()</code> 就能取得 instance 。</p><h2 id="app-context" class="heading-item">App Context</h2><p>App Context （中文翻譯稱作上下文）用於附加希望<strong>能夠重複使用的 instance</strong> ，像是與資料庫的連接 、定期運作的排程器等。</p><ul><li><strong>app.py</strong></li></ul><pre><code class="language-python">from sanic import Sanic, HTTPResponse, Request, response
+from .view import bp
+from . import scheduler
+
+app = Sanic(__name__)
+
+# lifecycle hook - 在 server 運行之前將 instance 註冊進 context.
+@app.before_server_start
+async def startup(app: Sanic):
+    scheduler.setup(app)
+
+app.blueprint(bp)
+</code></pre><ul><li><strong>scheduler.py</strong></li></ul><pre><code class="language-python">from sanic import Sanic
+
+from .struct import AppScheduler
+
+SERVICE_CODE = &quot;app_scheduler&quot;
+
+def get() -&gt; AppScheduler:
+    app = Sanic.get_app()
+    # 使用 getattr 取得 app.ctx 中的 instance
+    return getattr(app.ctx, SERVICE_CODE)
+
+def setup(app: Sanic) -&gt; AppScheduler:
+    app = Sanic.get_app()
+    scheduler = AppScheduler(app)
+    # 使用 setattr 將 instance 寫入 app.ctx
+    setattr(app.ctx, SERVICE_CODE, scheduler)
+    return scheduler
+</code></pre><ul><li><strong>view.py</strong></li></ul><pre><code class="language-python">from sanic import Blueprint, HTTPResponse, Request, response
+from . import scheduler
+
+bp = Blueprint(&quot;peon&quot;)
+def typed(request: Request) -&gt; HTTPResponse:
+    &quot;&quot;&quot;
+    get Done(sync)
+    
+    :param reuqest [sanic.Request]
+    &quot;&quot;&quot;
+    _scheudler = scheduler.get()
+    return response.text(&quot;Done&quot;)
+</code></pre><p>範例中使用 <code>@app.before_server_start</code> 在運行之前將 AppScheduler 嵌入 app.ctx 內。 並在 handler 中過 <code>scheduler.get()</code> 將其從 app.ctx 中取出，藉此重複利用 instance。</p><h2 id="listener-lifecycle" class="heading-item">Listener (LifeCycle)</h2><p>Sanic 包含 8 個 Hook：</p><p><strong>只在 sanic app 建立/停止時執行一次:</strong></p><ul><li>main_process_start</li><li>main_process_stop</li></ul><p><strong>每個 worker 都會執行一次</strong></p><ul><li>before_server_start</li><li>after_server_start</li><li>before_server_stop</li><li>after_server_stop</li></ul><p><strong>當 auto_reload 被開啟時，每次 reload 就會執行一次</strong></p><ul><li>reload_process_start</li><li>reload_process_stop</li></ul><pre><code class="language-python">@app.reload_process_start
+async def reload_start(*_):
+    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; reload_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)
+
+
+@app.main_process_start
+async def main_start(*_):
+    print(&quot;&gt;&gt;&gt;&gt;&gt;&gt; main_start &lt;&lt;&lt;&lt;&lt;&lt;&quot;)
+</code></pre><ul><li><code>main_process_start</code> 經常用於初始化僅能初始化一次的時候（設置遠端的 webhook)</li><li><code>before_server_start</code> 及 <code>after_server_start</code> 常用於建立可重複使用的 instance 並且附加至 app.ctx 作為常駐 service 使用。</li><li><code>before_server_stop</code> 用於關閉各 service 的連接並清除資料。</li></ul><h2 id="應用範例" class="heading-item">應用範例</h2><blockquote><p><strong>Sanic Example</strong><br>Github: <a href="https://github.com/saweima12/sanic-example" target="_blank" rel="noreferrer noopenner">點我進入</a></p></blockquote><h2 id="tldr" class="heading-item">TL;DR</h2><ul><li>Sanic 是 Python 3.8 版本以上的輕量 Web 框架，支援 async / await 的非同步特性。</li><li>推薦使用 Sanic CLI 運行 Server ，在環境配置上有更多的彈性。</li><li>Handler 是處理 Request 的基本單元，會<strong>至少接收一個 Request 物件並返回 HttpResponse 物件</strong>。</li><li>應該<strong>盡量使用 async / await</strong> 處理 handler 邏輯，避免執行緒阻塞、增加運作效率。</li><li>Routing 用於<strong>將路由與 Handler 進行綁定</strong>，當 Server 接收到指定的路徑時，會將資料打包成 Request 送至對應的 Handler。</li><li>App Context 用於<strong>存放希望重複使用的 instance</strong>，像是資料庫連接、排程器等。</li></ul>]]></content>
+    <category term="web" scheme="https://saweicore.com/tags/web"/>
+    <category term="python" scheme="https://saweicore.com/tags/python"/>
+    <category term="programing" scheme="https://saweicore.com/tags/programing"/>
+  </entry>
+  <entry>
+    <title><![CDATA[用 AIOGram 建立機器人專案 — Telegram Bot 開發雜談（一）]]></title>
+    <id>https://saweicore.com/posts/2022/07/create-aiogram-project</id>
+    <link href="https://saweicore.com/posts/2022/07/create-aiogram-project"/>
+    <published>2022-07-23T00:00:00.000Z</published>
+    <updated>2022-07-23T00:00:00.000Z</updated>
+    <summary type="text"><![CDATA[廣告機器人一大堆、鬧群份子一個接一個？又或是想要做些聊天機器人小工具？透過 AIOGram 快速開發 Python Telegram Bot，用流程自動化解決所有麻煩事情。]]></summary>
+    <content type="html"><![CDATA[<p>午安旅人，這裡是一個月沒有更新文章的 Saweima。不知道旅人有沒有在 Telegram 公開群組遇到過惡意騷擾人士呢？時不時的開新帳號跑進群組貼一些會讓人感到噁心的圖片，踢完過一陣子又再次故技重施，猶如蟑螂一般，殺也殺不完。</p><p>考量到管理員不可能時時刻刻都在、刪除圖片時管理員自身也不可避免的會受到精神攻擊，人工處理顯然不是一種好辦法。由於需求的急迫性，花了幾週時間研究及編寫機器人，在這邊記錄下自己用到的東西們。</p><h2 id="aiogram" class="heading-item">AIOGram</h2><p>AIOGram 是 Telegram Bot API 的 Python 包裝器，用於將繁瑣的 HTTP API 呼叫流程包裝為程式物件並解析 API 的回傳資料，讓操作流程與程式語句一樣直觀。</p><blockquote><p><strong>AIOGram</strong><br>Github: <a href="https://github.com/aiogram/aiogram" target="_blank" rel="noreferrer noopenner">點我進入</a><br>官方文擋: <a href="https://docs.aiogram.dev/en/latest/" target="_blank" rel="noreferrer noopenner">點我進入</a><br></p></blockquote><p>特性：</p><ul><li>使用 Python 3.7 以上版本。</li><li>透過 asyncio 及 aiphttp 實作，支援 Asynchronous （異步/非同步）調用。</li><li>內置 API 封包解析及定義型別，省去研究封包結構的時間。</li></ul><p>其他的 API 包裝器可參考 <a href="https://core.telegram.org/bots/samples" target="_blank" rel="noreferrer noopenner"><strong>Telegram 的官方列表</strong></a></p><h2 id="註冊-telegram-bot" class="heading-item">註冊 Telegram Bot</h2><p>在使用之前，必須先透過 Telegram Bot Father 註冊新的 bot 帳戶。</p><img class="lightbox" src="https://media.saweicore.com/blog/create-aiogram-project/register-tg-bot.jpg" height="500"><ul><li>加入有藍色勾勾（證明為官方帳號）的 BotFather</li><li>輸入指令 <code>/newbot</code> 註冊新的 Bot</li><li>第一次輸入 Bot 的名稱</li><li>第二次輸入 Bot 的帳號</li></ul><p>以上流程都成功後就後會取得使用 API 的 TOKEN 如：<code>5292723007:AAE-APVbUkZgOZ6CVb4GM_KfV7CtE5dgLmw</code>，這段需要保存好，未來所有操作都會需要用到。</p><h2 id="建立基本結構" class="heading-item">建立基本結構</h2><p>AIOGram 各 Module 負責的功能：</p><ul><li><code>Bot</code> class 將所有 Telegram Bot API 的指令包裝成 function 形式，主要負責傳送 request 給 Telegram 伺服器。</li><li><code>Dispatcher</code> class 負責接收所有透過 Webhook 收到的訊息，並轉換為對應的 Object。</li><li><code>types</code> module 底下包含所有型別及其相關的輔助 Function，如 Update、Message。</li></ul><p>運行的主要流程： -&gt; 接收 Telegram 的 Update 訊息 -&gt; 傳入 Dispatcher 進行分類 -&gt; Dispatcher 將分類後的訊息發送給註冊的 Handler -&gt; Handler 進行處理後回傳 HTTP Response 給 Telegram 伺服器（如果收到非 200 的 status code 會等待一定時間後重新傳送）</p><p><strong>Update 資訊的取得方式有以下兩種：</strong></p><h3 id="使用-polling" class="heading-item">使用 Polling</h3><pre><code class="language-py"># 導入 Aiogram 包
+from aiogram import Bot
+from aiogram.types import Message, ContentTypes
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils.executor import start_polling
+
+# 記錄 BOT_TOKEN 並且建立 Bot 物件
+BOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;
+bot = Bot(BOT_TOKEN)
+# 建立 Bot 的分發器（收到的 Data 會被傳入這裡
+dp = Dispatcher(bot)
+
+# Process start command
+@dp.message_handler(commands=[&#39;start&#39;])
+async def on_start_command(message: Message):  
+    print(&quot;on start command&quot;)
+
+# Process all messages except start command
+@dp.message_handler(content_types=ContentTypes.ANY)
+async def on_message(message: Message):
+    await message.reply(message.from_user.id)
+
+async def on_startup(dispatcher: Dispatcher):
+    print(&quot;startup&quot;)
+
+async def on_shutdown(dispatcher: Dispatcher):
+    print(&quot;shutdown&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    start_polling(dp, on_startup=on_startup, on_shutdown=on_shutdown)
+</code></pre><p>Polling 方式是透過一個迴圈，定期的呼叫 Telegram Bot API 的 getUpdate 方法取得新的訊息，並將其傳入 dispatcher 進行分發，直到被中斷為止。</p><ul><li><code>Bot</code> 類負責與 Bot API 溝通，包含 <strong>send_message</strong> 或 <strong>deleted_message</strong> 等主動操作的 method 。</li><li><code>Dispatcher</code> 類負責<strong>接收 API 的 Update 訊息</strong>（不論是透過 Polling 還是 Webhook 接收的）依據特徵分發給各 message_handler 。</li><li><code>Message</code> 類是<strong>透過 Dispatcher 分類過後的訊息物件</strong>，包含 message_id , chat_id, user_id 等關鍵的判斷訊息， AIOGram 也有在此基礎上實作許多輔助方法。</li><li><code>dp.message_handler()</code> 可以<strong>將底下的 function 註冊為處理器</strong>，並且透過參數如: <strong>content_types</strong> 、<strong>commands</strong> 設定只接包含哪些特徵的訊息。</li><li><code>start_polling</code> 用於執行<strong>輪詢抓取 Telegram 的訊息</strong>更新。</li></ul><h3 id="使用-webhook" class="heading-item">使用 Webhook</h3><pre><code class="language-py">from aiogram import Bot
+from aiogram.types import Message, ContentTypes
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils.executor import start_webhook
+
+BOT_TOKEN = &quot;5292723007:AAE-APVbUkZgOZ6CBGM_KfV7CtE5dgLmw&quot;
+
+# WEBHOOK SETTING
+WEBHOOK_DOMAIN = &quot;https://68dc-211-23-21-139.jp.ngrok.io&quot;
+WEBHOOK_PATH=&quot;/api&quot;
+WEBHOOK_URI=f&quot;{WEBHOOK_DOMAIN}{WEBHOOK_PATH}&quot;
+
+# WEBHOST SETTING
+WEB_HOST = &quot;0.0.0.0&quot; # or ip
+WEB_HOST_PORT = 8000
+
+bot = Bot(BOT_TOKEN)
+dp = Dispatcher(bot)
+
+# Process start command
+@dp.message_handler(commands=[&#39;start&#39;])
+async def on_start_command():  
+    print(&quot;on start command&quot;)
+
+# Process all messages except start command
+@dp.message_handler(content_types=ContentTypes.ANY)
+async def on_message(message: Message):
+    await message.reply(message.from_user.id)
+
+
+async def on_startup(dispatcher: Dispatcher):
+    print(&quot;startup&quot;)
+    await bot.set_webhook(WEBHOOK_URI)
+
+
+async def on_shutdown(dispatcher: Dispatcher):
+    print(&quot;shutdown&quot;)
+    await bot.delete_webhook()
+
+
+if __name__ == &quot;__main__&quot;:
+    start_webhook(dispatcher=dp, 
+                webhook_path=WEBHOOK_PATH,
+                on_startup=on_startup,
+                on_shutdown=on_shutdown,
+                skip_updates=True,
+                host=WEB_HOST, 
+                port=WEB_HOST_PORT)
+</code></pre><p>Webhook 方式是在啟動時通知 Telegram 伺服器將新訊息傳輸至對應的 URL，透過 HTTP 接口來接收資訊。</p><p>大多數結構與使用 Polling 時相同，因此這邊僅列舉差異的地方。</p><ul><li><code>bot.set_webook</code> 用於通知 Telegram 伺服器，將訊息傳輸到註冊的 URL。</li><li><code>bot.delete_webhook</code> 用於關閉時通知 Telegram 伺服器停止輸送訊息至註冊的 URL</li><li><code>start_webhook</code> 用於啟動 AIOGram 內建的小型 HTTP Server 監聽 webhook_path 參數指定的路徑。host、port 用於配置啟動的 host 與 port。</li></ul><blockquote><ul><li>較為推薦使用 Webhook 方式接收 Update 訊息，可以節省頻繁發送封包的流量及不斷輪詢計算損耗的電腦資源。</li><li>不過要以此作為接收訊息方式，需要一個支援 HTTPS 的網域。因此還是依據手邊的資源決定。</li></ul></blockquote><h2 id="如何在本地端進行測試？" class="heading-item">如何在本地端進行測試？</h2><p>如果使用 Polling 接收資訊的話倒還好，但使用 Webhook 的話，最先遇上的問題就是怎麼進行測試，總不能每次都先發布到遠端伺服器，又或是先改成 Polling 要發布時才改回來，很沒有效率，這時候就可以考慮使用反向代理工具。</p><h3 id="ngrok" class="heading-item">Ngrok</h3><blockquote><p><strong>Ngrok</strong><br><a href="https://ngrok.com/" target="_blank" rel="noreferrer noopenner">https://ngrok.com/</a></p></blockquote><p>Ngrok 是一款有提供免費方案的反向代理工具，並且支援 HTTPS 轉發，可以用於本地端的 Webhook 測試，完全滿足這次的需求，使用前需要先在官網註冊帳號取得 AUTH_TOKEN 並下載對應作業系統的檔案。輸入以下指令設定 AUTH_TOKEN</p><pre><code class="language-sh">ngrok config add-authtoken {AUTH_TOKEN}
+</code></pre><p>設定完成後，再來只需要輸入以下指令即可將自己的 PORT 8000 綁定到 ngrok 提供的 domain 上。</p><pre><code class="language-sh">ngrok http 8000
+</code></pre><p>成功後如下：</p><img class="lightbox" src="https://media.saweicore.com/blog/create-aiogram-project/ngrok-test.jpg" height="195"><p>圖中的 <code>https://928c-211-23-21-139.ngrok.io</code> 就是透過 ngrok 取得的 URL DOMAIN，它就相當於連接到本機的 port 8000 。</p><p>當一切就緒，就可以試著與機器人對話，如果按照上面的範例，旅人應該會收到一串神奇的數字，那便是自己的 user_id 。</p><h2 id="如果不使用包裝器的話？" class="heading-item">如果不使用包裝器的話？</h2><p>若不使用包裝器，在 Telegram Bot API 中所有的操作，不論是 <strong>[接收資訊]</strong> 還是 <strong>[發送訊息]</strong> 都是透過 HTTP API 來進行。結構如下：</p><pre><code class="language-text">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}
+</code></pre><ul><li><code>BOT_TOKEN</code> -&gt; 從 BotFather 取得的 Token String</li><li><code>METHOD_NAME</code> -&gt; 對應的方法名稱，如：getMe、getUpdates</li></ul><p>支援 GET 與 POST 的操作，意味著對於簡單的訊息可以直接使用瀏覽器輸入 Url QueryParams。</p><pre><code class="language-text">https://api.telegram.org/bot{BOT_TOKEN}/{METHOD_NAME}?url={API_URL}
+</code></pre><p>針對複雜的操作可以透過 POST 並夾帶於 Body 中。支援的 Content-Type：</p><ul><li><code>application/x-www-form-urlencoded</code></li><li><code>application/json (except for uploading files)</code></li><li><code>multipart/form-data (use to upload files)</code></li></ul><p>以 GetUpdates 為例，透過呼叫 API： <code>https://api.telegram.org/bot{BOT_TOKEN}/getUpdates</code></p><p>最後獲得的 response：</p><pre><code class="language-js">{
+  &quot;ok&quot;:true,
+  &quot;result&quot;:[
+    {
+      &quot;update_id&quot;:136940592,
+      &quot;message&quot;:{
+        &quot;message_id&quot;:964,
+        &quot;from&quot;:{
+          &quot;id&quot;:549919258,
+          &quot;is_bot&quot;:false,
+          &quot;first_name&quot;:&quot;Ch.&quot;,
+          &quot;last_name&quot;:&quot;S&quot;,
+          &quot;username&quot;:&quot;Saweima&quot;
+        },
+        &quot;chat&quot;:{
+          &quot;id&quot;:-1001756617092,
+          &quot;title&quot;:&quot;T1 Group&quot;,
+          &quot;type&quot;:&quot;supergroup&quot;
+        },
+        &quot;date&quot;:1657095304,
+        &quot;text&quot;:&quot;test&quot;
+      }
+    }
+  ]
+}
+</code></pre><p>在不使用包裝器的情況下，需要自己組合出對應的 API URL 呼叫，並且自己處理回傳的 message。 這些是包裝器主要節省的部份。</p><h2 id="注意事項" class="heading-item">注意事項</h2><ul><li>部份機器人的操作（如：刪除其他人訊息、設定權限...等）需要有對應的群組權限。</li><li>非群組管理員的機器人，只在遇到自己登記過的指令才會收到相關訊息。</li><li>若為群組管理員的機器人，會接收到該群組內的所有訊息。</li><li>若一則訊息在 Telegram 伺服器發送給機器人之前被刪除，則機器人會收不到該則訊息。</li><li>Telegram 超過 500 人的群組有可能收不到 Join Message。</li><li>機器人之間會互相干擾，必須確保機器人產生的對話內容、接收的指令不會觸發其他機器人。</li></ul><h2 id="tldr" class="heading-item">TL;DR</h2><ul><li>AIOGram 是 Telegram Bot API 的包裝器，用以簡化機器人開發流程。</li><li>AIOGram 支援<strong>輪詢抓取更新 - Polling</strong> 及<strong>被動接收更新 - Webhook</strong>。</li><li>推薦使用 Webhook 作為接收更新的方式，用以節省流量與運算資源。</li><li>使用 Webhook 接收更新需要有支援 https 的 domain。</li><li>可以透過 Ngrok 的反向代理，測試本機端的 Webhook 與 API 。</li><li>若不使用包裝器，則需要自己組合出 HTTP URL 及自行處理訊息的解析。</li></ul>]]></content>
+    <category term="bot" scheme="https://saweicore.com/tags/bot"/>
+    <category term="python" scheme="https://saweicore.com/tags/python"/>
+    <category term="programing" scheme="https://saweicore.com/tags/programing"/>
+  </entry>
+  <entry>
+    <title><![CDATA[MarkedPage — SvelteKit 靜態網站的內容管理方案]]></title>
+    <id>https://saweicore.com/posts/2022/07/markedpage-introduce</id>
+    <link href="https://saweicore.com/posts/2022/07/markedpage-introduce"/>
+    <published>2022-07-22T00:00:00.000Z</published>
+    <updated>2022-07-22T00:00:00.000Z</updated>
+    <summary type="text"><![CDATA[想試著做個靜態網站卻又對現成的生成器感到不滿意？不妨試試看 SvelteKit 與這個專門為靜態網站而生的 Markdown 內容索引工具吧，相信能夠帶來些不一樣的使用體驗。]]></summary>
+    <content type="html"><![CDATA[<p>午安旅人，MarkedPage 是搭建這個部落格時一起製作的工具包，用意在解決 SvelteKit 使用 Markdown 及建立索引時缺乏相關工具的問題，希望能帶給你不錯的體驗。</p><h2 id="這能夠做些什麼？" class="heading-item">這能夠做些什麼？</h2><ul><li>使用 .md 檔案作為資料來源，不需要額外的內容管理系統(CMS)。</li><li>內建 <code>FrontMatter</code>、<code>&lt;!--more--&gt; 標籤</code>、<code>headings 抽取</code> 功能。</li><li>內置<a href="#classifier">簡易分類器</a>，可依據 <strong>資料夾路徑</strong> 或是 <strong>FrontMatter 欄位</strong> 進行分類，省去撰寫繁雜的分類邏輯。</li><li>支援<a href="#customclassifier">自定義分類器</a>，依照自己需求客製化分類方式。</li><li>具備 draft (草稿)輔助功能，當一個文章被標記為 draft 時，在 dev 環境將照常顯示可用做畫面預覽，但在正式編譯時將不會被列入清單。</li></ul><h2 id="事前準備" class="heading-item">事前準備</h2><p>Makredpage 雖然可單獨使用，但主要用於配合 SvelteKit 專案。因此以下範例皆以 SvelteKit 的使用情境為主。</p><h3 id="安裝" class="heading-item">安裝</h3><pre><code class="language-js">npm install markedpage
+// yarn add markedpage
+// pnpm install markedpage
+</code></pre><h3 id="目錄結構" class="heading-item">目錄結構</h3><p>創建基本資料夾結構及檔案：</p><pre><code class="language-js">/
+├─ docs
+│   └─ _posts
+│         ├─ 2021-09-16-directorypost1.md
+│         └─ 2021-09-17-note.md
+├─ src
+│    ├─ app.html
+│    └─ site.config.js
+└ package.json
+</code></pre><p>在目錄配置方面，遵循約定大於配置原則。</p><ul><li><p>/docs</p><ul><li>所有 .md 檔案必須放置於此路徑下。</li><li>分類器會以此路徑為基準進行解析。</li><li>檔案名稱支援 yyyy-mm-dd-slug.md 及 slug.md 兩種解析模式</li></ul></li><li><p>/src/site.config.js</p><ul><li>MarkedPage 主要的配置檔案，用於配置 Classifier 及 Marked 擴展。</li></ul></li></ul><h3 id="配置-siteconfigjs" class="heading-item">配置 site.config.js</h3><pre><code class="language-js">const config = {
+    classifier: [
+        { id: &#39;post&#39;, params: { path: &#39;/_posts/&#39; }, type: &#39;directory&#39; },
+    ],
+    marked: {
+        options: {},
+        extensions: []
+    },
+};
+
+export default config;
+</code></pre><ul><li><code>classifier</code> 欄位型別為 Array 用於配置分類器，每個分類器由三個欄位組成。<ul><li>id	=&gt; 分類器 id - 型別為 string</li><li>params	=&gt; 傳入分類器的參數 - 型別為 Object</li><li>type	=&gt; 選用的分類器類型</li></ul></li></ul><p>關於分類器的詳情可參考 <a href="#classifier"><strong>#Classifier</strong></a> 節</p><ul><li><code>marked</code> 欄位用於配置 marked 的設定及擴展功能。詳情可參閱 <a href="#marked"><strong>#Marked</strong></a> 節。</li></ul><p>除以上用途外也可用於配置網站的自定義內容，如： title 、description ...等，可自行運用。範例如下：</p><pre><code class="language-js">const config = {
+    title: &#39;MarkedPage Test Project&#39;,
+    description: &#39;Test project description&#39;,
+    author: {
+        name: &quot;saweima&quot;
+    },
+    classifier: [
+        { id: &#39;post&#39;, params: { path: &#39;/_posts/&#39; }, type: &#39;directory&#39; },
+        { id: &#39;tag&#39;, params: { keys: [&#39;tag&#39;, &#39;tags&#39;] }, type: &#39;frontmatter&#39; },
+        { id: &#39;category&#39;, params: { keys: [&#39;category&#39;, &#39;categories&#39;] }, type: &#39;frontmatter&#39; },
+        { id: &#39;custom&#39;, params: { path: &#39;/_posts/&#39; }, type: CustomClassifierHandle },
+    ],
+    marked: {
+        options: {},
+        extensions: {}
+    },
+};
+</code></pre><h3 id="配置-viteconfigjs" class="heading-item">配置 vite.config.js</h3><pre><code class="language-js">import { sveltekit } from &#39;@sveltejs/kit/vite&#39;;
+import { markedpageVitePlugin } from &#39;markedpage&#39;;
+
+import siteConfig from &#39;./src/site.config.js&#39;;
+
+/** @type {import(&#39;vite&#39;).UserConfig} */
+const config = {
+    plugins: [sveltekit(), markedpageVitePlugin(siteConfig)]
+};
+
+export default config;
+</code></pre><p>透過導入 <strong>markedpageVitePlugin</strong> 及 <strong>site.config.js</strong> 可支援 markdown 檔案及 site.config.js 的熱更新（檔案更新後不需要重啟，會自動刷新）。</p><h2 id="如何使用？" class="heading-item">如何使用？</h2><p>MarkedPage 提供 3 個主要 Function 及 1 個 HMR 輔助 Hook。</p><ul><li>siteConfig()</li><li>getPage(slug)</li><li>classifiedSet(id)</li><li>onContentUpdate(callback)</li></ul><h3 id="siteconfig" class="heading-item">siteConfig()</h3><p>取得 /src/site.config.js 中的內容。</p><pre><code class="language-js">// 取得 config data
+const config = await siteConfig();
+
+// 回傳結果
+{
+  title: &#39;MarkedPage Test Project&#39;,
+  classifier: [
+    { id: &#39;post&#39;, params: [Object], type: &#39;directory&#39; },
+    { id: &#39;tag&#39;, params: [Object], type: &#39;frontmatter&#39; },
+    { id: &#39;category&#39;, params: [Object], type: &#39;frontmatter&#39; },
+    {
+      id: &#39;custom&#39;,
+      params: [Object],
+      type: [AsyncFunction: CustomClassifierHandle]
+    }
+  ],
+  marked: { options: {}, extensions: [ [Object] ] }
+}
+</code></pre><h3 id="getpageslug" class="heading-item">getPage(slug)</h3><p>根據 slug 取得對應的頁面資料。</p><pre><code class="language-js">const page = await getPage(&quot;marked-test&quot;);
+
+// 回傳結果
+{
+  frontMatter: {
+    title: &#39;MarkedPage Test Page&#39;,
+    tags: [ &#39;test&#39; ],
+    category: [ &#39;default&#39; ],
+    excerpt: &#39;TestPage Excerpt.&#39;,
+    created: 2022-05-18T00:00:00.000Z
+  },
+  sourcePath: &#39;docs/_posts/2022-05-18-marked-test.md&#39;,
+  indexPath: &#39;docs/_posts/2022-05-18-marked-test&#39;,
+  headings: [
+    { depth: 2, text: &#39;H2&#39;, raw: &#39;## H2\n\n&#39;, id: &#39;h2&#39; },
+    { depth: 3, text: &#39;H3&#39;, raw: &#39;### H3\n\n&#39;, id: &#39;h3&#39; },
+  ],
+  render: [Function: render],
+  raw: [Function: raw],
+  slugKey: &#39;marked-test&#39;
+}
+</code></pre><h3 id="classifiedsetid" class="heading-item">classifiedSet(id)</h3><p>依據 site.config.js 中配置的 分類器 id 取得對應的資料。</p><pre><code class="language-js">const pageSet = await classifiedSet(&quot;post&quot;);
+
+// 回傳結果
+{
+  pages: [
+    {
+      frontMatter: [Object],
+      sourcePath: &#39;docs/_posts/2022-05-18-marked-test.md&#39;,
+      indexPath: &#39;docs/_posts/2022-05-18-marked-test&#39;,
+      headings: [Array],
+      render: [Function: render],
+      raw: [Function: raw],
+      slugKey: &#39;marked-test&#39;
+    }
+  ]
+}
+</code></pre><h3 id="oncontentupdatecallback" class="heading-item">onContentUpdate(callback)</h3><pre><code class="language-js">  // src/routes/__layout.svelte
+  import { invalidate } from &#39;$app/navigation&#39;;
+  import { page } from &#39;$app/stores&#39;;
+  import { onContentUpdate } from &#39;markedpage&#39;;
+
+  onContentUpdate((payload: Record&lt;string, any&gt;) =&gt; {
+      let slug = $page.params.slug;
+      // update endpoint data.
+      invalidate(`/api/posts.json`);
+      invalidate(`/api/posts/${slug}.json`);
+  });
+</code></pre><p>用於實作 HMR 更新：</p><ul><li>透過 <code>onContentUpdate</code> 監聽 markdown 檔案是否有變動。</li><li>使用 <code>invalidate</code> 通知 SvelteKit 刷新 Endpoint 並自動更新 Client 端。</li></ul><h2 id="classifier" class="heading-item">Classifier</h2><p>MarkedPage 提供了兩個簡易的分類器及客製化的選項。依據使用的分類器不同會有不同的回傳結果。</p><h3 id="directoryclassifier" class="heading-item">DirectoryClassifier</h3><p>對應 <code>type: &#39;directory&#39;</code> ，以路由為基礎的分類器，會以 /docs 為根目錄依據 params.path 配置的路徑進行分類。</p><pre><code class="language-js">// 範例配置
+{ id: &#39;post&#39;, params: { path: &#39;/_posts/&#39; }, type: &#39;directory&#39; }
+
+// 回傳結果
+{
+  pages: [
+    {
+      frontMatter: [Object],
+      sourcePath: &#39;docs/_posts/2022-05-18-marked-test.md&#39;,
+      indexPath: &#39;docs/_posts/2022-05-18-marked-test&#39;,
+      headings: [Array],
+      render: [Function: render],
+      raw: [Function: raw],
+      slugKey: &#39;marked-test&#39;
+    }
+  ]
+}
+</code></pre><h3 id="frontmatterclassifier" class="heading-item">FrontMatterClassifier</h3><p>對應 <code>type: &#39;frontmatter&#39;</code> ，以 frontmatter 欄位為基礎的分類器，遍歷所有 page 的 frontmatter 並根據註冊的欄位的值進行分類。</p><pre><code class="language-js">// 範例配置
+{ id: &#39;tag&#39;, params: { keys: [&#39;tags&#39;] }, type: &#39;frontmatter&#39; }
+
+// 範例 frontmatter
+---
+title: MarkedPage Test Page Second
+tags:
+ - test
+ - test2
+---
+
+// 回傳結果
+{
+  test: [
+    {
+      frontMatter: [Object],
+      sourcePath: &#39;docs/_posts/2022-05-18-marked-test-second.md&#39;,
+      indexPath: &#39;docs/_posts/2022-05-18-marked-test-second&#39;,
+      headings: [Array],
+      render: [Function: render],
+      raw: [Function: raw],
+      slugKey: &#39;marked-test-second&#39;
+    },
+  ],
+  test2: [
+    {
+      frontMatter: [Object],
+      sourcePath: &#39;docs/_posts/2022-05-18-marked-test-second.md&#39;,
+      indexPath: &#39;docs/_posts/2022-05-18-marked-test-second&#39;,
+      headings: [Array],
+      render: [Function: render],
+      raw: [Function: raw],
+      slugKey: &#39;marked-test-second&#39;
+    }
+  ]
+}
+</code></pre><h3 id="customclassifier" class="heading-item">CustomClassifier</h3><p>若前兩者都不符合需求，則可以選擇自定義分類器 Function。</p><pre><code class="language-js">// 自定義 Classifier
+export const CustomClassifierHandle = async ({options, pages}) =&gt; {
+    let _classifiedPages = [];
+    let { id, params } = options;
+  
+    console.log(`::: Run CustomClassifierHandle -  ${id} :::`);
+    pages.map((page) =&gt; {
+      const { sourcePath } = page;
+      if (!sourcePath.includes(params.path)) return;
+  
+      _classifiedPages.push(page);
+    });
+  
+    return { pages: _classifiedPages };
+};
+
+// 範例配置
+{ id: &#39;custom&#39;, params: { path: &#39;/_posts/&#39; }, type: CustomClassifierHandle },
+
+// 回傳結果 (範例中與 DirectoryClassifier 一致)
+</code></pre><p>接收的兩個參數：</p><ul><li>options -&gt; site.config.js 中配置的 分類器 Object</li><li>pages -&gt; 位於 /docs 下所有的 page Array</li></ul><h2 id="額外功能" class="heading-item">額外功能</h2><p>除了基本的 Markdown 支援外，另有實作以下幾項內部功能。</p><h3 id="frontmatter" class="heading-item">FrontMatter</h3><p>透過 front-matter 套件，解析在 .md 檔案中頂部的 yaml 區域，並導出至 frontMatter 欄位。</p><pre><code class="language-md">---
+title: MarkedPage Test Page
+tags:
+ - test
+category:
+ - default
+---
+
+由 --- 夾著的內容為 yaml 格式。會被導出為 page.frontMatter
+</code></pre><h3 id="excerpt" class="heading-item">Excerpt</h3><p>透過 Regex 解析內容，會將<strong>第一個</strong>搜索到的 <code>&lt;!-- more --&gt;</code> (有無空白皆可) 以上的內容抽出為 excerpt。</p><pre><code class="language-md">---
+title: MarkedPage test.
+---
+
+這段句子會被導出為 page.frontMatter.excerpt(不含 HTML 及Markdown tag)。
+&lt;!--more--&gt;
+這段句子不會發生任何事情。
+&lt;!-- more --&gt;
+</code></pre><h3 id="draft" class="heading-item">Draft</h3><p>此為 FrontMatter 的延伸功能，當 FrontMatter 內容包含 <code>_draft: true</code> 時，該篇文章在 <code>NODE_ENV=&quot;production&quot;</code> 狀態（也就是使用 svelte-kit build ) 下不會被列入有效檔案中。</p><pre><code class="language-md">---
+title: MarkedPage test.
+_draft: true
+---
+
+這篇文章在 Production 模式下不會被列入有效文章中，無法檢索。
+</code></pre><h2 id="擴展功能" class="heading-item">擴展功能</h2><p>最後，考量到自定義的需求，在 site.config.js 中提供了兩個擴展選項：</p><h3 id="marked" class="heading-item">Marked</h3><p>用以自定義解析 markdown 內容時的處理。像是幫自定義 heading 的id、幫標籤加上統一的 class、自定義 Block ...等。</p><pre><code class="language-js">marked: {
+  options: {},
+  extensions: []
+},
+</code></pre><ul><li>options 類型為 Object 其內容會被傳入 marked.setOptions() 作為預設值<ul><li>配置可參考： <a href="https://marked.js.org/using_advanced#options" target="_blank" rel="noreferrer noopenner">Marked Document - Options</a></li></ul></li><li>extension 類型為 Array 其內容會依序被傳入 marked.use()<ul><li>用以兼容 Marked 的 extension 套件，如： <a href="https://www.npmjs.com/package/marked-custom-heading-id" target="_blank" rel="noreferrer noopenner">marked-custom-heading-id</a></li><li>也可自定義擴展，編寫方式可參考： <a href="https://marked.js.org/using_pro#use" target="_blank" rel="noreferrer noopenner">Marked Document - Use</a></li></ul></li></ul><h3 id="extendpagedatapage" class="heading-item">extendPageData(page)</h3><p>當 Markdown page 做完基本處理（抽出 heading、導出 excerpt 及 frontmatter）後執行，用以自定義擴展欄位。</p><pre><code class="language-js">import { marked } from &quot;marked&quot;;
+export const extendPageData = async (page) =&gt; {
+    const raw = await page.raw();
+    page.test = marked.parse(raw);
+}
+</code></pre><h2 id="應用範例" class="heading-item">應用範例</h2><p>最後，附上應用範例。範例中包含 Endpoint 端及 Page 端的實作。</p><blockquote><p><strong>MarkedPage Example Repo</strong><br>網址: <a href="https://github.com/saweima12/markedpage-example" target="_blank" rel="noreferrer noopenner">點我進入</a></p></blockquote><h2 id="tldr" class="heading-item">TL;DR</h2><ul><li>MarkedPage 是為了輔助 SvelteKit Static Site 而製作的工具。</li><li>目的在簡化 Markdown 資料的讀取及建立索引的繁雜過程。</li><li>site.config.js 除了配置以外還能用來填入網站的基本參數作後續使用。</li><li>classifer 可選擇基於<code>資料夾路徑</code>與<code>frontmatter</code>兩種簡易分類器。</li><li>由於使用 marked 作為轉譯器，可使用 extension 功能修改 parse 結果 (可參考 <a href="https://marked.js.org/using_pro" target="_blank" rel="noreferrer noopenner">Document</a>)</li></ul>]]></content>
+    <category term="svelte" scheme="https://saweicore.com/tags/svelte"/>
+    <category term="markdown" scheme="https://saweicore.com/tags/markdown"/>
+    <category term="programing" scheme="https://saweicore.com/tags/programing"/>
+  </entry>
+  <entry>
+    <title><![CDATA[踏入區塊鏈與探索去中心化應用 — 加密貨幣入門大小事（二）]]></title>
+    <id>https://saweicore.com/posts/2022/06/blockchain-dapp-start</id>
+    <link href="https://saweicore.com/posts/2022/06/blockchain-dapp-start"/>
+    <published>2022-06-08T00:00:00.000Z</published>
+    <updated>2022-06-08T00:00:00.000Z</updated>
+    <summary type="text"><![CDATA[投入了加密貨幣後，想要進一步探索區塊鍊上的生態，卻又不知道該怎麼做嘛？這篇文章概略的介紹了一些區塊鏈的生態與操作步驟，或許能夠提供一些小幫助。]]></summary>
+    <content type="html"><![CDATA[<p>午安，旅人。看到這段文字的你，或許打算更進一步的探索加密貨幣與區塊鏈的領域。如果是的話，這篇文章或許能帶給你一些幫助，在此會簡單的介紹如何把資金送到區塊鍊進行應用以及簡單說明什麼是區塊鏈。</p><blockquote><p>如果是誤入此地的旅人，對於踏入加密貨幣領域有點興趣卻又不知道從何開始的話可以參考這篇文章，做好初步的準備。<br>連結：<a href="/posts/2022/05/crypto-getting-start"><strong>如何取得加密貨幣 — 加密貨幣入門大小事</strong></a></p></blockquote><h2 id="這篇文章希望能帶你" class="heading-item">這篇文章希望能帶你</h2><ul><li>建立自己的鏈上錢包</li><li>嘗試使用去中心化應用 (DApp)</li><li>初步理解區塊鏈為何存在</li><li>簡單理解加密貨幣種類</li></ul><h2 id="建立鏈上錢包" class="heading-item">建立鏈上錢包</h2><p>目前常見的公鏈有：ETH、CARDANO(ADA) 、AVAX 及 SOLANA。不論最終選擇哪個，想要<strong>進入區塊鏈領域第一件事情便是建立一個鏈上錢包地址</strong>，並將資金轉到鏈上。</p><p>在開始之前有以下幾點需要注意：</p><ul><li><strong>做好事前調查</strong>：請確保對自己所選擇的公鏈有一定程度的了解，並且確認其足以信任。</li><li><strong>永遠為自己的行為負責</strong>：絕對不要過度投入，確保能夠承擔多少風險，沒人能夠替你負責。</li><li><strong>要有防範意識</strong>：在加密貨幣市場中，大多人是不太理性的，即便是市值前五名的公鏈都有可能一夕蒸發，務必做好風險控管。</li></ul><blockquote><p>由於現今區塊鏈數量眾多，每條鏈的特性及功能雖然略有不同，但終端使用者操作步驟都大同小異。因此這邊會以我自己最熟悉的 Cardano(ADA) 區塊鏈為例。</p></blockquote><h3 id="選擇使用的錢包" class="heading-item">選擇使用的錢包</h3><p>在 Cardano 中有多種錢包可以選擇，其中大多數都以瀏覽器插件的形式存在，這邊推薦使用 <a href="https://eternl.io/" target="_blank" rel="noreferrer noopenner">Eternl Wallet</a> 。</p><ul><li>目前使用最順手的錢包，雖然畫面有點小複雜但是功能齊全。</li><li>由於目前只支援 Chromium 系列瀏覽器，因此推薦搭配 <a href="https://brave.com/zh/download/" target="_blank" rel="noreferrer noopenner">Brave瀏覽器</a> 使用。</li><li>建議與平時使用的瀏覽器分開，避免遇上釣魚網站或是遇到瀏覽器漏洞被駭入的問題。</li><li>有支援 Android 手機板。</li><li>接下來也會以此錢包作為示範</li></ul><h3 id="透過錢包創建自己的錢包地址" class="heading-item">透過錢包創建自己的錢包地址</h3><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-01.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">1. 點擊 「Add Wallet」 進入選單</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-02.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">2. 點擊 「Create Wallet」 創建自己的錢包地址 / 若已經有了其他的錢包，可以選擇 「Restore Wallet」 透過助記詞登入。</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-03.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">3. 輸入自訂的錢包名稱及錢包密碼（此名稱與密碼僅適用於該裝置，用於避免有他人盜用裝置付款。）</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-04.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">4. 最後會顯示由 24 個單字組成的助記詞，請務必保存好並且不要洩漏出去，若失去助記詞等同於失去錢包。會有資金損失的風險。</p><h3 id="目前使用鏈上錢包的好處" class="heading-item">目前使用鏈上錢包的好處</h3><ul><li>可以透過鍊上錢包使用 DApp、質押和參與鏈上事務。</li><li>Not your key, not your money，將公鏈幣提領至對應公鏈幣的錢包，可以避免交易所倒掉時資產消失的窘境。(與區塊鍊共存亡)</li></ul><h3 id="其他的錢包" class="heading-item">其他的錢包</h3><p>另外也有以下幾種錢包可以選擇：</p><ul><li>Typhon Wallet - <a href="https://typhonwallet.io/" target="_blank" rel="noreferrer noopenner">https://typhonwallet.io/</a></li><li>Gero Wallet - <a href="https://gerowallet.io/" target="_blank" rel="noreferrer noopenner">https://gerowallet.io/</a></li><li>Nami Wallet - <a href="https://namiwallet.io/" target="_blank" rel="noreferrer noopenner">https://namiwallet.io/</a></li><li>Flint Wallet - <a href="https://flint-wallet.com/" target="_blank" rel="noreferrer noopenner">https://flint-wallet.com/</a></li></ul><p>不需要擔心更換錢包會很麻煩。在 Cardano 中錢包就只是方便的操作介面而已，實際的金額都會儲存在區塊鏈的記錄中，只要記得自己建立錢包地址時取得的助記詞，在新的錢包恢復(Restroe) 即可。</p><h2 id="區塊鏈與質押" class="heading-item">區塊鏈與質押</h2><p>在區塊鏈中 <strong>質押 (Stake)</strong> 是用來表示「將自己所持有的代幣進行鎖定，用來投票 / 提供流動性來協助維護區塊鏈網路」的簡稱。</p><p>在 PoS (權益證明) 基礎的區塊鏈中質押尤為重要，透過<strong>持有者們質押代幣進行投票來決定哪一些節點更有驗證交易的優先權</strong>。作為回報，會返還交易手續費或是獎勵池中的額度來鼓勵人們進行質押。</p><p>透過 Eternl 錢包質押賺取額外的代幣非常簡單，操作如下：</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-05.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">切換到 Staking 介面，挑選喜歡的質押池。 按下 Delegate 即可（推薦挑選 Fees 為 0% 、 ROS > 4% 並且 Situ的池子進行質押）</p><p>在 Cardano 生態中，質押與其他區塊鏈有些許不同。</p><ul><li>質押不需要鎖定，改為每個 epoch 建立一次帳戶餘額快照（記錄帳戶內有多少 ADA）。</li><li>建立的快照將會作為<strong>下下次</strong>的質押依據。</li><li>在 Cardano 一個 epoch 為五天，每個區塊鏈可能設定不相同。</li><li>因此初次質押後需要最多21天才能得到第一筆獎勵。</li></ul><h2 id="使用去中心化應用程式-dapp" class="heading-item">使用去中心化應用程式 (DApp)</h2><p>在區塊鏈的領域中人們嘗試著透過區塊鏈去中心化的特性及智能合約功能，建構出了不需要使用私人資料庫便能做資料交換的 DApp(去中心化應用程式)。 只需連接上錢包就能在各 DApp 之間自由切換，而不需要繁瑣的轉帳步驟。</p><blockquote><p>目前各大公鏈的 DApp 生態都還在發展中，以小圖片 NFT 及各式各樣的 De-Fi（去中心化金融）為主。</p></blockquote><h3 id="連接錢包到-dapp" class="heading-item">連接錢包到 DApp</h3><img src="https://media.saweicore.com/blog/blockchain-dapp-start/eternl-06.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">先在錢包頁面中點擊插頭圖案，允許 DApp 連接。</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/cnft-01.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">點擊右上角的 Link Wallet 選擇自己當前檢測到的錢包插件，點擊後會跳出視窗，讓錢包插件進行確認。</p><img src="https://media.saweicore.com/blog/blockchain-dapp-start/cnft-02.jpg" style="max-height:720px" loading="lazy" class="lightbox"><p class="text-center">經過錢包插件確認後，即可看到連接完成。</p><p>連接 DApp 的操作步驟都大同小異，部份 DApp 甚至不需要進行錢包連接。下面會介紹些目前較為有用的 DApp 。</p><h3 id="去中心化交易所-dex" class="heading-item">去中心化交易所 (DEX)</h3><p>目前為止使用的國內交易所 Ace 、國際交易所 Binance 都屬於「中心化交易所 (CEX)」， 在區塊鏈中有著與之相對的透過區塊鏈的去中心化基礎與智能合約創造的「去中心化交易所（DEX）」。</p><p>作為區塊鍊上代幣交易的集中地。目前 DEX 的方便性與交易量還無法媲美 CEX ，但相信未來非常具有成長潛力。</p><ul><li><p><a href="https://minswap.org/" target="_blank" rel="noreferrer noopenner">MinSwap</a> 是 Cardano 社群中較為活躍的 DEX 之一，採用 Auto Market Maker 模型（AMM)，讓流動性提供者可透過鎻倉代幣提供流動性賺取額外收入，交易者依據需要從流動池中兌換代幣，可在此將 ADA 更換為其他 Cardano 生態上的代幣。</p></li><li><p><a href="https://muesliswap.com/markets" target="_blank" rel="noreferrer noopenner">MuesliSwap</a> 是另外一個在 Cardano 社群中活躍的 DEX 之一，採用傳統的訂單簿模型 (OrderBook)撮合需求者與供給者雙方進行交易。</p></li></ul><h3 id="消費性質產品與-nft" class="heading-item">消費性質產品與 NFT</h3><p>在 Cardano 中目前具有消費性質的產品還不夠多，大多是音樂、繪畫、動畫等相關作品。</p><ul><li><p><a href="https://www.jpg.store/" target="_blank" rel="noreferrer noopenner">Jpg.store</a> 是 Cardano 社群中 NFT 小圖片的交易集散地。在這邊可以進行大多數的 NFT 販售與購買，與拍賣網站類似。</p></li><li><p><a href="https://adahandle.com/" target="_blank" rel="noreferrer noopenner">ADAHandle</a> 在區塊鍊中的錢包地址總是很長，AdaHandle 可以透過 NFT 應用進行地址 Mapping 。縮短到像是: $handle.it</p></li></ul><h2 id="區塊鏈到底是什麼？為什麼要去中心化？" class="heading-item">區塊鏈到底是什麼？為什麼要去中心化？</h2><p>假設以下情況：</p><ul><li>我承諾三天後要轉帳 10 萬美金給旅人作為貨款，並取走了貨物。</li><li>過了四天，旅人發現那 10 萬美金一直都沒有到帳，跑來反應。</li><li>但是我卻表明已經付款過了，因此之後將不會在作給付。</li></ul><p>這時便產生了問題：</p><ol><li><strong>要找誰來證明我是否真的有支付這筆款項？</strong></li><li><strong>如果我其實沒支付，但是找來的第三方說我已經支付了怎麼辦？</strong></li><li><strong>如果旅人找來的第三方調查的人證明我沒支付，但因為是旅人找來的，所以我表示你們聯合造假怎麼辦？</strong></li></ol><p>要解決上述的問題，需要存在一個<strong>雙方都能信任的公正第三方驗證者及記錄者</strong>。</p><p>區塊鏈是一套為此創造的解決方案，有以下特性：</p><ul><li><strong>去中心化驗證</strong> - 若一個人驗證可能產生造假嫌疑，那就隨機多找幾個人驗證，透過多個節點的共識機制驗證交易，確保正確性。</li><li><strong>去中心化存儲</strong> - 帳本存放於單一地點時有被竄改的可能性，因此驗證後的資料將隨機分散至多個節點進行存放，降低被竄改的可能性。</li><li><strong>密碼學湊雜</strong> - 存放於區塊鍊上的交易資料根據內容計算出不重複的唯一 ID ，確保資料並無被竄改。</li></ul><p>透過以上三個特性，創造出記錄不易被竄改並且具備公正性的第三方驗證者。</p><h2 id="加密貨幣又是什麼？" class="heading-item">加密貨幣又是什麼？</h2><p>加密貨幣(Cryptocurrency)又稱數位貨幣、虛擬貨幣。 是在區塊鍊上發行的數位代幣，依據用途不同而有不同的分類。</p><p>依據用途與性質可分為：</p><ul><li><strong>穩定幣</strong> - 價格波動較為穩定的幣種， 價值通常與法幣掛勾。目前在跨境交易上，常被用作法幣的替代品如：USDC、USDT，被用作替代美元。</li><li><strong>公鏈幣</strong> - 區塊鏈自己發行的幣種，作為協助維護自身區塊鏈的獎勵代幣。如： ETH、ADA、SOL。</li><li><strong>平台幣</strong> - 由特定組織、團隊替自己的產品/平台發行。如：FTT、MIN、RAY...等，作為平台的獎勵 token。</li><li><strong>Meme幣</strong> - 基於戲謔或是各種理由發行的代幣，這類代幣通常會極大量發行讓價值變的極低，如： SHIB、DOGE、HOUSKY .. 等。</li></ul><p>以上分類不需要硬性區分，某些幣種可能會有複數性質。其中有些公鍊幣與平台幣又與股票類似，持有就相當於支持該區塊鍊/平台並參與網路運作。</p><h2 id="tldr" class="heading-item">TL;DR</h2><ul><li>不論選擇哪條區塊鏈，要踏入區塊鏈生態的第一步都是先建立該鏈的錢包地址。</li><li>錢包地址可以透過公鍊提供的錢包軟體建立。</li><li>錢包的助記詞必須保存好且避免洩漏，預防有資金損失的風險。</li><li>在 PoS 基礎的區塊鍊中，透過在區塊鏈上質押代幣，可以協助區塊鍊網路運作並賺取質押獎勵。</li><li>去中心化應用程式 (DApp) 是建立在區塊鍊之上不需私人資料庫的應用程式。</li><li>目前 DApp 的生態還在發展中，能做的事情還不多。</li><li>透過使用鏈上錢包連接 (Connect) 使用「去中心化應用程式(DApp) 」。</li><li>區塊鏈被設計用來成為交易時的公正第三方及記錄者。</li><li>加密貨幣是在區塊鏈之上發行的數位代幣，有各式各樣的用途。</li></ul>]]></content>
+    <category term="幣圈" scheme="https://saweicore.com/tags/幣圈"/>
+    <category term="區塊鏈" scheme="https://saweicore.com/tags/區塊鏈"/>
+    <category term="加密貨幣" scheme="https://saweicore.com/tags/加密貨幣"/>
+  </entry>
+  <entry>
+    <title><![CDATA[如何取得加密貨幣 — 加密貨幣入門大小事（一）]]></title>
+    <id>https://saweicore.com/posts/2022/05/crypto-getting-start</id>
+    <link href="https://saweicore.com/posts/2022/05/crypto-getting-start"/>
+    <published>2022-05-22T00:00:00.000Z</published>
+    <updated>2022-05-22T00:00:00.000Z</updated>
+    <summary type="text"><![CDATA[想要踏入加密貨幣的世界卻又不知道如何開始嗎？這邊簡單的整理了相關資訊，包含事前準備內容、操作的概念說明及相關注意事項，希望能夠提供一些方向。]]></summary>
+    <content type="html"><![CDATA[<p>午安，旅人。如果你現在正在閱讀這段文字，那可能意味著你想要嘗試進入加密貨幣的世界卻又不知道如何開始。如果是的話，這裡的內容應該能夠提供一點小小的幫助，協助你取得人生中的第一筆加密貨幣。</p><blockquote><p><strong>以下情形皆以台灣使用者為主，對旅人而言不一定適用，實際操作情況請以自身狀況進行評估。</strong></p></blockquote><h2 id="這篇文章希望能夠讓你" class="heading-item">這篇文章希望能夠讓你</h2><ul><li>建立基本觀念與防範意識</li><li>理解穩定幣為何存在及用途</li><li>註冊好一間國內交易所</li><li>註冊好至少一間國際交易所</li><li>購買一次穩定幣 (USDT)</li><li>進行一次提領(轉帳)</li></ul><h2 id="基本觀念？防範意識？" class="heading-item">基本觀念？防範意識？</h2><p>加密貨幣仍是在發展中的領域，許多的功能仍不完善，有著高度的風險。同時詐騙案也層出不窮，因此在進入正題之前，希望旅人務必記住以下幾項原則：</p><ul><li><strong>永遠做你自己的研究</strong>：遇到不懂的事情先 Google 調查或詢問他人作為參考，然後驗證它。加密貨幣的世界錯綜複雜，他的理論不一定適用於你。</li><li><strong>永遠為自己的行為負責</strong>：量力而為不要過度投入，做決定的永遠是自己，沒有人能夠替你負責。</li><li><strong>遠離所有私訊(DM)你的人或單位</strong>：尤其是私訊討論股票/加密貨幣的人，不會有人好心到會私訊教導你，通常都別有居心。如果你跟他不熟，推薦直接封鎖。</li><li><strong>絕對不要使用沒聽過的交易所</strong>：詐騙交易所遠比人們能想像中的還多，入金之後無法提領的交易所詐騙案更是層出不窮。現有的主流交易所已經很好用了，完全沒有以身犯險的必要。</li></ul><h2 id="什麼是穩定幣？-用途是什麼？" class="heading-item">什麼是穩定幣？ 用途是什麼？</h2><blockquote><p>Q: 試想一下，當比特幣的價值在 34,000 美元時，你要透過比特幣轉帳 10 美元給朋友，那你需要怎麼輸入？<br><br>A: 0.00029411764705882353</p></blockquote><p>加密貨幣的世界中，大多數的「標的物」價格波動都非常的劇烈，動輒 8-10% 起跳，因此在計算價值上需要有一個相對穩定的判斷基準，並且方便流通變現，而這便是穩定幣 (stablecoin) 。</p><p>目前用途最廣泛的穩定幣是 USDT - 由 Tether 發行的穩定幣，中文名稱又稱「泰達幣」。目標以無限接近 1:1 的比率與美金( USD ) 價值掛勾，若市場波動劇烈也會有浮動，但這仍然不影響其泛用性。</p><p>在國內交易所中，不論是 Ace 交易所還是 Max 交易所 USDT 透過 TRC20 通道轉帳都是<strong>零手續費</strong>，因此也是目前國內跟國際交易所之間最重要的轉帳穩定幣。</p><h2 id="那麼要在哪裡才能買到呢？取得的地點--交易所" class="heading-item">那麼要在哪裡才能買到呢？取得的地點 — 交易所</h2><p>與證交所類似，但交易的不是股票而是加密貨幣，交易時掛上想要的價格，如果市場價格對應且有人下單的話，系統會自動撮合成交。</p><ul><li><p><strong>挑選交易所</strong>時，請<strong>務必挑選主流的交易所</strong>並且<strong>注意使用的網址是否正確</strong>避免遇到詐騙、釣魚網站，並且<strong>絕對不要接觸來路不明的交易所</strong>。</p></li><li><p>因為牽涉到隱私問題及匯款問題，請<strong>絕對不要使用自己不清楚的交易所</strong>，註冊時<strong>資料請務必填寫正確</strong>。</p></li><li><p>大多數交易所都有邀請碼機制，使用邀請碼可以給邀請者與被邀請者雙方些許好處，因此可以<strong>問問自己的友人們</strong>進行互利，若是嫌麻煩的話也可以使用頁尾留下的邀請連結。</p></li></ul><p>推薦一些這邊經常使用的交易所，主要分為「國內交易所」及「國際交易所」兩類。</p><h3 id="小額入場的好去處--國內交易所" class="heading-item">小額入場的好去處 — 國內交易所</h3><p>國內的交易所，較主流的有 Ace 交易所、 Max 交易所。</p><ul><li>實務上經常用於小額購買 USDT / USDC 一類的穩定幣，並轉到國際交易所使用。</li><li>雖然也可以進行其他幣種的交易，但流動性相對較小不太好成交，不過偶爾可以撿到比大型交易所還要優惠的價格。</li><li>這邊僅推薦自己常用的 Ace 交易所，不過 Max 交易所也可以考慮，偶爾會有價差可以撿便宜。</li></ul><blockquote><p><strong>Ace 交易所</strong><br>註冊連結: <a href="https://ace.io/register" target="_blank" rel="noreferrer noopenner">點此進入</a><br>Linktr: <a href="https://linktr.ee/ACEexchange" target="_blank" rel="noreferrer noopenner">點此進入</a><br></p></blockquote><p>推薦加入 Ace 官方的 Telegarm 或是 Discord （可進入 Linktr 找到）如有遇到問題也方便有人可以詢問。</p><h3 id="主要交易場所--國際交易所" class="heading-item">主要交易場所 — 國際交易所</h3><p>世界級的交易所，較主流的為 Binance (幣安)、FTX 與 Bybit。</p><ul><li>因為使用的人數較多，流動性相對國內交易所更充足也更容易成交，是目前世界上主要的加密貨幣交易平台。</li><li>推薦 FTX 及 幣安都註冊，有些幣種只在其中一間有較為良好的流動性及功能性。</li><li>若有英文地址的填寫問題，可以使用郵局提供的<a href="https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=207" target="_blank" rel="noreferrer noopenner">中英地址翻譯</a></li><li>特別建議一定要註冊 FTX 交易所。</li></ul><blockquote><p><strong>FTX</strong><br>註冊連結: <a href="https://ftx.com/onboarding/signup" target="_blank" rel="noreferrer noopenner">點此進入</a><br></p></blockquote><br><blockquote><p><strong>Binance</strong><br>註冊連結: <a href="https://accounts.binance.com/zh-TW/register" target="_blank" rel="noreferrer noopenner">點此進入</a><br></p></blockquote><h3 id="實名認證---kyc" class="heading-item">實名認證 - KYC</h3><p>註冊帳號後，不論國內、國際交易所，為了避免洗錢問題，使用前會<strong>要求使用者必須進行實名認證</strong>。</p><ul><li>認證部份包含自拍照、銀行帳戶驗證等。</li><li>要注意的是<strong>入金時也必須使用驗證過的銀行帳戶入金</strong>，否則<strong>入金會失敗</strong>。</li><li>推薦使用有免費轉帳次數的銀行帳戶（如國泰KOKO），或是到銀行辦理約定轉帳。</li><li>一般認證會需要 1-5 個工作天，視情況而定。</li></ul><h2 id="入金與交易" class="heading-item">入金與交易</h2><p>由於穩定幣需求強烈，在交易所的價格通常都會比美金貴一點點。因此目前入金的路線目前分為兩種，依照需求而定：</p><ul><li>若有大額入金的需求(大於 10 萬新台幣) 且 USDT 的價差大於銀行的美金匯率 + 電匯費用，可直接銀行電匯至 FTX 交易所。</li><li>小額入金需求 (低於 10 萬新台幣)，或是不管以上那些，可直接在國內的交易所購買 USDT 轉帳。</li><li>不推薦直接使用信用卡入金，台灣的發卡銀行大多對此有抵制（尤其是中國信託），即便允許也通常帶著高額的手續費。</li></ul><p><strong>目標是用最少的新台幣換到最多的 USD 穩定幣。</strong></p><p>這裡引用 Ace 交易所官方提供的教學影片：</p><iframe src="https://www.youtube.com/embed/pKmfpMhwfHs" loading="lazy" title="YouTube video player" frameborder="0" allow="fullscreen;"></iframe><h2 id="如何轉帳到其他交易所--其他錢包-" class="heading-item">如何轉帳到其他交易所 / 其他錢包 ?</h2><p>這邊以從 Ace 交易所轉帳至幣安交易所為例：</p><details><summary>點擊展開 - 觀看操作步驟</summary><img src="https://media.saweicore.com/blog/crypto-getting-start/ace-withdrawal-1.jpg" loading="lazy" style="max-height:500px" class="lightbox"><p class="text-center">1. 取得幣安交易所的 TRC20 通道地址</p><table><tr><td><img src="https://media.saweicore.com/blog/crypto-getting-start/ace-page-1.jpg" style="max-height:500px" class="lightbox" loading="lazy"></td><td><img src="https://media.saweicore.com/blog/crypto-getting-start/ace-withdrawal-2.jpg" style="max-height:500px" class="lightbox" loading="lazy"></td></tr></table><p class="text-center">2. 進入 Ace 交易所的提幣介面，填入所有資訊後按下一步。最後輸入註冊的提領認證碼即可</p></details><h3 id="什麼是主網類型--通道--鍊？" class="heading-item">什麼是主網類型 / 通道 / 鍊？</h3><p>提領操作時所需要選取的 TRC20. ERC20. BEP20 ，這些是每條區塊鏈的通道規範：</p><ul><li>等同於要<strong>選擇要使用哪條區塊鏈通道</strong>進行發送。</li><li>每條鏈之間<strong>地址相互獨立不可互換</strong>，因此 <strong>TRC20 的地址只能用在 TRC20 通道</strong>。</li><li>如果<strong>選錯發送的鏈</strong>或是<strong>輸入錯誤的地址</strong>，你所<strong>投入的資金可能就會進入黑洞而拿不回來</strong>，需要特別注意。</li></ul><h3 id="要如何選擇-思考的步驟建議" class="heading-item">要如何選擇? 思考的步驟建議</h3><p>取決於錢包<strong>在哪條鏈上</strong>或是交易所<strong>支援哪些通道與幣種</strong>。情境舉例：</p><ul><li>假設要轉帳 600 USDT 至幣安交易所購買其他幣種。</li><li>目前 Ace 交易所及幣安交易所<strong>皆支援 USDT 幣種及 TRC20 通道</strong>，且 <strong>Ace 交易所透過 TRC20 轉帳 USDT 不需要提領手續費</strong>。</li><li>因此選擇透過 TRC20 通道將 USDT 從 Ace 交易所發送至幣安的 TRC20 地址<strong>最可行且最划算</strong>。</li></ul><p>每間交易所對每條鏈及每個幣種的提領費用設定都不一樣，需要依照自己的狀況評估，可想想以下幾個問題：</p><ol><li>需要提領什麼幣種？目的地是否支援該幣種？可以使用什麼鏈？</li><li>如果有多條鏈可以選擇，哪條鏈的提領費用最便宜？ 速度最快？</li><li>選定目標後，記錄下接收方的地址及資料，填入發送方的欄位（<strong>推薦使用複製貼上或是 QRCode 掃描避免輸入錯誤</strong>）。</li><li><strong>再次確認輸入的資料是否正確</strong>，確認後再發送。</li></ol><p>發送後，通常會有一段等待時間（視選擇的幣種及通道而定），待接收端確認成功接收到後即表示成功。</p><ul><li><strong>推薦初次操作時先小額轉帳一次</strong>確認資料無誤避免大額損失，待確認成功後將該地址加入常用清單，以後直接從常用清單選取避免需要重新輸入。</li><li>幣圈轉帳需要謹慎小心步步為營，如果<strong>失誤送進了黑洞通常很難救回來</strong>。</li></ul><h3 id="常見的轉帳通道" class="heading-item">常見的轉帳通道</h3><ul><li>TRC20 =&gt; 波場鏈，有些地方稱為 TRX，目前在國內的交易所透過該鏈提領 USDT 時可以免提領費用。</li><li>ERC20 =&gt; 乙太鏈，支援最多幣種的鏈，但有著非常高昂的手續費，也被戲稱為貴族鏈</li><li>BEP20 =&gt; 幣安智能鏈，不能使用 TRC20 的時候，優先考慮的替代品，手續費低廉。</li></ul><p>另外也有其他新興的區塊鏈，有自己的幣跟主網，如： Solana 、 Avax 、Cardano(ADA) ... 等，這些以後有機會再談。</p><h2 id="tldr" class="heading-item">TL;DR</h2><ul><li>加密貨幣世界充滿著風險，永遠做自己的研究、為自己的行為負責。</li><li>遠離所有主動私訊你的人，不要接觸自己不夠清楚的交易所，十有八九都是詐騙。</li><li>穩定幣是目前加密貨幣世界中的價格衡量基準，通常與美元價值掛勾。</li><li>大額入金（超過 10 萬新台幣）可評估 USDT 及（美金匯率價差＋手續費）價差考慮直接電匯到 FTX 交易所。</li><li>小額入金可由國內交易所購買 USDT 並通過 TRC20 通道轉帳至國際交易所。</li><li>轉帳通道( TRC20、ERC20 ...等)的選擇取決於付出的成本多寡，並且只能傳送到對應通道的地址，否則投入的資金可能會不見。</li></ul><h2 id="邀請連結--邀請碼" class="heading-item">邀請連結 / 邀請碼</h2><blockquote><p><strong>Ace 交易所</strong><br>邀請連結：<a href="https://ace.io/invitation/24224153" target="_blank" rel="noreferrer noopenner">點此進入</a><br>邀請碼：24224153</p></blockquote><br><blockquote><p><strong>FTX</strong><br>邀請連結：<a href="https://ftx.com/#a=77466608" target="_blank" rel="noreferrer noopenner">點此進入</a></p></blockquote><br><blockquote><p><strong>Binance</strong><br>邀請連結：<a href="https://www.binance.com/en/activity/referral/offers/claim?ref=CPA_002K3NKKVB" target="_blank" rel="noreferrer noopenner">點此進入</a></p></blockquote>]]></content>
+    <category term="幣圈" scheme="https://saweicore.com/tags/幣圈"/>
+    <category term="加密貨幣" scheme="https://saweicore.com/tags/加密貨幣"/>
+  </entry>
+</feed>
